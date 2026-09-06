@@ -1,0 +1,402 @@
+{
+  "sections": {
+    "hero_banner": {
+      "type": "hero-banner",
+      "settings": {
+        "eyebrow": "A LUXURY FRAGRANCE HOUSE",
+        "heading": "Discover the Essence of Elegance",
+        "text": "Crafted with passion, each fragrance tells a story of luxury, sophistication, and timeless allure.",
+        "btn_1_text": "Shop Now",
+        "btn_1_link": "#featured-product",
+        "btn_2_text": "Explore Collection",
+        "btn_2_link": "#collections"
+      }
+    },
+    "featured_product": {
+      "type": "featured-product",
+      "settings": {
+        "category": "EAU DE PARFUM - 100ML 3.4 FL. OZ",
+        "title": "Ruhe Noor",
+        "subtitle": "A Timeless Exploration of Elegance",
+        "price": "$165.00",
+        "compare_price": "$210.00",
+        "description": "Ruhe Noor opens with an exhilarating burst of sparkling citrus and velvety peach, transitioning into a floral bouquet of Jasmine Sambac and Damask Rose, grounded in an opulent base of royal amber, Madagascar vanilla, and aged sandalwood.",
+        "top_notes": "Bergamot, Sparkling Mandarin, Velvety White Peach",
+        "heart_notes": "Jasmine Sambac, Damask Rose, French Orange Blossom",
+        "base_notes": "Royal Amber, Aged Oud, Madagascar Vanilla, Sandalwood"
+      }
+    },
+    "why_choose_us": {
+      "type": "why-choose-us",
+      "blocks": {
+        "usp_1": {
+          "type": "usp",
+          "settings": {
+            "icon": "bottle",
+            "title": "Long-Lasting Sillage",
+            "text": "Up to 14+ hours of captivating olfactory projection and sillage trail."
+          }
+        },
+        "usp_2": {
+          "type": "usp",
+          "settings": {
+            "icon": "flower",
+            "title": "Rare Natural Botanicals",
+            "text": "Finest handpicked French Jasmine, Grasse Rose, and Arabian Oud."
+          }
+        },
+        "usp_3": {
+          "type": "usp",
+          "settings": {
+            "icon": "sparkle",
+            "title": "Artisanal Craftsmanship",
+            "text": "Hand-blended in micro batches by master perfumers for pure perfection."
+          }
+        },
+        "usp_4": {
+          "type": "usp",
+          "settings": {
+            "icon": "shield",
+            "title": "Sustainable Luxury",
+            "text": "Eco-conscious crystal flacons, 100% cruelty-free and clean formulations."
+          }
+        }
+      },
+      "block_order": ["usp_1", "usp_2", "usp_3", "usp_4"],
+      "settings": {
+        "eyebrow": "CRAFTED WITH PRECISION",
+        "heading": "Why Choose Ruhe Noor?",
+        "text": "High-concentration perfume oils, responsibly sourced botanicals, and hand-blended perfection in every single bottle."
+      }
+    },
+    "art_of_fragrance": {
+      "type": "art-of-fragrance",
+      "blocks": {
+        "step_1": {
+          "type": "step",
+          "settings": {
+            "title": "Sourcing & Selection",
+            "text": "Rare botanicals handpicked from sustainable private harvests across Grasse, Taif, and Madagascar."
+          }
+        },
+        "step_2": {
+          "type": "step",
+          "settings": {
+            "title": "Precision Blending",
+            "text": "Aged in curated dark glass containers to achieve harmonious depth, nuance, and rich longevity."
+          }
+        },
+        "step_3": {
+          "type": "step",
+          "settings": {
+            "title": "Flacon Bottling",
+            "text": "Heavy bespoke crystal flacons hand-poured and capped with polished metallic crowns."
+          }
+        }
+      },
+      "block_order": ["step_1", "step_2", "step_3"],
+      "settings": {
+        "eyebrow": "OUR PHILOSOPHY",
+        "heading": "The Art of Timeless Fragrance",
+        "subtitle": "Where ancient perfumery tradition meets modern olfactory sophistication."
+      }
+    },
+    "collection_grid": {
+      "type": "collection-grid",
+      "settings": {
+        "eyebrow": "DISCOVER OUR CREATIONS",
+        "heading": "Explore Our Collections",
+        "subtitle": "Hand-poured extrait de parfum formulated with highest concentration essence oils."
+      }
+    },
+    "brand_experience": {
+      "type": "brand-experience",
+      "blocks": {
+        "feat_1": {
+          "type": "feature",
+          "settings": {
+            "icon": "sparkle",
+            "title": "Bespoke Olfactory Guidance",
+            "text": "Private consultation to discover fragrance notes tailored to your unique skin chemistry."
+          }
+        },
+        "feat_2": {
+          "type": "feature",
+          "settings": {
+            "icon": "bottle",
+            "title": "Complimentary Samples",
+            "text": "Two complimentary 2ml curated discovery samples included with every full flacon order."
+          }
+        },
+        "feat_3": {
+          "type": "feature",
+          "settings": {
+            "icon": "flower",
+            "title": "Signature Gift Presentation",
+            "text": "Encased in luxury textured linen boxes sealed with custom gold foil insignia."
+          }
+        },
+        "feat_4": {
+          "type": "feature",
+          "settings": {
+            "icon": "shield",
+            "title": "14+ Hour Longevity Guarantee",
+            "text": "30% pure perfume oil concentration formulated for all-day sillage projection."
+          }
+        },
+        "feat_5": {
+          "type": "feature",
+          "settings": {
+            "icon": "sparkle",
+            "title": "Temperature-Controlled Storage",
+            "text": "Maintained in dark climate-controlled cellars to preserve volatile top-note nuances."
+          }
+        },
+        "feat_6": {
+          "type": "feature",
+          "settings": {
+            "icon": "truck",
+            "title": "Global Priority Shipping",
+            "text": "Insured door-to-door express delivery with trackable concierge dispatch."
+          }
+        }
+      },
+      "block_order": ["feat_1", "feat_2", "feat_3", "feat_4", "feat_5", "feat_6"],
+      "settings": {
+        "eyebrow": "COMMITTED TO EXCELLENCE",
+        "heading": "The Ruhe Noor Experience",
+        "subtitle": "Every aspect of our fragrance house is crafted for discerning connoisseurs."
+      }
+    },
+    "craftsmanship_stats": {
+      "type": "craftsmanship-stats",
+      "blocks": {
+        "stat_1": {
+          "type": "metric",
+          "settings": {
+            "label": "Long-Lasting All Day Wear (12+ hrs)",
+            "percentage": 98
+          }
+        },
+        "stat_2": {
+          "type": "metric",
+          "settings": {
+            "label": "Distinctive Sillage & Projection",
+            "percentage": 96
+          }
+        },
+        "stat_3": {
+          "type": "metric",
+          "settings": {
+            "label": "Natural & Pure Botanical Ingredients",
+            "percentage": 99
+          }
+        },
+        "stat_4": {
+          "type": "metric",
+          "settings": {
+            "label": "Luxury Compliments Received",
+            "percentage": 97
+          }
+        }
+      },
+      "block_order": ["stat_1", "stat_2", "stat_3", "stat_4"],
+      "settings": {
+        "eyebrow": "PROVEN PERFECTION",
+        "heading": "Consumer Reaction & Craftsmanship",
+        "subtitle": "Independent sensory evaluations conducted across 450 verified luxury perfume collectors."
+      }
+    },
+    "comparison_table": {
+      "type": "comparison-table",
+      "blocks": {
+        "row_1": {
+          "type": "row",
+          "settings": {
+            "attribute": "Fragrance Concentration",
+            "brand_val": "30%+ Pure Extrait",
+            "luxury_val": "12-15% EDP",
+            "mass_val": "5-8% EDT"
+          }
+        },
+        "row_2": {
+          "type": "row",
+          "settings": {
+            "attribute": "Sillage Longevity",
+            "brand_val": "14+ Hours All-Day",
+            "luxury_val": "4-6 Hours",
+            "mass_val": "1-2 Hours"
+          }
+        },
+        "row_3": {
+          "type": "row",
+          "settings": {
+            "attribute": "Botanical Sourcing",
+            "brand_val": "Pure Harvested Oils",
+            "luxury_val": "Partially Synthetic",
+            "mass_val": "100% Artificial"
+          }
+        },
+        "row_4": {
+          "type": "row",
+          "settings": {
+            "attribute": "Micro-Batch Aging",
+            "brand_val": "6-Month Cellar Aged",
+            "luxury_val": "Rapid Factory Mix",
+            "mass_val": "No Maturation"
+          }
+        },
+        "row_5": {
+          "type": "row",
+          "settings": {
+            "attribute": "Packaging & Flacons",
+            "brand_val": "Heavy Polish Crystal",
+            "luxury_val": "Standard Glass",
+            "mass_val": "Lightweight Molded"
+          }
+        }
+      },
+      "block_order": ["row_1", "row_2", "row_3", "row_4", "row_5"],
+      "settings": {
+        "eyebrow": "THE ARTISANAL DIFFERENCE",
+        "heading": "Why Choose Ruhe Noor?",
+        "subtitle": "A standard-setting comparison between artisanal formulation and mass commercial production.",
+        "brand_name": "Ruhe Noor"
+      }
+    },
+    "testimonials": {
+      "type": "testimonials",
+      "blocks": {
+        "test_1": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "A masterclass in olfactory luxury. I get compliments everywhere I go. The longevity is unlike any commercial perfume I have tried.",
+            "author": "Sophia R.",
+            "badge": "Verified Collector - London"
+          }
+        },
+        "test_2": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "The richness of the royal amber and oud blend is unprecedented. It stays on my coats for days while drying down into soft velvet vanilla.",
+            "author": "Alexander M.",
+            "badge": "Verified Connoisseur - Dubai"
+          }
+        },
+        "test_3": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "The crystal flacon weight alone screams extreme luxury. The fragrance projection easily outlasts 14 hours without reapplying.",
+            "author": "Elena K.",
+            "badge": "Verified Buyer - New York"
+          }
+        }
+      },
+      "block_order": ["test_1", "test_2", "test_3"],
+      "settings": {
+        "eyebrow": "AUTHENTIC EXPERIENCES",
+        "heading": "Loved by Our Customers",
+        "subtitle": "Read authentic sensory reviews from fragrance collectors around the globe."
+      }
+    },
+    "press_quote": {
+      "type": "press-quote",
+      "settings": {
+        "quote": "Ruhe Noor has accomplished the elusive feat of crafting a scent that feels simultaneously ancient and brilliantly modern. Elevating royal amber and aged oud to the realm of pure art.",
+        "source": "— VOGUE INTERNATIONAL OLFACTORY REVIEW"
+      }
+    },
+    "cta_banner": {
+      "type": "cta-banner",
+      "settings": {
+        "eyebrow": "BESPOKE OLFACTORY DISCOVERY",
+        "heading": "Find Your Perfect Fragrance",
+        "text": "Take our 2-minute bespoke fragrance finder quiz to match your sensory preferences with our master creations.",
+        "btn_text": "Discover Your Scent",
+        "btn_link": "/pages/fragrance-quiz"
+      }
+    },
+    "brand_story": {
+      "type": "brand-story",
+      "settings": {
+        "eyebrow": "HERITAGE & VISION",
+        "heading": "The Story of Ruhe Noor",
+        "text_1": "Born from an obsession with the purest botanical extracts and centuries-old distillation traditions, Ruhe Noor was established to bring back the lost art of true Haute Parfumerie.",
+        "text_2": "Each formula is developed without compromise, using rare French Jasmine, wild Damascena Roses, and aged Arabian Ouds aged in our dark cellars for over six months before being hand-poured into heavy crystal flacons.",
+        "signature": "Ruhe Noor Atelier — Master Nose"
+      }
+    },
+    "faq_accordion": {
+      "type": "faq-accordion",
+      "blocks": {
+        "faq_1": {
+          "type": "faq",
+          "settings": {
+            "question": "What makes Ruhe Noor fragrances unique?",
+            "answer": "We formulate exclusively in Extrait de Parfum concentration (30%+ perfume oils) using cold-distilled botanicals and vintage aged resins. Each batch matures for six months in our cellars before bottling."
+          }
+        },
+        "faq_2": {
+          "type": "faq",
+          "settings": {
+            "question": "How long do the fragrances last on skin and fabric?",
+            "answer": "Because of our high concentration of natural resinous base notes (such as Amber, Oud, and Bourbon Vanilla), our extraits typically project for 12 to 16+ hours on skin and remain discernable on garments for multiple days."
+          }
+        },
+        "faq_3": {
+          "type": "faq",
+          "settings": {
+            "question": "Are Ruhe Noor fragrances unisex?",
+            "answer": "Yes. We believe olfactory elegance transcends conventional gender boundaries. Our compositions are balanced with harmonic top, heart, and base tiers that evolve uniquely on each individual's skin chemistry."
+          }
+        },
+        "faq_4": {
+          "type": "faq",
+          "settings": {
+            "question": "Can I test the fragrances before purchasing a full flacon?",
+            "answer": "Absolutely. We offer our Atelier Discovery Wardrobe (5 x 10ml vials), and every full-size flacon order automatically includes two complimentary travel samples so you can test on your skin before opening the main presentation box."
+          }
+        },
+        "faq_5": {
+          "type": "faq",
+          "settings": {
+            "question": "How should I store my luxury perfume flacon?",
+            "answer": "Keep your flacon in a cool, dry place away from direct sunlight, humidity, and drastic temperature changes. Storing it inside its original linen presentation box ensures the volatile natural top notes remain pristine."
+          }
+        }
+      },
+      "block_order": ["faq_1", "faq_2", "faq_3", "faq_4", "faq_5"],
+      "settings": {
+        "eyebrow": "CONCIERGE HELP",
+        "heading": "Frequently Asked Questions",
+        "subtitle": "Everything you need to know regarding our formulations, longevity, and care."
+      }
+    },
+    "newsletter_banner": {
+      "type": "newsletter-banner",
+      "settings": {
+        "eyebrow": "PRIVATE INVITATION",
+        "heading": "Discover Your Signature Scent",
+        "text": "Join our private salon to receive notifications for micro-batch releases, private events, and complimentary discovery vials.",
+        "placeholder": "Enter your email address...",
+        "button_text": "Subscribe"
+      }
+    }
+  },
+  "order": [
+    "hero_banner",
+    "featured_product",
+    "why_choose_us",
+    "art_of_fragrance",
+    "collection_grid",
+    "brand_experience",
+    "craftsmanship_stats",
+    "comparison_table",
+    "testimonials",
+    "press_quote",
+    "cta_banner",
+    "brand_story",
+    "faq_accordion",
+    "newsletter_banner"
+  ]
+}

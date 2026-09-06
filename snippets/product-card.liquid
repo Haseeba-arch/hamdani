@@ -1,0 +1,53 @@
+{% comment %}
+  Renders a luxury product card
+  Accepts:
+  - card_product: {Object} Product object (optional)
+  - title: {String} Fallback title
+  - price: {String} Fallback price
+  - notes: {String} Fragrance notes
+  - image_url: {String} Fallback image url
+  - badge: {String} Badge tag text
+  - category: {String} Fragrance family (e.g. Eau De Parfum)
+{% endcomment %}
+
+{%- liquid
+  assign p_title = title | default: card_product.title | default: 'Royal Amber & Oud'
+  assign p_price = price | default: card_product.price | money | default: '$145'
+  assign p_category = category | default: 'EAU DE PARFUM'
+  assign p_notes = notes | default: 'Bergamot, Damask Rose, Royal Amber'
+  assign p_badge = badge | default: ''
+  assign p_url = card_product.url | default: '#'
+-%}
+
+<div class="product-card" data-category="{{ p_category }}">
+  <div class="card-media">
+    {%- if p_badge != blank -%}
+      <span class="card-badge">{{ p_badge }}</span>
+    {%- endif -%}
+    
+    <a href="{{ p_url }}">
+      {%- if card_product.featured_image -%}
+        {{ card_product.featured_image | image_url: width: 600 | image_tag: loading: 'lazy', alt: p_title }}
+      {%- elsif image_url != blank -%}
+        <img src="{{ image_url }}" alt="{{ p_title }}" loading="lazy" width="600" height="600">
+      {%- else -%}
+        <img src="https://images.unsplash.com/photo-1547887537-6158d64c35b3?auto=format&fit=crop&w=600&q=80" alt="{{ p_title }}" loading="lazy" width="600" height="600">
+      {%- endif -%}
+    </a>
+  </div>
+
+  <div class="card-body">
+    <span class="card-category">{{ p_category }}</span>
+    <h4 class="card-title">
+      <a href="{{ p_url }}">{{ p_title }}</a>
+    </h4>
+    <p class="card-notes">{{ p_notes }}</p>
+
+    <div class="card-bottom">
+      <span class="card-price">{{ p_price }}</span>
+      <button type="button" class="card-btn" data-add-to-cart data-product-id="{{ card_product.id | default: 1 }}">
+        Add to Bag
+      </button>
+    </div>
+  </div>
+</div>

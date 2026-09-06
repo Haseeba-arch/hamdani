@@ -1,0 +1,121 @@
+<section class="section-padding" id="reviews">
+  <div class="container">
+    
+    <div class="section-header">
+      {%- if section.settings.eyebrow != blank -%}
+        <span class="section-eyebrow">{{ section.settings.eyebrow }}</span>
+      {%- endif -%}
+
+      <h2 class="section-title">{{ section.settings.heading }}</h2>
+
+      {%- if section.settings.subtitle != blank -%}
+        <p class="section-subtitle">{{ section.settings.subtitle }}</p>
+      {%- endif -%}
+    </div>
+
+    <div class="testimonials-grid">
+      {%- for block in section.blocks -%}
+        <div class="testimonial-card" {{ block.shopify_attributes }}>
+          <div class="testimonial-stars star-rating">
+            {%- for i in (1..5) -%}
+              {% render 'icon-star' %}
+            {%- endfor -%}
+          </div>
+
+          <p class="testimonial-quote">"{{ block.settings.quote }}"</p>
+
+          <div class="testimonial-author">
+            <div class="author-info">
+              <h5>{{ block.settings.author }}</h5>
+              <span>{{ block.settings.badge | default: 'Verified Buyer' }}</span>
+            </div>
+          </div>
+        </div>
+      {%- endfor -%}
+    </div>
+
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Testimonials",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "AUTHENTIC EXPERIENCES"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Loved by Our Customers"
+    },
+    {
+      "type": "textarea",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Read authentic sensory reviews from fragrance collectors around the globe."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "testimonial",
+      "name": "Review Card",
+      "settings": [
+        {
+          "type": "textarea",
+          "id": "quote",
+          "label": "Quote",
+          "default": "A masterclass in olfactory luxury. I receive compliments everywhere I go."
+        },
+        {
+          "type": "text",
+          "id": "author",
+          "label": "Author Name",
+          "default": "Sophia R."
+        },
+        {
+          "type": "text",
+          "id": "badge",
+          "label": "Badge / Location",
+          "default": "Verified Collector"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Testimonials",
+      "blocks": [
+        {
+          "type": "testimonial",
+          "settings": {
+            "quote": "A masterclass in olfactory luxury. I get compliments everywhere I go. The longevity is unlike any commercial perfume I have tried.",
+            "author": "Sophia R.",
+            "badge": "Verified Collector - London"
+          }
+        },
+        {
+          "type": "testimonial",
+          "settings": {
+            "quote": "The richness of the royal amber and oud blend is unprecedented. It stays on my coats for days while drying down into soft velvet vanilla.",
+            "author": "Alexander M.",
+            "badge": "Verified Connoisseur - Dubai"
+          }
+        },
+        {
+          "type": "testimonial",
+          "settings": {
+            "quote": "The crystal flacon weight alone screams extreme luxury. The fragrance projection easily outlasts 14 hours without reapplying.",
+            "author": "Elena K.",
+            "badge": "Verified Buyer - New York"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,156 @@
+<section class="section-padding" style="background-color: var(--bg-secondary);">
+  <div class="container">
+    
+    <div class="section-header">
+      {%- if section.settings.eyebrow != blank -%}
+        <span class="section-eyebrow">{{ section.settings.eyebrow }}</span>
+      {%- endif -%}
+
+      <h2 class="section-title">{{ section.settings.heading }}</h2>
+
+      {%- if section.settings.subtitle != blank -%}
+        <p class="section-subtitle">{{ section.settings.subtitle }}</p>
+      {%- endif -%}
+    </div>
+
+    <div class="experience-grid">
+      {%- for block in section.blocks -%}
+        <div class="experience-card" {{ block.shopify_attributes }}>
+          <div class="experience-icon">
+            {%- case block.settings.icon -%}
+              {%- when 'truck' -%}
+                {% render 'icon-truck' %}
+              {%- when 'shield' -%}
+                {% render 'icon-shield' %}
+              {%- when 'flower' -%}
+                {% render 'icon-flower' %}
+              {%- when 'bottle' -%}
+                {% render 'icon-bottle' %}
+              {%- else -%}
+                {% render 'icon-sparkle' %}
+            {%- endcase -%}
+          </div>
+          <div>
+            <h4 class="experience-title">{{ block.settings.title }}</h4>
+            <p class="experience-desc">{{ block.settings.text }}</p>
+          </div>
+        </div>
+      {%- endfor -%}
+    </div>
+
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Brand Experience",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "COMMITTED TO EXCELLENCE"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "The Ruhe Noor Experience"
+    },
+    {
+      "type": "textarea",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Every aspect of our fragrance house is crafted for discerning connoisseurs."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "feature",
+      "name": "Experience Feature",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon",
+          "options": [
+            { "value": "sparkle", "label": "Sparkle / Bespoke" },
+            { "value": "bottle", "label": "Bottle / Samples" },
+            { "value": "shield", "label": "Shield / Guarantee" },
+            { "value": "flower", "label": "Flower / Natural" },
+            { "value": "truck", "label": "Truck / Shipping" }
+          ],
+          "default": "sparkle"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Bespoke Olfactory Guidance"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Description",
+          "default": "Private consultation to discover notes tailored to your unique skin chemistry."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Brand Experience",
+      "blocks": [
+        {
+          "type": "feature",
+          "settings": {
+            "icon": "sparkle",
+            "title": "Bespoke Olfactory Guidance",
+            "text": "Private consultation to discover fragrance notes tailored to your unique skin chemistry."
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "icon": "bottle",
+            "title": "Complimentary Samples",
+            "text": "Two complimentary 2ml curated discovery samples included with every full flacon order."
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "icon": "flower",
+            "title": "Signature Gift Presentation",
+            "text": "Encased in luxury textured linen boxes sealed with custom gold foil insignia."
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "icon": "shield",
+            "title": "14+ Hour Longevity Guarantee",
+            "text": "30% pure perfume oil concentration formulated for all-day sillage projection."
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "icon": "sparkle",
+            "title": "Temperature-Controlled Storage",
+            "text": "Maintained in dark climate-controlled cellars to preserve volatile top-note nuances."
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "icon": "truck",
+            "title": "Global Priority Shipping",
+            "text": "Insured door-to-door express delivery with trackable concierge dispatch."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

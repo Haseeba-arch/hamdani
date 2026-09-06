@@ -1,0 +1,117 @@
+<section class="section-padding">
+  <div class="container container-narrow">
+    
+    <div class="stats-box">
+      <div class="section-header" style="margin-bottom: 40px;">
+        {%- if section.settings.eyebrow != blank -%}
+          <span class="section-eyebrow">{{ section.settings.eyebrow }}</span>
+        {%- endif -%}
+
+        <h2 class="section-title">{{ section.settings.heading }}</h2>
+
+        {%- if section.settings.subtitle != blank -%}
+          <p class="section-subtitle">{{ section.settings.subtitle }}</p>
+        {%- endif -%}
+      </div>
+
+      <div class="stats-grid">
+        {%- for block in section.blocks -%}
+          <div class="stat-item" {{ block.shopify_attributes }}>
+            <div class="stat-header">
+              <span class="stat-label">{{ block.settings.label }}</span>
+              <span class="stat-value">{{ block.settings.percentage }}%</span>
+            </div>
+            <div class="progress-track">
+              <div class="progress-fill" style="width: {{ block.settings.percentage }}%;"></div>
+            </div>
+          </div>
+        {%- endfor -%}
+      </div>
+    </div>
+
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Craftsmanship Stats",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "PROVEN PERFECTION"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Consumer Reaction & Craftsmanship"
+    },
+    {
+      "type": "textarea",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Independent sensory evaluations conducted across 450 verified luxury perfume collectors."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "metric",
+      "name": "Stat Metric",
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Metric Label",
+          "default": "Long-Lasting All Day Wear"
+        },
+        {
+          "type": "range",
+          "id": "percentage",
+          "min": 50,
+          "max": 100,
+          "step": 1,
+          "label": "Percentage",
+          "default": 98
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Craftsmanship Stats",
+      "blocks": [
+        {
+          "type": "metric",
+          "settings": {
+            "label": "Long-Lasting All Day Wear (12+ hrs)",
+            "percentage": 98
+          }
+        },
+        {
+          "type": "metric",
+          "settings": {
+            "label": "Distinctive Sillage & Projection",
+            "percentage": 96
+          }
+        },
+        {
+          "type": "metric",
+          "settings": {
+            "label": "Natural & Pure Botanical Ingredients",
+            "percentage": 99
+          }
+        },
+        {
+          "type": "metric",
+          "settings": {
+            "label": "Luxury Compliments Received",
+            "percentage": 97
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

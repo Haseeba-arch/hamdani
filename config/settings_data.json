@@ -1,0 +1,23 @@
+{
+  "current": {
+    "color_primary_bg": "#FBF9F5",
+    "color_secondary_bg": "#F4EFEA",
+    "color_gold": "#C29B53",
+    "color_text": "#231E1B",
+    "color_dark_bg": "#191412",
+    "enable_cart_drawer": true,
+    "social_instagram_link": "https://instagram.com",
+    "social_pinterest_link": "https://pinterest.com",
+    "social_facebook_link": "https://facebook.com"
+  },
+  "presets": {
+    "Default": {
+      "color_primary_bg": "#FBF9F5",
+      "color_secondary_bg": "#F4EFEA",
+      "color_gold": "#C29B53",
+      "color_text": "#231E1B",
+      "color_dark_bg": "#191412",
+      "enable_cart_drawer": true
+    }
+  }
+}

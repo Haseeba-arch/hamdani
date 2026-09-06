@@ -1,0 +1,73 @@
+{%- liquid
+  assign bg_image = section.settings.image
+-%}
+
+<section class="cta-banner-section" style="{% if bg_image != blank %}background-image: linear-gradient(rgba(20, 16, 14, 0.75), rgba(20, 16, 14, 0.75)), url('{{ bg_image | image_url: width: 1800 }}');{% endif %}">
+  <div class="container">
+    <div class="cta-banner-content">
+      
+      {%- if section.settings.eyebrow != blank -%}
+        <span class="hero-eyebrow">{{ section.settings.eyebrow }}</span>
+      {%- endif -%}
+
+      <h2 class="cta-banner-title">{{ section.settings.heading }}</h2>
+      
+      <p class="cta-banner-desc">{{ section.settings.text }}</p>
+
+      {%- if section.settings.btn_text != blank -%}
+        <a href="{{ section.settings.btn_link }}" class="btn btn-primary">
+          {{ section.settings.btn_text }}
+        </a>
+      {%- endif -%}
+
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "CTA Banner",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Background Image"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "BESPOKE OLFACTORY DISCOVERY"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Find Your Perfect Fragrance"
+    },
+    {
+      "type": "textarea",
+      "id": "text",
+      "label": "Description",
+      "default": "Take our 2-minute bespoke fragrance finder quiz to match your sensory preferences with our master creations."
+    },
+    {
+      "type": "text",
+      "id": "btn_text",
+      "label": "Button Text",
+      "default": "Discover Your Scent"
+    },
+    {
+      "type": "url",
+      "id": "btn_link",
+      "label": "Button URL",
+      "default": "/pages/fragrance-quiz"
+    }
+  ],
+  "presets": [
+    {
+      "name": "CTA Banner"
+    }
+  ]
+}
+{% endschema %}

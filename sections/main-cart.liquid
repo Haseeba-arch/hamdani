@@ -1,0 +1,69 @@
+<section class="section-padding">
+  <div class="container container-narrow">
+    
+    <div class="section-header">
+      <h1 class="section-title">Your Shopping Bag</h1>
+    </div>
+
+    {%- if cart.item_count > 0 -%}
+      <form action="/cart" method="post" class="cart-form">
+        <table style="width: 100%; border-collapse: collapse; margin-bottom: 30px;">
+          <thead>
+            <tr style="border-bottom: 1px solid var(--color-border); text-align: left;">
+              <th style="padding: 12px 0;">Product</th>
+              <th style="padding: 12px 0;">Quantity</th>
+              <th style="padding: 12px 0; text-align: right;">Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            {%- for item in cart.items -%}
+              <tr style="border-bottom: 1px solid var(--color-border-subtle);">
+                <td style="padding: 20px 0; display: flex; align-items: center; gap: 16px;">
+                  <img src="{{ item.image | image_url: width: 100 }}" width="70" height="70" style="border-radius: 6px; object-fit: cover;" alt="{{ item.title }}">
+                  <div>
+                    <h4 style="font-size: 1.05rem;"><a href="{{ item.url }}">{{ item.product.title }}</a></h4>
+                    <span style="font-size: 0.85rem; color: var(--color-text-muted);">{{ item.variant.title }}</span>
+                  </div>
+                </td>
+                <td style="padding: 20px 0;">
+                  <div class="quantity-wrapper">
+                    <input type="number" name="updates[]" value="{{ item.quantity }}" min="0" class="qty-input">
+                  </div>
+                </td>
+                <td style="padding: 20px 0; text-align: right; font-family: var(--font-heading); font-weight: 600; font-size: 1.1rem;">
+                  {{ item.final_line_price | money }}
+                </td>
+              </tr>
+            {%- endfor -%}
+          </tbody>
+        </table>
+
+        <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--color-border); padding-top: 24px;">
+          <div>
+            <button type="submit" name="update" class="btn btn-outline">Update Bag</button>
+          </div>
+          <div style="text-align: right;">
+            <div style="font-size: 1.3rem; font-family: var(--font-heading); margin-bottom: 8px;">
+              Subtotal: <span style="color: var(--color-gold);">{{ cart.total_price | money }}</span>
+            </div>
+            <p style="font-size: 0.85rem; color: var(--color-text-muted); margin-bottom: 16px;">Taxes and shipping calculated at checkout.</p>
+            <button type="submit" name="checkout" class="btn btn-primary" style="min-width: 220px;">Proceed to Checkout</button>
+          </div>
+        </div>
+      </form>
+    {%- else -%}
+      <div style="text-align: center; padding: 60px 0;">
+        <p style="font-size: 1.2rem; margin-bottom: 24px;">Your shopping bag is currently empty.</p>
+        <a href="/collections/all" class="btn btn-primary">Discover Fragrances</a>
+      </div>
+    {%- endif -%}
+
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Main Cart",
+  "settings": []
+}
+{% endschema %}

@@ -1,0 +1,99 @@
+{%- liquid
+  assign bg_image = section.settings.image
+-%}
+
+<section class="hero-section" style="{% if bg_image != blank %}background-image: url('{{ bg_image | image_url: width: 2000 }}');{% else %}background-image: url('https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?auto=format&fit=crop&w=1920&q=85');{% endif %}">
+  <div class="hero-overlay"></div>
+  
+  <div class="container">
+    <div class="hero-content">
+      {%- if section.settings.eyebrow != blank -%}
+        <span class="hero-eyebrow">{{ section.settings.eyebrow }}</span>
+      {%- endif -%}
+
+      <h1 class="hero-title">{{ section.settings.heading }}</h1>
+
+      <p class="hero-description">{{ section.settings.text }}</p>
+
+      <div class="hero-ctas">
+        {%- if section.settings.btn_1_text != blank -%}
+          <a href="{{ section.settings.btn_1_link }}" class="btn btn-primary">
+            {{ section.settings.btn_1_text }}
+          </a>
+        {%- endif -%}
+
+        {%- if section.settings.btn_2_text != blank -%}
+          <a href="{{ section.settings.btn_2_link }}" class="btn btn-outline">
+            {{ section.settings.btn_2_text }}
+          </a>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-pagination">
+    <div class="nav-circle" aria-label="Previous Slide">&larr;</div>
+    <span>01 / 03</span>
+    <div class="nav-circle" aria-label="Next Slide">&rarr;</div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Hero Banner",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Background Image"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow Subtitle",
+      "default": "A LUXURY FRAGRANCE HOUSE"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Discover the Essence of Elegance"
+    },
+    {
+      "type": "textarea",
+      "id": "text",
+      "label": "Description",
+      "default": "Crafted with passion, each fragrance tells a story of luxury, sophistication, and timeless allure."
+    },
+    {
+      "type": "text",
+      "id": "btn_1_text",
+      "label": "Primary Button Text",
+      "default": "Shop Now"
+    },
+    {
+      "type": "url",
+      "id": "btn_1_link",
+      "label": "Primary Button Link",
+      "default": "/collections/all"
+    },
+    {
+      "type": "text",
+      "id": "btn_2_text",
+      "label": "Secondary Button Text",
+      "default": "Explore Collection"
+    },
+    {
+      "type": "url",
+      "id": "btn_2_link",
+      "label": "Secondary Button Link",
+      "default": "/collections"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hero Banner"
+    }
+  ]
+}
+{% endschema %}

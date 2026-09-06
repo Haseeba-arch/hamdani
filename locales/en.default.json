@@ -1,0 +1,37 @@
+{
+  "general": {
+    "cart": {
+      "view": "View Shopping Bag",
+      "checkout": "Checkout",
+      "empty": "Your bag is empty",
+      "subtotal": "Subtotal"
+    },
+    "accessibility": {
+      "skip_to_text": "Skip to content",
+      "close": "Close"
+    }
+  },
+  "sections": {
+    "header": {
+      "search": "Search",
+      "account": "Account",
+      "cart": "Bag"
+    },
+    "featured_product": {
+      "add_to_cart": "Add to Bag",
+      "buy_now": "Buy It Now"
+    }
+  },
+  "products": {
+    "product": {
+      "regular_price": "Regular price",
+      "sale_price": "Sale price",
+      "quantity": {
+        "label": "Quantity",
+        "input_label": "Quantity for {{ product }}",
+        "increase": "Increase quantity for {{ product }}",
+        "decrease": "Decrease quantity for {{ product }}"
+      }
+    }
+  }
+}

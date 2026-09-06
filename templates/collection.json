@@ -1,0 +1,16 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-collection",
+      "settings": {}
+    },
+    "brand_experience": {
+      "type": "brand-experience",
+      "settings": {}
+    }
+  },
+  "order": [
+    "main",
+    "brand_experience"
+  ]
+}

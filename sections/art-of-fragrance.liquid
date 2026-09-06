@@ -1,0 +1,103 @@
+<section class="section-padding">
+  <div class="container">
+    
+    <div class="section-header">
+      {%- if section.settings.eyebrow != blank -%}
+        <span class="section-eyebrow">{{ section.settings.eyebrow }}</span>
+      {%- endif -%}
+
+      <h2 class="section-title">{{ section.settings.heading }}</h2>
+
+      {%- if section.settings.subtitle != blank -%}
+        <p class="section-subtitle">{{ section.settings.subtitle }}</p>
+      {%- endif -%}
+    </div>
+
+    <div class="process-steps-grid">
+      {%- for block in section.blocks -%}
+        <div class="process-step-card" {{ block.shopify_attributes }}>
+          <div class="process-step-badge">
+            {{ forloop.index | prepend: '0' }}
+          </div>
+          <h3 class="process-step-title">{{ block.settings.title }}</h3>
+          <p class="process-step-desc">{{ block.settings.text }}</p>
+        </div>
+      {%- endfor -%}
+    </div>
+
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Art of Fragrance",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "OUR PHILOSOPHY"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "The Art of Timeless Fragrance"
+    },
+    {
+      "type": "textarea",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Where ancient perfumery tradition meets modern olfactory sophistication."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "step",
+      "name": "Process Step",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Step Title",
+          "default": "Sourcing & Selection"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Step Description",
+          "default": "Rare botanicals handpicked from sustainable private harvests across Grasse, Taif, and Madagascar."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Art of Fragrance",
+      "blocks": [
+        {
+          "type": "step",
+          "settings": {
+            "title": "Sourcing & Selection",
+            "text": "Rare botanicals handpicked from sustainable private harvests across Grasse, Taif, and Madagascar."
+          }
+        },
+        {
+          "type": "step",
+          "settings": {
+            "title": "Precision Blending",
+            "text": "Aged in curated dark glass containers to achieve harmonious depth, nuance, and rich longevity."
+          }
+        },
+        {
+          "type": "step",
+          "settings": {
+            "title": "Flacon Bottling",
+            "text": "Heavy bespoke crystal flacons hand-poured and capped with polished metallic crowns."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

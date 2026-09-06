@@ -1,0 +1,185 @@
+{%- liquid
+  assign product = section.settings.product
+  assign title = section.settings.title | default: product.title | default: 'Ruhe Noor'
+  assign subtitle = section.settings.subtitle | default: 'A Timeless Exploration of Elegance'
+  assign category = section.settings.category | default: 'EAU DE PARFUM - 100ML 3.4 FL. OZ'
+  assign price = section.settings.price | default: product.price | money | default: '$165.00'
+  assign compare_price = section.settings.compare_price | default: '$210.00'
+  assign description = section.settings.description | default: 'Ruhe Noor opens with an exhilarating burst of sparkling citrus and velvety peach, transitioning into a floral bouquet of Jasmine Sambac and Damask Rose, grounded in an opulent base of royal amber, Madagascar vanilla, and aged sandalwood.'
+-%}
+
+<section class="section-padding" id="featured-product">
+  <div class="container">
+    <div class="featured-product-grid">
+      
+      <!-- Product Gallery / Image -->
+      <div class="fp-gallery">
+        <div class="fp-main-image-wrap">
+          <span class="fp-badge-float">Signature Scent</span>
+          {%- if section.settings.image != blank -%}
+            {{ section.settings.image | image_url: width: 900 | image_tag: class: 'fp-main-image', alt: title }}
+          {%- elsif product.featured_image -%}
+            {{ product.featured_image | image_url: width: 900 | image_tag: class: 'fp-main-image', alt: title }}
+          {%- else -%}
+            <img src="https://images.unsplash.com/photo-1547887537-6158d64c35b3?auto=format&fit=crop&w=900&q=85" class="fp-main-image" alt="{{ title }}">
+          {%- endif -%}
+        </div>
+      </div>
+
+      <!-- Product Information -->
+      <div class="fp-info">
+        <span class="fp-category">{{ category }}</span>
+        <h2 class="fp-title">{{ title }}</h2>
+        <p class="fp-subtitle">{{ subtitle }}</p>
+
+        <div class="fp-rating-row">
+          <div class="star-rating">
+            {%- for i in (1..5) -%}
+              {% render 'icon-star' %}
+            {%- endfor -%}
+          </div>
+          <span class="fp-review-count">4.9/5 (128 verified reviews)</span>
+        </div>
+
+        <div class="fp-price-row">
+          <span class="fp-price">{{ price }}</span>
+          {%- if compare_price != blank -%}
+            <span class="fp-compare-price">{{ compare_price }}</span>
+          {%- endif -%}
+        </div>
+
+        <p class="fp-description">{{ description }}</p>
+
+        <!-- Scent Notes Breakdown -->
+        <div class="scent-notes-card">
+          <div class="scent-note-row">
+            <span class="note-tier">Top</span>
+            <span class="note-desc">{{ section.settings.top_notes | default: 'Bergamot, Sparkling Mandarin, Velvety White Peach' }}</span>
+          </div>
+          <div class="scent-note-row">
+            <span class="note-tier">Heart</span>
+            <span class="note-desc">{{ section.settings.heart_notes | default: 'Jasmine Sambac, Damask Rose, French Orange Blossom' }}</span>
+          </div>
+          <div class="scent-note-row">
+            <span class="note-tier">Base</span>
+            <span class="note-desc">{{ section.settings.base_notes | default: 'Royal Amber, Aged Oud, Madagascar Vanilla, Sandalwood' }}</span>
+          </div>
+        </div>
+
+        <!-- Add to Cart & Buy Now Actions -->
+        <div class="fp-actions">
+          <div style="display: flex; gap: 14px; align-items: center;">
+            <div class="quantity-wrapper">
+              <button type="button" class="qty-btn" data-qty-minus aria-label="Decrease quantity">-</button>
+              <input type="text" class="qty-input" value="1" readonly>
+              <button type="button" class="qty-btn" data-qty-plus aria-label="Increase quantity">+</button>
+            </div>
+
+            <button type="button" class="btn btn-dark" style="flex: 1;" data-add-to-cart>
+              Add to Bag &bull; {{ price }}
+            </button>
+          </div>
+
+          <a href="/checkout" class="btn btn-primary" style="width: 100%;">
+            Buy It Now
+          </a>
+        </div>
+
+        <!-- Trust Badges -->
+        <div class="fp-trust-badges">
+          <div class="trust-badge-item">
+            {% render 'icon-truck' %}
+            <span>Complimentary Global Shipping</span>
+          </div>
+          <div class="trust-badge-item">
+            {% render 'icon-shield' %}
+            <span>100% Authentic Guarantee</span>
+          </div>
+          <div class="trust-badge-item">
+            {% render 'icon-flower' %}
+            <span>Cruelty-Free & Sustainable</span>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Featured Product",
+  "settings": [
+    {
+      "type": "product",
+      "id": "product",
+      "label": "Select Product"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Custom Product Image"
+    },
+    {
+      "type": "text",
+      "id": "category",
+      "label": "Category / Size",
+      "default": "EAU DE PARFUM - 100ML 3.4 FL. OZ"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Ruhe Noor"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "A Timeless Exploration of Elegance"
+    },
+    {
+      "type": "text",
+      "id": "price",
+      "label": "Price",
+      "default": "$165.00"
+    },
+    {
+      "type": "text",
+      "id": "compare_price",
+      "label": "Compare Price",
+      "default": "$210.00"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "Ruhe Noor opens with an exhilarating burst of sparkling citrus and velvety peach, transitioning into a floral bouquet of Jasmine Sambac and Damask Rose, grounded in an opulent base of royal amber, Madagascar vanilla, and aged sandalwood."
+    },
+    {
+      "type": "text",
+      "id": "top_notes",
+      "label": "Top Notes",
+      "default": "Bergamot, Sparkling Mandarin, Velvety White Peach"
+    },
+    {
+      "type": "text",
+      "id": "heart_notes",
+      "label": "Heart Notes",
+      "default": "Jasmine Sambac, Damask Rose, French Orange Blossom"
+    },
+    {
+      "type": "text",
+      "id": "base_notes",
+      "label": "Base Notes",
+      "default": "Royal Amber, Aged Oud, Madagascar Vanilla, Sandalwood"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Featured Product"
+    }
+  ]
+}
+{% endschema %}

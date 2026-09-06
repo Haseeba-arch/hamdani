@@ -1,0 +1,151 @@
+<section class="section-padding" style="background-color: var(--bg-secondary);">
+  <div class="container">
+    <div class="why-choose-grid">
+      
+      <!-- Left Column: Content & 4 USP Cards -->
+      <div>
+        {%- if section.settings.eyebrow != blank -%}
+          <span class="section-eyebrow">{{ section.settings.eyebrow }}</span>
+        {%- endif -%}
+
+        <h2 class="section-title" style="margin-bottom: 16px;">{{ section.settings.heading }}</h2>
+        <p style="font-size: 1.05rem; line-height: 1.7; color: var(--color-text-muted);">
+          {{ section.settings.text }}
+        </p>
+
+        <div class="usp-cards-grid">
+          {%- for block in section.blocks -%}
+            <div class="usp-card" {{ block.shopify_attributes }}>
+              <div class="usp-icon-wrap">
+                {%- case block.settings.icon -%}
+                  {%- when 'shield' -%}
+                    {% render 'icon-shield' %}
+                  {%- when 'flower' -%}
+                    {% render 'icon-flower' %}
+                  {%- when 'sparkle' -%}
+                    {% render 'icon-sparkle' %}
+                  {%- else -%}
+                    {% render 'icon-bottle' %}
+                {%- endcase -%}
+              </div>
+              <h4 class="usp-card-title">{{ block.settings.title }}</h4>
+              <p class="usp-card-desc">{{ block.settings.text }}</p>
+            </div>
+          {%- endfor -%}
+        </div>
+      </div>
+
+      <!-- Right Column: Editorial Image -->
+      <div class="why-image-wrap">
+        {%- if section.settings.image != blank -%}
+          {{ section.settings.image | image_url: width: 800 | image_tag: alt: section.settings.heading }}
+        {%- else -%}
+          <img src="https://images.unsplash.com/photo-1594035910387-fea47794261f?auto=format&fit=crop&w=800&q=85" alt="Artisanal Fragrance Botanicals">
+        {%- endif -%}
+      </div>
+
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Why Choose Us",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "CRAFTED WITH PRECISION"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Why Choose Ruhe Noor?"
+    },
+    {
+      "type": "textarea",
+      "id": "text",
+      "label": "Description",
+      "default": "High-concentration perfume oils, responsibly sourced botanicals, and hand-blended perfection in every single bottle."
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Side Image"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "usp",
+      "name": "USP Item",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon",
+          "options": [
+            { "value": "bottle", "label": "Bottle / Sillage" },
+            { "value": "flower", "label": "Flower / Natural" },
+            { "value": "sparkle", "label": "Sparkle / Craft" },
+            { "value": "shield", "label": "Shield / Sustainable" }
+          ],
+          "default": "sparkle"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Long-Lasting Sillage"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Description",
+          "default": "Up to 14+ hours of captivating olfactory projection and trail."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Why Choose Us",
+      "blocks": [
+        {
+          "type": "usp",
+          "settings": {
+            "icon": "bottle",
+            "title": "Long-Lasting Sillage",
+            "text": "Up to 14+ hours of captivating olfactory projection and sillage trail."
+          }
+        },
+        {
+          "type": "usp",
+          "settings": {
+            "icon": "flower",
+            "title": "Rare Natural Botanicals",
+            "text": "Finest handpicked French Jasmine, Grasse Rose, and Arabian Oud."
+          }
+        },
+        {
+          "type": "usp",
+          "settings": {
+            "icon": "sparkle",
+            "title": "Artisanal Craftsmanship",
+            "text": "Hand-blended in micro batches by master perfumers for pure perfection."
+          }
+        },
+        {
+          "type": "usp",
+          "settings": {
+            "icon": "shield",
+            "title": "Sustainable Luxury",
+            "text": "Eco-conscious crystal flacons, 100% cruelty-free and clean formulations."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

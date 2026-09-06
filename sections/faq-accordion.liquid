@@ -1,0 +1,121 @@
+<section class="section-padding" style="background-color: var(--bg-secondary);">
+  <div class="container">
+    
+    <div class="section-header">
+      {%- if section.settings.eyebrow != blank -%}
+        <span class="section-eyebrow">{{ section.settings.eyebrow }}</span>
+      {%- endif -%}
+
+      <h2 class="section-title">{{ section.settings.heading }}</h2>
+
+      {%- if section.settings.subtitle != blank -%}
+        <p class="section-subtitle">{{ section.settings.subtitle }}</p>
+      {%- endif -%}
+    </div>
+
+    <div class="faq-list">
+      {%- for block in section.blocks -%}
+        <div class="faq-item{% if forloop.first %} active{% endif %}" {{ block.shopify_attributes }}>
+          <button type="button" class="faq-header" aria-expanded="{% if forloop.first %}true{% else %}false{% endif %}">
+            <span>{{ block.settings.question }}</span>
+            <span class="faq-icon">&#9662;</span>
+          </button>
+          <div class="faq-body">
+            <div class="faq-content">
+              {{ block.settings.answer }}
+            </div>
+          </div>
+        </div>
+      {%- endfor -%}
+    </div>
+
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "FAQ Accordion",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "CONCIERGE HELP"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Frequently Asked Questions"
+    },
+    {
+      "type": "textarea",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Everything you need to know regarding our formulations, longevity, and care."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "faq",
+      "name": "Question & Answer",
+      "settings": [
+        {
+          "type": "text",
+          "id": "question",
+          "label": "Question",
+          "default": "What makes Ruhe Noor fragrances unique?"
+        },
+        {
+          "type": "textarea",
+          "id": "answer",
+          "label": "Answer",
+          "default": "We formulate exclusively in Extrait de Parfum concentration (30%+ perfume oils) using cold-distilled botanicals and vintage aged resins. Each batch matures for six months in our cellars before bottling."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "FAQ Accordion",
+      "blocks": [
+        {
+          "type": "faq",
+          "settings": {
+            "question": "What makes Ruhe Noor fragrances unique?",
+            "answer": "We formulate exclusively in Extrait de Parfum concentration (30%+ perfume oils) using cold-distilled botanicals and vintage aged resins. Each batch matures for six months in our cellars before bottling."
+          }
+        },
+        {
+          "type": "faq",
+          "settings": {
+            "question": "How long do the fragrances last on skin and fabric?",
+            "answer": "Because of our high concentration of natural resinous base notes (such as Amber, Oud, and Bourbon Vanilla), our extraits typically project for 12 to 16+ hours on skin and remain discernable on garments for multiple days."
+          }
+        },
+        {
+          "type": "faq",
+          "settings": {
+            "question": "Are Ruhe Noor fragrances unisex?",
+            "answer": "Yes. We believe olfactory elegance transcends conventional gender boundaries. Our compositions are balanced with harmonic top, heart, and base tiers that evolve uniquely on each individual's skin chemistry."
+          }
+        },
+        {
+          "type": "faq",
+          "settings": {
+            "question": "Can I test the fragrances before purchasing a full flacon?",
+            "answer": "Absolutely. We offer our Atelier Discovery Wardrobe (5 x 10ml vials), and every full-size flacon order automatically includes two complimentary travel samples so you can test on your skin before opening the main presentation box."
+          }
+        },
+        {
+          "type": "faq",
+          "settings": {
+            "question": "How should I store my luxury perfume flacon?",
+            "answer": "Keep your flacon in a cool, dry place away from direct sunlight, humidity, and drastic temperature changes. Storing it inside its original linen presentation box ensures the volatile natural top notes remain pristine."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,40 @@
+<section class="section-padding-sm">
+  <div class="container container-narrow">
+    
+    <div class="press-quote-box">
+      <div class="press-quote-mark">&ldquo;</div>
+      <p class="press-quote-text">
+        {{ section.settings.quote | default: 'Ruhe Noor has accomplished the elusive feat of crafting a scent that feels simultaneously ancient and brilliantly modern. Elevating royal amber and aged oud to the realm of pure art.' }}
+      </p>
+      <div class="press-quote-source">
+        {{ section.settings.source | default: '— VOGUE INTERNATIONAL OLFACTORY REVIEW' }}
+      </div>
+    </div>
+
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Press Quote",
+  "settings": [
+    {
+      "type": "textarea",
+      "id": "quote",
+      "label": "Editorial Quote",
+      "default": "Ruhe Noor has accomplished the elusive feat of crafting a scent that feels simultaneously ancient and brilliantly modern. Elevating royal amber and aged oud to the realm of pure art."
+    },
+    {
+      "type": "text",
+      "id": "source",
+      "label": "Publication Source",
+      "default": "— VOGUE INTERNATIONAL OLFACTORY REVIEW"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Press Quote"
+    }
+  ]
+}
+{% endschema %}
