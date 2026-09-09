@@ -1,7 +1,21 @@
 {%- liquid
-  assign logo_text = section.settings.logo_text | default: 'Ruhe Noor'
+  assign logo_text = section.settings.logo_text | default: 'GLOW CHIC'
+  assign announcement_text = section.settings.announcement_text | default: 'FREE WORLDWIDE EXPRESS SHIPPING ON ALL ORDERS OVER $50 | 30-DAY GLOW GUARANTEE'
 -%}
 
+<!-- Announcement Bar -->
+{%- if section.settings.show_announcement -%}
+  <div class="announcement-bar">
+    <div class="container">
+      <span>{{ announcement_text }}</span>
+      {%- if section.settings.announcement_link != blank -%}
+        <a href="{{ section.settings.announcement_link }}">{{ section.settings.announcement_link_text | default: 'Shop Now' }}</a>
+      {%- endif -%}
+    </div>
+  </div>
+{%- endif -%}
+
+<!-- Main Navigation Header -->
 <header class="site-header" id="siteHeader">
   <div class="container">
     <div class="header-inner">
@@ -12,7 +26,7 @@
           {%- if section.settings.logo != blank -%}
             {{ section.settings.logo | image_url: width: 220 | image_tag: alt: shop.name }}
           {%- else -%}
-            {{ logo_text }}
+            GLOW <span>CHIC</span>
           {%- endif -%}
         </a>
       </div>
@@ -27,28 +41,35 @@
           {%- endfor -%}
         {%- else -%}
           <a href="/" class="nav-link active">Home</a>
-          <a href="#shop" class="nav-link">Shop</a>
+          <a href="#featured-product" class="nav-link">Shop</a>
           <a href="#collections" class="nav-link">Collections</a>
-          <a href="#about" class="nav-link">About Us</a>
-          <a href="#contact" class="nav-link">Contact</a>
+          <a href="#ritual" class="nav-link">About Us</a>
+          <a href="#faq" class="nav-link">Contact</a>
         {%- endif -%}
       </nav>
 
-      <!-- Action Icons -->
+      <!-- Action Icons & Button -->
       <div class="header-actions">
         <a href="/search" class="header-icon-btn" aria-label="Search">
           {% render 'icon-search' %}
         </a>
+        <a href="/pages/wishlist" class="header-icon-btn" aria-label="Wishlist">
+          {% render 'icon-heart' %}
+          <span class="wishlist-count-badge">0</span>
+        </a>
         <a href="/account" class="header-icon-btn" aria-label="Account">
           {% render 'icon-user' %}
         </a>
-        <a href="/pages/wishlist" class="header-icon-btn" aria-label="Wishlist">
-          {% render 'icon-heart' %}
-        </a>
         <a href="/cart" class="header-icon-btn" data-cart-drawer-trigger aria-label="Shopping Bag">
           {% render 'icon-cart' %}
-          <span class="cart-count-badge" id="CartCount">{{ cart.item_count | default: 0 }}</span>
+          <span class="cart-count-badge" id="CartCount">{{ cart.item_count | default: 1 }}</span>
         </a>
+
+        <!-- Header CTA Button -->
+        <a href="#featured-product" class="header-cta-btn">
+          {{ section.settings.cta_text | default: 'ORDER NOW' }}
+        </a>
+
         <button class="header-icon-btn mobile-menu-toggle" aria-label="Toggle Menu">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <line x1="3" y1="12" x2="21" y2="12"></line>
@@ -67,20 +88,48 @@
   "name": "Header",
   "settings": [
     {
+      "type": "checkbox",
+      "id": "show_announcement",
+      "label": "Show Announcement Bar",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "announcement_text",
+      "label": "Announcement Text",
+      "default": "FREE WORLDWIDE EXPRESS SHIPPING ON ALL ORDERS OVER $50 | 30-DAY GLOW GUARANTEE"
+    },
+    {
+      "type": "url",
+      "id": "announcement_link",
+      "label": "Announcement Link"
+    },
+    {
+      "type": "text",
+      "id": "announcement_link_text",
+      "label": "Announcement Link Text"
+    },
+    {
       "type": "image_picker",
       "id": "logo",
-      "label": "Logo image"
+      "label": "Logo Image"
     },
     {
       "type": "text",
       "id": "logo_text",
-      "label": "Logo text",
-      "default": "Ruhe Noor"
+      "label": "Logo Text",
+      "default": "GLOW CHIC"
     },
     {
       "type": "link_list",
       "id": "menu",
-      "label": "Main Menu"
+      "label": "Main Navigation Menu"
+    },
+    {
+      "type": "text",
+      "id": "cta_text",
+      "label": "Header CTA Text",
+      "default": "ORDER NOW"
     }
   ]
 }

@@ -1,24 +1,27 @@
 {%- liquid
-  assign bg_image = section.settings.image
+  assign eyebrow = section.settings.eyebrow | default: 'SPECIAL LIMITED TIME OFFER'
+  assign heading = section.settings.heading | default: 'Your Glow, Your Ritual, Your Moment.'
+  assign text = section.settings.text | default: 'Treat your skin to the luxury it deserves. Enjoy 20% off plus a free rose travel pouch with every order today.'
+  assign btn_text = section.settings.btn_text | default: 'SHOP SPECIAL OFFER'
+  assign btn_link = section.settings.btn_link | default: '#featured-product'
 -%}
 
-<section class="cta-banner-section" style="{% if bg_image != blank %}background-image: linear-gradient(rgba(20, 16, 14, 0.75), rgba(20, 16, 14, 0.75)), url('{{ bg_image | image_url: width: 1800 }}');{% endif %}">
+<section class="cta-banner-section">
   <div class="container">
     <div class="cta-banner-content">
       
-      {%- if section.settings.eyebrow != blank -%}
-        <span class="hero-eyebrow">{{ section.settings.eyebrow }}</span>
-      {%- endif -%}
+      <div class="badge-pill badge-pill-rose" style="margin-bottom: 18px;">
+        {% render 'icon-sparkle' %}
+        <span>{{ eyebrow }}</span>
+      </div>
 
-      <h2 class="cta-banner-title">{{ section.settings.heading }}</h2>
-      
-      <p class="cta-banner-desc">{{ section.settings.text }}</p>
+      <h2 class="cta-banner-title">{{ heading }}</h2>
 
-      {%- if section.settings.btn_text != blank -%}
-        <a href="{{ section.settings.btn_link }}" class="btn btn-primary">
-          {{ section.settings.btn_text }}
-        </a>
-      {%- endif -%}
+      <p class="cta-banner-text">{{ text }}</p>
+
+      <a href="{{ btn_link }}" class="btn btn-primary">
+        {{ btn_text }}
+      </a>
 
     </div>
   </div>
@@ -29,44 +32,38 @@
   "name": "CTA Banner",
   "settings": [
     {
-      "type": "image_picker",
-      "id": "image",
-      "label": "Background Image"
-    },
-    {
       "type": "text",
       "id": "eyebrow",
       "label": "Eyebrow",
-      "default": "BESPOKE OLFACTORY DISCOVERY"
+      "default": "SPECIAL LIMITED TIME OFFER"
     },
     {
       "type": "text",
       "id": "heading",
       "label": "Heading",
-      "default": "Find Your Perfect Fragrance"
+      "default": "Your Glow, Your Ritual, Your Moment."
     },
     {
       "type": "textarea",
       "id": "text",
-      "label": "Description",
-      "default": "Take our 2-minute bespoke fragrance finder quiz to match your sensory preferences with our master creations."
+      "label": "Text",
+      "default": "Treat your skin to the luxury it deserves. Enjoy 20% off plus a free rose travel pouch with every order today."
     },
     {
       "type": "text",
       "id": "btn_text",
       "label": "Button Text",
-      "default": "Discover Your Scent"
+      "default": "SHOP SPECIAL OFFER"
     },
     {
       "type": "url",
       "id": "btn_link",
-      "label": "Button URL",
-      "default": "/pages/fragrance-quiz"
+      "label": "Button Link"
     }
   ],
   "presets": [
     {
-      "name": "CTA Banner"
+      "name": "CTA Banner - Glow Chic"
     }
   ]
 }

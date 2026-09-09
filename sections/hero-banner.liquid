@@ -1,40 +1,89 @@
 {%- liquid
-  assign bg_image = section.settings.image
+  assign badge_text = section.settings.badge_text | default: 'BEST SELLING GLOW ESSENTIALS'
+  assign heading_main = section.settings.heading_main | default: 'Glow From'
+  assign heading_accent = section.settings.heading_accent | default: 'Within'
+  assign subtitle = section.settings.subtitle | default: 'Discover the secret to radiant, hydrated, and beautifully glowing skin.'
+  assign body_text = section.settings.body_text | default: 'A lightweight serum formulated with Hyaluronic Acid and Rose Extract, crafted to hydrate and soothe dry skin and lock in moisture for 48 hours. Suitable for all skin types.'
+  assign btn_1_text = section.settings.btn_1_text | default: 'SHOP GLOW SERUM'
+  assign btn_1_link = section.settings.btn_1_link | default: '#featured-product'
+  assign btn_2_text = section.settings.btn_2_text | default: 'EXPLORE SUITE'
+  assign btn_2_link = section.settings.btn_2_link | default: '#collections'
+  assign hero_image = section.settings.image
 -%}
 
-<section class="hero-section" style="{% if bg_image != blank %}background-image: url('{{ bg_image | image_url: width: 2000 }}');{% else %}background-image: url('https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?auto=format&fit=crop&w=1920&q=85');{% endif %}">
-  <div class="hero-overlay"></div>
-  
+<section class="hero-section-skincare">
   <div class="container">
-    <div class="hero-content">
-      {%- if section.settings.eyebrow != blank -%}
-        <span class="hero-eyebrow">{{ section.settings.eyebrow }}</span>
-      {%- endif -%}
+    <div class="hero-grid">
+      
+      <!-- Left Content Column -->
+      <div class="hero-content-col">
+        <div class="hero-badge-pill">
+          {% render 'icon-sparkle' %}
+          <span>{{ badge_text }}</span>
+        </div>
 
-      <h1 class="hero-title">{{ section.settings.heading }}</h1>
+        <h1 class="hero-title-main">
+          {{ heading_main }} <span class="italic-accent">{{ heading_accent }}</span>
+        </h1>
 
-      <p class="hero-description">{{ section.settings.text }}</p>
+        <p class="hero-subtitle-highlight">{{ subtitle }}</p>
 
-      <div class="hero-ctas">
-        {%- if section.settings.btn_1_text != blank -%}
-          <a href="{{ section.settings.btn_1_link }}" class="btn btn-primary">
-            {{ section.settings.btn_1_text }}
+        <p class="hero-body-text">{{ body_text }}</p>
+
+        <div class="hero-actions-row">
+          <a href="{{ btn_1_link }}" class="btn btn-primary">
+            {{ btn_1_text }}
           </a>
-        {%- endif -%}
-
-        {%- if section.settings.btn_2_text != blank -%}
-          <a href="{{ section.settings.btn_2_link }}" class="btn btn-outline">
-            {{ section.settings.btn_2_text }}
+          <a href="{{ btn_2_link }}" class="btn btn-outline">
+            {{ btn_2_text }}
           </a>
-        {%- endif -%}
+        </div>
+
+        <div class="hero-stats-row">
+          <div class="hero-stat-item">
+            <span class="hero-stat-val">{{ section.settings.stat_1_val | default: '24/7' }}</span>
+            <span class="hero-stat-lbl">{{ section.settings.stat_1_lbl | default: 'Deep Hydration' }}</span>
+          </div>
+          <div class="hero-stat-item">
+            <span class="hero-stat-val">{{ section.settings.stat_2_val | default: '100%' }}</span>
+            <span class="hero-stat-lbl">{{ section.settings.stat_2_lbl | default: 'Organic Extracts' }}</span>
+          </div>
+          <div class="hero-stat-item">
+            <span class="hero-stat-val">{{ section.settings.stat_3_val | default: '4.9 ★' }}</span>
+            <span class="hero-stat-lbl">{{ section.settings.stat_3_lbl | default: '10,000+ Reviews' }}</span>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
 
-  <div class="hero-pagination">
-    <div class="nav-circle" aria-label="Previous Slide">&larr;</div>
-    <span>01 / 03</span>
-    <div class="nav-circle" aria-label="Next Slide">&rarr;</div>
+      <!-- Right Media Column with Floating Badges -->
+      <div class="hero-media-wrap">
+        <div class="hero-image-card">
+          <!-- Top Floating Badge -->
+          <div class="floating-badge-top">
+            {% render 'icon-sparkle' %}
+            <span>24HR GLOW FORMULA</span>
+          </div>
+
+          <!-- Main Hero Image -->
+          {%- if hero_image != blank -%}
+            {{ hero_image | image_url: width: 1000 | image_tag: alt: 'Glow Chic Serum' }}
+          {%- else -%}
+            <img src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=1000&q=85" alt="Glow Chic Serum Luxury Skincare">
+          {%- endif -%}
+
+          <!-- Bottom Floating Badge -->
+          <div class="floating-badge-bottom">
+            <span class="floating-badge-price">$49.99</span>
+            <span style="color: var(--color-border);">|</span>
+            <div class="floating-badge-rating">
+              <span style="color: var(--color-gold-star);">★</span>
+              <span>4.9 (2,840+ Reviews)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
   </div>
 </section>
 
@@ -43,33 +92,40 @@
   "name": "Hero Banner",
   "settings": [
     {
-      "type": "image_picker",
-      "id": "image",
-      "label": "Background Image"
+      "type": "text",
+      "id": "badge_text",
+      "label": "Pill Badge Text",
+      "default": "BEST SELLING GLOW ESSENTIALS"
     },
     {
       "type": "text",
-      "id": "eyebrow",
-      "label": "Eyebrow Subtitle",
-      "default": "A LUXURY FRAGRANCE HOUSE"
+      "id": "heading_main",
+      "label": "Main Heading",
+      "default": "Glow From"
     },
     {
       "type": "text",
-      "id": "heading",
-      "label": "Heading",
-      "default": "Discover the Essence of Elegance"
+      "id": "heading_accent",
+      "label": "Accent Italic Word",
+      "default": "Within"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle Highlight",
+      "default": "Discover the secret to radiant, hydrated, and beautifully glowing skin."
     },
     {
       "type": "textarea",
-      "id": "text",
-      "label": "Description",
-      "default": "Crafted with passion, each fragrance tells a story of luxury, sophistication, and timeless allure."
+      "id": "body_text",
+      "label": "Body Description",
+      "default": "A lightweight serum formulated with Hyaluronic Acid and Rose Extract, crafted to hydrate and soothe dry skin and lock in moisture for 48 hours. Suitable for all skin types."
     },
     {
       "type": "text",
       "id": "btn_1_text",
       "label": "Primary Button Text",
-      "default": "Shop Now"
+      "default": "SHOP GLOW SERUM"
     },
     {
       "type": "url",
@@ -81,18 +137,64 @@
       "type": "text",
       "id": "btn_2_text",
       "label": "Secondary Button Text",
-      "default": "Explore Collection"
+      "default": "EXPLORE SUITE"
     },
     {
       "type": "url",
       "id": "btn_2_link",
       "label": "Secondary Button Link",
       "default": "/collections"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Hero Product Image"
+    },
+    {
+      "type": "header",
+      "content": "Stats Counter"
+    },
+    {
+      "type": "text",
+      "id": "stat_1_val",
+      "label": "Stat 1 Value",
+      "default": "24/7"
+    },
+    {
+      "type": "text",
+      "id": "stat_1_lbl",
+      "label": "Stat 1 Label",
+      "default": "Deep Hydration"
+    },
+    {
+      "type": "text",
+      "id": "stat_2_val",
+      "label": "Stat 2 Value",
+      "default": "100%"
+    },
+    {
+      "type": "text",
+      "id": "stat_2_lbl",
+      "label": "Stat 2 Label",
+      "default": "Organic Extracts"
+    },
+    {
+      "type": "text",
+      "id": "stat_3_val",
+      "label": "Stat 3 Value",
+      "default": "4.9 ★"
+    },
+    {
+      "type": "stat_3_lbl",
+      "type": "text",
+      "id": "stat_3_lbl",
+      "label": "Stat 3 Label",
+      "default": "10,000+ Reviews"
     }
   ],
   "presets": [
     {
-      "name": "Hero Banner"
+      "name": "Hero Banner - Glow Chic"
     }
   ]
 }

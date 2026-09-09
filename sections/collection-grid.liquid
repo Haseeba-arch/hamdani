@@ -1,116 +1,91 @@
 {%- liquid
-  assign collection = section.settings.collection
+  assign eyebrow = section.settings.eyebrow | default: 'OUR BEST SELLER COLLECTION'
+  assign heading = section.settings.heading | default: 'Discover Your Glow'
+  assign subtitle = section.settings.subtitle | default: 'From restorative serums to revitalizing mists, find the perfect addition to your daily skincare routine.'
 -%}
 
-<section class="section-padding" id="collections">
+<section class="section-padding collection-section" id="collections">
   <div class="container">
     
     <div class="section-header">
-      {%- if section.settings.eyebrow != blank -%}
-        <span class="section-eyebrow">{{ section.settings.eyebrow }}</span>
+      {%- if eyebrow != blank -%}
+        <span class="section-eyebrow">{{ eyebrow }}</span>
       {%- endif -%}
 
-      <h2 class="section-title">{{ section.settings.heading }}</h2>
+      <h2 class="section-title">{{ heading }}</h2>
 
-      {%- if section.settings.subtitle != blank -%}
-        <p class="section-subtitle">{{ section.settings.subtitle }}</p>
+      {%- if subtitle != blank -%}
+        <p class="section-subtitle">{{ subtitle }}</p>
       {%- endif -%}
     </div>
 
-    <!-- Filter Category Tabs -->
+    <!-- Category Filter Tabs -->
     <div class="collection-tabs">
-      <button type="button" class="tab-btn active" data-filter="all">All Fragrances</button>
-      <button type="button" class="tab-btn" data-filter="floral">Floral</button>
-      <button type="button" class="tab-btn" data-filter="oriental">Oriental & Oud</button>
-      <button type="button" class="tab-btn" data-filter="woody">Woody & Amber</button>
-      <button type="button" class="tab-btn" data-filter="fresh">Fresh Citrus</button>
+      <button type="button" class="tab-btn active" data-filter="all">ALL PRODUCTS</button>
+      <button type="button" class="tab-btn" data-filter="hydration">HYDRATION</button>
+      <button type="button" class="tab-btn" data-filter="anti-aging">ANTI-AGING & BRIGHTENING</button>
+      <button type="button" class="tab-btn" data-filter="cleansers">CLEANSERS</button>
+      <button type="button" class="tab-btn" data-filter="moisturizers">DAILY MOISTURIZERS</button>
     </div>
 
-    <!-- Product Grid -->
+    <!-- 4-Product Grid -->
     <div class="products-grid-4">
       
-      <!-- Card 1: Velvet Jasmine -->
+      <!-- Card 1: Glow Serum -->
       {% render 'product-card', 
-        title: 'Velvet Jasmine & Bergamot', 
-        price: '$145.00', 
-        notes: 'White Jasmine, Italian Bergamot, Musk', 
+        title: 'Glow Serum', 
+        price: '$49.99', 
+        compare_price: '$65.00',
+        subtitle: 'Deep Hydration Booster', 
         badge: 'BESTSELLER',
-        category: 'Floral',
-        image_url: 'https://images.unsplash.com/photo-1547887537-6158d64c35b3?auto=format&fit=crop&w=600&q=80'
+        category: 'hydration, anti-aging',
+        rating: '4.9 (2.8k)',
+        image_url: 'https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=600&q=80'
       %}
 
-      <!-- Card 2: Amber Wood & Saffron -->
+      <!-- Card 2: Rose Mist -->
       {% render 'product-card', 
-        title: 'Amber Wood & Saffron', 
-        price: '$160.00', 
-        notes: 'Golden Amber, Persian Saffron, Cedar', 
+        title: 'Rose Mist', 
+        price: '$34.99', 
+        compare_price: '$42.00',
+        subtitle: 'Refreshing Floral Face Toner', 
         badge: 'NEW',
-        category: 'Oriental',
-        image_url: 'https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?auto=format&fit=crop&w=600&q=80'
+        category: 'hydration, cleansers',
+        rating: '4.8 (950)',
+        image_url: 'https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?auto=format&fit=crop&w=600&q=80'
       %}
 
-      <!-- Card 3: Rose Damascena -->
+      <!-- Card 3: Hydra Gel Cream -->
       {% render 'product-card', 
-        title: 'Rose Damascena & Musk', 
-        price: '$155.00', 
-        notes: 'Damask Rose Petals, Peony, Soft Musk', 
-        badge: 'EXCLUSIVE',
-        category: 'Floral',
-        image_url: 'https://images.unsplash.com/photo-1588405748880-12d1d2a59f75?auto=format&fit=crop&w=600&q=80'
+        title: 'Hydra Gel Cream', 
+        price: '$42.99', 
+        compare_price: '$52.00',
+        subtitle: '72hr Water Burst Moisturizer', 
+        badge: 'POPULAR',
+        category: 'hydration, moisturizers',
+        rating: '4.9 (1.4k)',
+        image_url: 'https://images.unsplash.com/photo-1608248597359-5975005b6378?auto=format&fit=crop&w=600&q=80'
       %}
 
-      <!-- Card 4: Royal Oud & Sandalwood -->
+      <!-- Card 4: Brightening Drops -->
       {% render 'product-card', 
-        title: 'Royal Oud & Sandalwood', 
-        price: '$185.00', 
-        notes: 'Aged Cambodian Oud, Mysore Sandalwood', 
-        badge: 'LIMITED',
-        category: 'Woody',
-        image_url: 'https://images.unsplash.com/photo-1523293182086-7651a899d37f?auto=format&fit=crop&w=600&q=80'
+        title: 'Brightening Drops', 
+        price: '$38.99', 
+        compare_price: '$48.00',
+        subtitle: 'Vitamin C Daily Glow Elixir', 
+        badge: 'ORGANIC',
+        category: 'anti-aging, moisturizers',
+        rating: '5.0 (820)',
+        image_url: 'https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=600&q=80'
       %}
 
-      <!-- Card 5: Night Blooming Gardenia -->
-      {% render 'product-card', 
-        title: 'Night Blooming Gardenia', 
-        price: '$150.00', 
-        notes: 'Gardenia, Tuberose, Creamy Vanilla', 
-        category: 'Floral',
-        image_url: 'https://images.unsplash.com/photo-1594035910387-fea47794261f?auto=format&fit=crop&w=600&q=80'
-      %}
+    </div>
 
-      <!-- Card 6: Citrus Neroli Infusion -->
-      {% render 'product-card', 
-        title: 'Citrus Neroli Infusion', 
-        price: '$135.00', 
-        notes: 'Calabrian Lemon, Neroli, Sea Salt', 
-        category: 'Fresh',
-        image_url: 'https://images.unsplash.com/photo-1595425970377-c9703cf48b6d?auto=format&fit=crop&w=600&q=80'
-      %}
-
-      <!-- Card 7: Vanilla Bourbon & Cacao -->
-      {% render 'product-card', 
-        title: 'Vanilla Bourbon & Cacao', 
-        price: '$165.00', 
-        notes: 'Bourbon Vanilla, Roasted Tonka, Dark Cacao', 
-        category: 'Oriental',
-        image_url: 'https://images.unsplash.com/photo-1615397349754-cfa2066a298e?auto=format&fit=crop&w=600&q=80'
-      %}
-
-      <!-- Card 8: Discovery Set Promo Card -->
-      <div class="product-card-promo">
-        <div>
-          <span class="card-eyebrow">THE ATELIER SET</span>
-          <h3 class="promo-title">Discovery Wardrobe</h3>
-          <p>Experience 5 of our most iconic extraits in 10ml travel flacons before choosing your signature flacon.</p>
-        </div>
-        <div>
-          <div style="font-size: 1.4rem; font-family: var(--font-heading); color: var(--color-gold); margin-bottom: 14px;">$65.00</div>
-          <button type="button" class="btn btn-primary" style="width: 100%;" data-add-to-cart>
-            Claim Discovery Set
-          </button>
-        </div>
-      </div>
-
+    <!-- Bottom View All Button -->
+    <div style="text-align: center;">
+      <a href="/collections/all" class="btn btn-outline">
+        VIEW ALL PRODUCTS &rarr;
+      </a>
     </div>
 
   </div>
@@ -123,30 +98,25 @@
     {
       "type": "text",
       "id": "eyebrow",
-      "label": "Eyebrow",
-      "default": "DISCOVER OUR CREATIONS"
+      "label": "Eyebrow Text",
+      "default": "OUR BEST SELLER COLLECTION"
     },
     {
       "type": "text",
       "id": "heading",
       "label": "Heading",
-      "default": "Explore Our Collections"
+      "default": "Discover Your Glow"
     },
     {
       "type": "textarea",
       "id": "subtitle",
       "label": "Subtitle",
-      "default": "Hand-poured extrait de parfum formulated with highest concentration essence oils."
-    },
-    {
-      "type": "collection",
-      "id": "collection",
-      "label": "Collection Source"
+      "default": "From restorative serums to revitalizing mists, find the perfect addition to your daily skincare routine."
     }
   ],
   "presets": [
     {
-      "name": "Collection Grid"
+      "name": "Collection Grid - Glow Chic"
     }
   ]
 }

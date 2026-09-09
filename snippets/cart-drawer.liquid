@@ -1,43 +1,58 @@
-<div class="cart-drawer-overlay" id="CartDrawerOverlay"></div>
+<div class="cart-drawer-overlay" id="cartDrawerOverlay"></div>
 
-<aside class="cart-drawer" id="CartDrawer" aria-label="Shopping Bag">
-  <div class="drawer-header">
-    <h3 class="drawer-title">Shopping Bag</h3>
-    <button type="button" class="drawer-close" data-cart-drawer-close aria-label="Close Bag">
+<div class="cart-drawer" id="cartDrawer" role="dialog" aria-modal="true" aria-label="Your Bag">
+  
+  <div class="cart-drawer-header">
+    <h3 class="cart-drawer-title">Your Bag</h3>
+    <button type="button" class="cart-drawer-close" id="cartDrawerClose" aria-label="Close Cart">
       {% render 'icon-close' %}
     </button>
   </div>
 
-  <div class="drawer-body">
-    <div class="cart-drawer-items" id="CartDrawerItems">
-      <div style="display: flex; gap: 16px; align-items: center; padding: 16px 0; border-bottom: 1px solid var(--color-border-subtle);">
-        <img src="https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?auto=format&fit=crop&w=150&q=80" alt="Ruhe Noor Eau De Parfum" width="70" height="70" style="border-radius: 6px; object-fit: cover;">
-        <div style="flex-grow: 1;">
-          <h5 style="font-family: var(--font-body); font-weight: 600; font-size: 0.95rem;">Ruhe Noor Eau De Parfum</h5>
-          <span style="font-size: 0.8rem; color: var(--color-text-muted);">100ml / 3.4 fl. oz</span>
-          <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 8px;">
-            <div class="quantity-wrapper" style="transform: scale(0.85); transform-origin: left center;">
-              <button class="qty-btn" data-qty-minus>-</button>
-              <input type="text" class="qty-input" value="1" readonly>
-              <button class="qty-btn" data-qty-plus>+</button>
-            </div>
-            <span style="font-weight: 600; font-family: var(--font-heading);">$165.00</span>
-          </div>
-        </div>
-      </div>
+  <div class="cart-shipping-meter">
+    <p class="meter-text">✨ You're <strong>$10.01</strong> away from <strong>FREE Express Shipping</strong>!</p>
+    <div class="meter-track">
+      <div class="meter-fill" style="width: 80%;"></div>
     </div>
   </div>
 
-  <div class="drawer-footer">
-    <div style="display: flex; justify-content: space-between; font-size: 1.1rem; font-weight: 600; margin-bottom: 16px;">
-      <span>Subtotal</span>
-      <span style="font-family: var(--font-heading); color: var(--color-gold);">$165.00</span>
+  <div class="cart-drawer-items">
+    
+    <!-- Item 1: Glow Serum -->
+    <div class="cart-drawer-item">
+      <img src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=300&q=80" alt="Glow Serum" class="cart-item-img">
+      <div class="cart-item-info">
+        <h4 class="cart-item-title">Glow Serum</h4>
+        <span class="cart-item-price">$49.99</span>
+        <span style="font-size: 0.78rem; color: var(--color-text-muted); margin-bottom: 8px;">Size: 50ml / 1.7 fl. oz.</span>
+        <div class="cart-item-bottom">
+          <div class="quantity-wrapper" style="height: 36px; padding: 2px;">
+            <button type="button" class="qty-btn" data-qty-minus aria-label="Decrease quantity" style="width: 28px; height: 28px; font-size: 0.9rem;">-</button>
+            <input type="text" class="qty-input" value="1" readonly style="width: 30px; font-size: 0.85rem;">
+            <button type="button" class="qty-btn" data-qty-plus aria-label="Increase quantity" style="width: 28px; height: 28px; font-size: 0.9rem;">+</button>
+          </div>
+          <button type="button" style="font-size: 0.75rem; color: #B91C1C; text-decoration: underline;">Remove</button>
+        </div>
+      </div>
     </div>
-    <p style="font-size: 0.78rem; color: var(--color-text-muted); margin-bottom: 16px; text-align: center;">
-      Taxes and shipping calculated at checkout. Complimentary worldwide shipping included.
-    </p>
-    <a href="/checkout" class="btn btn-primary" style="width: 100%;">
+
+  </div>
+
+  <div class="cart-drawer-footer">
+    <div class="cart-subtotal-row">
+      <span>Subtotal</span>
+      <span>$49.99</span>
+    </div>
+    <p style="font-size: 0.78rem; color: var(--color-text-muted); margin-bottom: 16px;">Taxes and shipping calculated at checkout.</p>
+    <a href="/checkout" class="btn btn-primary btn-full">
       Proceed to Checkout
     </a>
   </div>
-</aside>
+
+</div>
+
+<!-- Cart Toast -->
+<div class="cart-toast" id="cartToast">
+  {% render 'icon-check' %}
+  <span>Item added to your bag!</span>
+</div>

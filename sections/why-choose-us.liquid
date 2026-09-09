@@ -1,150 +1,131 @@
-<section class="section-padding" style="background-color: var(--bg-secondary);">
+{%- liquid
+  assign eyebrow = section.settings.eyebrow | default: 'DESIGNED FOR MAXIMUM RESULTS'
+  assign heading = section.settings.heading | default: 'Glow Serum Benefits'
+  assign subtitle = section.settings.subtitle | default: 'Formulated with the highest grade active botanicals and vitamins to deliver visible transformation.'
+  assign btn_text = section.settings.btn_text | default: 'GET GLOW SERUM NOW'
+  assign btn_link = section.settings.btn_link | default: '#featured-product'
+-%}
+
+<section class="section-padding benefits-section" id="benefits">
   <div class="container">
-    <div class="why-choose-grid">
+    
+    <div class="section-header">
+      {%- if eyebrow != blank -%}
+        <span class="section-eyebrow">{{ eyebrow }}</span>
+      {%- endif -%}
+
+      <h2 class="section-title">{{ heading }}</h2>
+
+      {%- if subtitle != blank -%}
+        <p class="section-subtitle">{{ subtitle }}</p>
+      {%- endif -%}
+    </div>
+
+    <div class="benefits-grid-6">
       
-      <!-- Left Column: Content & 4 USP Cards -->
-      <div>
-        {%- if section.settings.eyebrow != blank -%}
-          <span class="section-eyebrow">{{ section.settings.eyebrow }}</span>
-        {%- endif -%}
-
-        <h2 class="section-title" style="margin-bottom: 16px;">{{ section.settings.heading }}</h2>
-        <p style="font-size: 1.05rem; line-height: 1.7; color: var(--color-text-muted);">
-          {{ section.settings.text }}
-        </p>
-
-        <div class="usp-cards-grid">
-          {%- for block in section.blocks -%}
-            <div class="usp-card" {{ block.shopify_attributes }}>
-              <div class="usp-icon-wrap">
-                {%- case block.settings.icon -%}
-                  {%- when 'shield' -%}
-                    {% render 'icon-shield' %}
-                  {%- when 'flower' -%}
-                    {% render 'icon-flower' %}
-                  {%- when 'sparkle' -%}
-                    {% render 'icon-sparkle' %}
-                  {%- else -%}
-                    {% render 'icon-bottle' %}
-                {%- endcase -%}
-              </div>
-              <h4 class="usp-card-title">{{ block.settings.title }}</h4>
-              <p class="usp-card-desc">{{ block.settings.text }}</p>
-            </div>
-          {%- endfor -%}
+      <!-- Card 1 -->
+      <div class="benefit-box">
+        <div class="benefit-icon-wrap">
+          {% render 'icon-sparkle' %}
         </div>
+        <h4 class="benefit-box-title">Deep Cellular Hydration</h4>
+        <p class="benefit-box-text">Multi-molecular hyaluronic acid delivers moisture across all 5 layers of the epidermis.</p>
       </div>
 
-      <!-- Right Column: Editorial Image -->
-      <div class="why-image-wrap">
-        {%- if section.settings.image != blank -%}
-          {{ section.settings.image | image_url: width: 800 | image_tag: alt: section.settings.heading }}
-        {%- else -%}
-          <img src="https://images.unsplash.com/photo-1594035910387-fea47794261f?auto=format&fit=crop&w=800&q=85" alt="Artisanal Fragrance Botanicals">
-        {%- endif -%}
+      <!-- Card 2 -->
+      <div class="benefit-box">
+        <div class="benefit-icon-wrap">
+          {% render 'icon-flower' %}
+        </div>
+        <h4 class="benefit-box-title">Vitamin C & Niacinamide</h4>
+        <p class="benefit-box-text">Clinically proven actives fade discoloration, even skin tone, and boost natural collagen synthesis.</p>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="benefit-box">
+        <div class="benefit-icon-wrap">
+          {% render 'icon-shield' %}
+        </div>
+        <h4 class="benefit-box-title">Dermatologist Approved</h4>
+        <p class="benefit-box-text">Safe and gentle for sensitive, acne-prone, dry, oily, and combination skin types.</p>
+      </div>
+
+      <!-- Card 4 -->
+      <div class="benefit-box">
+        <div class="benefit-icon-wrap">
+          {% render 'icon-bottle' %}
+        </div>
+        <h4 class="benefit-box-title">48hr Moisture Lock Barrier</h4>
+        <p class="benefit-box-text">Bio-fermented squalane forms a lightweight breathable shield that locks hydration for 48 hours.</p>
+      </div>
+
+      <!-- Card 5 -->
+      <div class="benefit-box">
+        <div class="benefit-icon-wrap">
+          {% render 'icon-truck' %}
+        </div>
+        <h4 class="benefit-box-title">Non-Greasy & Fast Absorbing</h4>
+        <p class="benefit-box-text">Silky featherlight texture melts instantly into pores with zero sticky residue or heavy feeling.</p>
+      </div>
+
+      <!-- Card 6 -->
+      <div class="benefit-box">
+        <div class="benefit-icon-wrap">
+          {% render 'icon-star' %}
+        </div>
+        <h4 class="benefit-box-title">Cruelty-Free & 100% Clean</h4>
+        <p class="benefit-box-text">Formulated without parabens, sulfates, synthetic dyes, artificial fragrances, or animal testing.</p>
       </div>
 
     </div>
+
+    <!-- CTA Button -->
+    <div style="text-align: center;">
+      <a href="{{ btn_link }}" class="btn btn-primary">
+        {{ btn_text }}
+      </a>
+    </div>
+
   </div>
 </section>
 
 {% schema %}
 {
-  "name": "Why Choose Us",
+  "name": "Serum Benefits",
   "settings": [
     {
       "type": "text",
       "id": "eyebrow",
       "label": "Eyebrow",
-      "default": "CRAFTED WITH PRECISION"
+      "default": "DESIGNED FOR MAXIMUM RESULTS"
     },
     {
       "type": "text",
       "id": "heading",
       "label": "Heading",
-      "default": "Why Choose Ruhe Noor?"
+      "default": "Glow Serum Benefits"
     },
     {
       "type": "textarea",
-      "id": "text",
-      "label": "Description",
-      "default": "High-concentration perfume oils, responsibly sourced botanicals, and hand-blended perfection in every single bottle."
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Formulated with the highest grade active botanicals and vitamins to deliver visible transformation."
     },
     {
-      "type": "image_picker",
-      "id": "image",
-      "label": "Side Image"
-    }
-  ],
-  "blocks": [
+      "type": "text",
+      "id": "btn_text",
+      "label": "Button Text",
+      "default": "GET GLOW SERUM NOW"
+    },
     {
-      "type": "usp",
-      "name": "USP Item",
-      "settings": [
-        {
-          "type": "select",
-          "id": "icon",
-          "label": "Icon",
-          "options": [
-            { "value": "bottle", "label": "Bottle / Sillage" },
-            { "value": "flower", "label": "Flower / Natural" },
-            { "value": "sparkle", "label": "Sparkle / Craft" },
-            { "value": "shield", "label": "Shield / Sustainable" }
-          ],
-          "default": "sparkle"
-        },
-        {
-          "type": "text",
-          "id": "title",
-          "label": "Title",
-          "default": "Long-Lasting Sillage"
-        },
-        {
-          "type": "textarea",
-          "id": "text",
-          "label": "Description",
-          "default": "Up to 14+ hours of captivating olfactory projection and trail."
-        }
-      ]
+      "type": "url",
+      "id": "btn_link",
+      "label": "Button Link"
     }
   ],
   "presets": [
     {
-      "name": "Why Choose Us",
-      "blocks": [
-        {
-          "type": "usp",
-          "settings": {
-            "icon": "bottle",
-            "title": "Long-Lasting Sillage",
-            "text": "Up to 14+ hours of captivating olfactory projection and sillage trail."
-          }
-        },
-        {
-          "type": "usp",
-          "settings": {
-            "icon": "flower",
-            "title": "Rare Natural Botanicals",
-            "text": "Finest handpicked French Jasmine, Grasse Rose, and Arabian Oud."
-          }
-        },
-        {
-          "type": "usp",
-          "settings": {
-            "icon": "sparkle",
-            "title": "Artisanal Craftsmanship",
-            "text": "Hand-blended in micro batches by master perfumers for pure perfection."
-          }
-        },
-        {
-          "type": "usp",
-          "settings": {
-            "icon": "shield",
-            "title": "Sustainable Luxury",
-            "text": "Eco-conscious crystal flacons, 100% cruelty-free and clean formulations."
-          }
-        }
-      ]
+      "name": "Serum Benefits - Glow Chic"
     }
   ]
 }

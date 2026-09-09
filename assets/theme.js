@@ -1,152 +1,100 @@
 /**
- * Ruhe Noor - Shopify 2.0 Luxury Fragrance Theme JS
+ * GLOW CHIC - Luxury Skincare Shopify 2.0 Theme JS
+ * Interactive features: Cart Drawer, FAQ Accordion, Image Gallery Switcher,
+ * Category Filter Tabs, Quantity Adjusters, Testimonial Controls, and Toasts.
  */
 
 document.addEventListener('DOMContentLoaded', () => {
-  initDrawerCart();
-  initFAQAccordion();
-  initQuantitySelectors();
-  initCollectionTabs();
-  initScrollAnimations();
-  initMobileMenu();
+  initHeaderScroll();
+  initFaqAccordion();
+  initCategoryTabs();
+  initGallerySwitcher();
+  initQuantityControls();
+  initCartDrawer();
+  initAddToCart();
+  initProgressBars();
+  initTestimonialNav();
 });
 
-/* --------------------------------------------------------------------------
-   1. Cart Drawer Interactivity
-   -------------------------------------------------------------------------- */
-function initDrawerCart() {
-  const openButtons = document.querySelectorAll('[data-cart-drawer-trigger]');
-  const closeButtons = document.querySelectorAll('[data-cart-drawer-close]');
-  const drawer = document.getElementById('CartDrawer');
-  const overlay = document.getElementById('CartDrawerOverlay');
+// 1. Sticky Header scroll effect
+function initHeaderScroll() {
+  const header = document.getElementById('siteHeader');
+  if (!header) return;
 
-  if (!drawer || !overlay) return;
-
-  function openCart() {
-    drawer.classList.add('open');
-    overlay.classList.add('open');
-    document.body.style.overflow = 'hidden';
-  }
-
-  function closeCart() {
-    drawer.classList.remove('open');
-    overlay.classList.remove('open');
-    document.body.style.overflow = '';
-  }
-
-  openButtons.forEach(btn => btn.addEventListener('click', (e) => {
-    e.preventDefault();
-    openCart();
-  }));
-
-  closeButtons.forEach(btn => btn.addEventListener('click', closeCart));
-  overlay.addEventListener('click', closeCart);
-
-  // Quick Add To Bag simulation
-  const addButtons = document.querySelectorAll('[data-add-to-cart]');
-  addButtons.forEach(btn => {
-    btn.addEventListener('click', (e) => {
-      e.preventDefault();
-      const originalText = btn.innerHTML;
-      btn.innerHTML = 'Adding...';
-      btn.disabled = true;
-
-      setTimeout(() => {
-        btn.innerHTML = originalText;
-        btn.disabled = false;
-        
-        // Update badge count
-        const badges = document.querySelectorAll('.cart-count-badge');
-        badges.forEach(badge => {
-          let count = parseInt(badge.textContent || '0', 10);
-          badge.textContent = count + 1;
-        });
-
-        openCart();
-      }, 500);
-    });
-  });
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 30) {
+      header.classList.add('scrolled');
+    } else {
+      header.classList.remove('scrolled');
+    }
+  }, { passive: true });
 }
 
-/* --------------------------------------------------------------------------
-   2. FAQ Accordion
-   -------------------------------------------------------------------------- */
-function initFAQAccordion() {
+// 2. FAQ Accordion
+function initFaqAccordion() {
   const faqItems = document.querySelectorAll('.faq-item');
+  if (!faqItems.length) return;
 
   faqItems.forEach(item => {
-    const header = item.querySelector('.faq-header');
-    if (!header) return;
+    const btn = item.querySelector('.faq-question-btn');
+    const panel = item.querySelector('.faq-answer-panel');
+    if (!btn || !panel) return;
 
-    header.addEventListener('click', () => {
+    btn.addEventListener('click', () => {
       const isActive = item.classList.contains('active');
-      
-      // Close others
-      faqItems.forEach(other => {
-        if (other !== item) other.classList.remove('active');
+
+      // Close all other items
+      faqItems.forEach(otherItem => {
+        if (otherItem !== item) {
+          otherItem.classList.remove('active');
+          const otherPanel = otherItem.querySelector('.faq-answer-panel');
+          if (otherPanel) otherPanel.style.maxHeight = null;
+        }
       });
 
-      // Toggle current
+      // Toggle current item
       if (isActive) {
         item.classList.remove('active');
+        panel.style.maxHeight = null;
       } else {
         item.classList.add('active');
+        panel.style.maxHeight = panel.scrollHeight + 30 + 'px';
       }
     });
   });
+
+  // Open first item by default
+  if (faqItems[0]) {
+    faqItems[0].classList.add('active');
+    const firstPanel = faqItems[0].querySelector('.faq-answer-panel');
+    if (firstPanel) {
+      firstPanel.style.maxHeight = firstPanel.scrollHeight + 30 + 'px';
+    }
+  }
 }
 
-/* --------------------------------------------------------------------------
-   3. Quantity Selectors
-   -------------------------------------------------------------------------- */
-function initQuantitySelectors() {
-  const wrappers = document.querySelectorAll('.quantity-wrapper');
-
-  wrappers.forEach(wrapper => {
-    const minus = wrapper.querySelector('[data-qty-minus]');
-    const plus = wrapper.querySelector('[data-qty-plus]');
-    const input = wrapper.querySelector('.qty-input');
-
-    if (!input) return;
-
-    if (minus) {
-      minus.addEventListener('click', () => {
-        let val = parseInt(input.value || '1', 10);
-        if (val > 1) {
-          input.value = val - 1;
-        }
-      });
-    }
-
-    if (plus) {
-      plus.addEventListener('click', () => {
-        let val = parseInt(input.value || '1', 10);
-        input.value = val + 1;
-      });
-    }
-  });
-}
-
-/* --------------------------------------------------------------------------
-   4. Collection Tabs Filtering
-   -------------------------------------------------------------------------- */
-function initCollectionTabs() {
-  const tabButtons = document.querySelectorAll('.tab-btn');
+// 3. Category Filter Tabs for Collection Grid
+function initCategoryTabs() {
+  const tabBtns = document.querySelectorAll('.tab-btn');
   const cards = document.querySelectorAll('.product-card');
+  if (!tabBtns.length) return;
 
-  if (!tabButtons.length) return;
+  tabBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      tabBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
 
-  tabButtons.forEach(button => {
-    button.addEventListener('click', () => {
-      tabButtons.forEach(btn => btn.classList.remove('active'));
-      button.classList.add('active');
-
-      const filter = button.getAttribute('data-filter') || 'all';
+      const filter = btn.getAttribute('data-filter') || 'all';
 
       cards.forEach(card => {
-        const category = card.getAttribute('data-category') || '';
-        if (filter === 'all' || category.toLowerCase().includes(filter.toLowerCase())) {
+        const category = (card.getAttribute('data-category') || '').toLowerCase();
+        if (filter === 'all' || category.includes(filter.toLowerCase())) {
           card.style.display = 'flex';
+          card.style.opacity = '0';
+          setTimeout(() => {
+            card.style.transition = 'opacity 0.4s ease';
+            card.style.opacity = '1';
+          }, 30);
         } else {
           card.style.display = 'none';
         }
@@ -155,40 +103,156 @@ function initCollectionTabs() {
   });
 }
 
-/* --------------------------------------------------------------------------
-   5. Scroll Animated Metric Progress Bars
-   -------------------------------------------------------------------------- */
-function initScrollAnimations() {
-  const fills = document.querySelectorAll('.progress-fill');
-  if (!fills.length) return;
+// 4. Product Gallery Thumbnail Switcher
+function initGallerySwitcher() {
+  const thumbs = document.querySelectorAll('.fp-thumb-item');
+  const mainImage = document.querySelector('.fp-main-image');
+  if (!thumbs.length || !mainImage) return;
+
+  thumbs.forEach(thumb => {
+    thumb.addEventListener('click', () => {
+      thumbs.forEach(t => t.classList.remove('active'));
+      thumb.classList.add('active');
+
+      const newSrc = thumb.getAttribute('data-img-src') || thumb.querySelector('img')?.src;
+      if (newSrc) {
+        mainImage.style.opacity = '0.3';
+        setTimeout(() => {
+          mainImage.src = newSrc;
+          mainImage.style.opacity = '1';
+        }, 150);
+      }
+    });
+  });
+}
+
+// 5. Quantity Controls
+function initQuantityControls() {
+  document.querySelectorAll('.quantity-wrapper').forEach(wrapper => {
+    const minusBtn = wrapper.querySelector('[data-qty-minus]');
+    const plusBtn = wrapper.querySelector('[data-qty-plus]');
+    const input = wrapper.querySelector('.qty-input');
+    if (!minusBtn || !plusBtn || !input) return;
+
+    minusBtn.addEventListener('click', () => {
+      let val = parseInt(input.value, 10) || 1;
+      if (val > 1) {
+        input.value = val - 1;
+      }
+    });
+
+    plusBtn.addEventListener('click', () => {
+      let val = parseInt(input.value, 10) || 1;
+      input.value = val + 1;
+    });
+  });
+}
+
+// 6. Slide-out Cart Drawer
+function initCartDrawer() {
+  const triggers = document.querySelectorAll('[data-cart-drawer-trigger]');
+  const drawer = document.getElementById('cartDrawer');
+  const overlay = document.getElementById('cartDrawerOverlay');
+  const closeBtn = document.getElementById('cartDrawerClose');
+
+  if (!drawer || !overlay) return;
+
+  const openDrawer = (e) => {
+    if (e) e.preventDefault();
+    drawer.classList.add('active');
+    overlay.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  };
+
+  const closeDrawer = () => {
+    drawer.classList.remove('active');
+    overlay.classList.remove('active');
+    document.body.style.overflow = '';
+  };
+
+  triggers.forEach(t => t.addEventListener('click', openDrawer));
+  if (closeBtn) closeBtn.addEventListener('click', closeDrawer);
+  overlay.addEventListener('click', closeDrawer);
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && drawer.classList.contains('active')) {
+      closeDrawer();
+    }
+  });
+
+  // Export globally for cart actions
+  window.openCartDrawer = openDrawer;
+  window.closeCartDrawer = closeDrawer;
+}
+
+// 7. Add to Cart Toast & Counter increment
+function initAddToCart() {
+  const addButtons = document.querySelectorAll('[data-add-to-cart]');
+  const cartBadge = document.querySelector('.cart-count-badge');
+  const toast = document.getElementById('cartToast');
+
+  addButtons.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      
+      // Update badge
+      if (cartBadge) {
+        let count = parseInt(cartBadge.textContent, 10) || 0;
+        cartBadge.textContent = count + 1;
+        cartBadge.style.transform = 'scale(1.3)';
+        setTimeout(() => {
+          cartBadge.style.transform = 'scale(1)';
+        }, 250);
+      }
+
+      // Show Toast Notification
+      if (toast) {
+        toast.classList.add('active');
+        setTimeout(() => {
+          toast.classList.remove('active');
+        }, 3000);
+      }
+
+      // Optional: Open cart drawer directly on add
+      // if (window.openCartDrawer) window.openCartDrawer();
+    });
+  });
+}
+
+// 8. Progress Bars Animation when visible
+function initProgressBars() {
+  const progressBars = document.querySelectorAll('.progress-fill');
+  if (!progressBars.length) return;
 
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
-        const targetWidth = entry.target.getAttribute('data-progress-width') || '100%';
-        entry.target.style.width = targetWidth;
+        const bar = entry.target;
+        const targetWidth = bar.getAttribute('data-percentage') || '90';
+        bar.style.width = targetWidth + '%';
+        observer.unobserve(bar);
       }
     });
   }, { threshold: 0.2 });
 
-  fills.forEach(fill => {
-    const width = fill.style.width || fill.getAttribute('data-width') || '90%';
-    fill.setAttribute('data-progress-width', width);
-    fill.style.width = '0%';
-    observer.observe(fill);
+  progressBars.forEach(bar => {
+    bar.style.width = '0%';
+    observer.observe(bar);
   });
 }
 
-/* --------------------------------------------------------------------------
-   6. Mobile Menu Drawer
-   -------------------------------------------------------------------------- */
-function initMobileMenu() {
-  const toggle = document.querySelector('.mobile-menu-toggle');
-  const nav = document.querySelector('.header-nav');
+// 9. Testimonial Nav Arrows
+function initTestimonialNav() {
+  const prevBtn = document.querySelector('[data-testimonial-prev]');
+  const nextBtn = document.querySelector('[data-testimonial-next]');
+  const grid = document.querySelector('.testimonials-grid-3');
+  if (!prevBtn || !nextBtn || !grid) return;
 
-  if (!toggle || !nav) return;
+  nextBtn.addEventListener('click', () => {
+    grid.scrollBy({ left: 320, behavior: 'smooth' });
+  });
 
-  toggle.addEventListener('click', () => {
-    nav.classList.toggle('mobile-open');
+  prevBtn.addEventListener('click', () => {
+    grid.scrollBy({ left: -320, behavior: 'smooth' });
   });
 }

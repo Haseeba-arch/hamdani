@@ -1,37 +1,61 @@
-<section class="section-padding" style="background-color: var(--bg-secondary);">
-  <div class="container container-narrow">
+{%- liquid
+  assign eyebrow = section.settings.eyebrow | default: 'HONEST COMPARISON'
+  assign heading = section.settings.heading | default: 'Why Choose Glow Serum?'
+  assign subtitle = section.settings.subtitle | default: 'See how our premium formulation outperforms traditional serums in every category.'
+-%}
+
+<section class="section-padding comparison-section" id="comparison">
+  <div class="container">
     
     <div class="section-header">
-      {%- if section.settings.eyebrow != blank -%}
-        <span class="section-eyebrow">{{ section.settings.eyebrow }}</span>
+      {%- if eyebrow != blank -%}
+        <span class="section-eyebrow">{{ eyebrow }}</span>
       {%- endif -%}
 
-      <h2 class="section-title">{{ section.settings.heading }}</h2>
+      <h2 class="section-title">{{ heading }}</h2>
 
-      {%- if section.settings.subtitle != blank -%}
-        <p class="section-subtitle">{{ section.settings.subtitle }}</p>
+      {%- if subtitle != blank -%}
+        <p class="section-subtitle">{{ subtitle }}</p>
       {%- endif -%}
     </div>
 
-    <div class="comparison-wrap">
-      <table class="comparison-table">
+    <div class="comparison-table-wrap">
+      <table class="comp-table">
         <thead>
           <tr>
-            <th>Attribute</th>
-            <th class="highlight-col">{{ section.settings.brand_name | default: 'Ruhe Noor' }}</th>
-            <th>Traditional Luxury</th>
-            <th>Mass Market</th>
+            <th>Features</th>
+            <th class="brand-col-header">
+              <span class="comp-brand-badge">GLOW SERUM</span>
+            </th>
+            <th style="text-align: center;">Other Brands</th>
           </tr>
         </thead>
         <tbody>
-          {%- for block in section.blocks -%}
-            <tr {{ block.shopify_attributes }}>
-              <td>{{ block.settings.attribute }}</td>
-              <td class="highlight-col">{{ block.settings.brand_val }}</td>
-              <td>{{ block.settings.luxury_val }}</td>
-              <td>{{ block.settings.mass_val }}</td>
-            </tr>
-          {%- endfor -%}
+          <tr>
+            <td class="feature-col">Hyaluronic Acid Matrix</td>
+            <td class="brand-col">Multi-Molecular 3D Matrix</td>
+            <td class="others-col">Single Molecular Weight</td>
+          </tr>
+          <tr>
+            <td class="feature-col">Deep Hydration</td>
+            <td class="brand-col">48 Hours Locked-In</td>
+            <td class="others-col">4-6 Hours Surface Only</td>
+          </tr>
+          <tr>
+            <td class="feature-col">100% Clean &amp; Non-Toxic</td>
+            <td class="brand-col">✓ Certified Organic Actives</td>
+            <td class="others-col">Contains Fillers &amp; Dyes</td>
+          </tr>
+          <tr>
+            <td class="feature-col">Dermatologist Tested</td>
+            <td class="brand-col">✓ 98% Proven Clinical Results</td>
+            <td class="others-col">Basic Unverified Testing</td>
+          </tr>
+          <tr>
+            <td class="feature-col">Sustainable &amp; Recyclable</td>
+            <td class="brand-col">100% Recyclable Glass Flacon</td>
+            <td class="others-col">Single-Use Plastic Bottles</td>
+          </tr>
         </tbody>
       </table>
     </div>
@@ -47,109 +71,24 @@
       "type": "text",
       "id": "eyebrow",
       "label": "Eyebrow",
-      "default": "THE ARTISANAL DIFFERENCE"
+      "default": "HONEST COMPARISON"
     },
     {
       "type": "text",
       "id": "heading",
       "label": "Heading",
-      "default": "Why Choose Ruhe Noor?"
+      "default": "Why Choose Glow Serum?"
     },
     {
       "type": "textarea",
       "id": "subtitle",
       "label": "Subtitle",
-      "default": "A standard-setting comparison between artisanal formulation and mass commercial production."
-    },
-    {
-      "type": "text",
-      "id": "brand_name",
-      "label": "Your Brand Name",
-      "default": "Ruhe Noor"
-    }
-  ],
-  "blocks": [
-    {
-      "type": "row",
-      "name": "Comparison Row",
-      "settings": [
-        {
-          "type": "text",
-          "id": "attribute",
-          "label": "Attribute Name",
-          "default": "Oil Concentration"
-        },
-        {
-          "type": "text",
-          "id": "brand_val",
-          "label": "Our Brand Value",
-          "default": "30%+ Pure Extrait"
-        },
-        {
-          "type": "text",
-          "id": "luxury_val",
-          "label": "Traditional Luxury Value",
-          "default": "12-15% EDP"
-        },
-        {
-          "type": "text",
-          "id": "mass_val",
-          "label": "Mass Market Value",
-          "default": "5-8% EDT"
-        }
-      ]
+      "default": "See how our premium formulation outperforms traditional serums in every category."
     }
   ],
   "presets": [
     {
-      "name": "Comparison Table",
-      "blocks": [
-        {
-          "type": "row",
-          "settings": {
-            "attribute": "Fragrance Concentration",
-            "brand_val": "30%+ Pure Extrait",
-            "luxury_val": "12-15% EDP",
-            "mass_val": "5-8% EDT"
-          }
-        },
-        {
-          "type": "row",
-          "settings": {
-            "attribute": "Sillage Longevity",
-            "brand_val": "14+ Hours All-Day",
-            "luxury_val": "4-6 Hours",
-            "mass_val": "1-2 Hours"
-          }
-        },
-        {
-          "type": "row",
-          "settings": {
-            "attribute": "Botanical Sourcing",
-            "brand_val": "Pure Harvested Oils",
-            "luxury_val": "Partially Synthetic",
-            "mass_val": "100% Artificial"
-          }
-        },
-        {
-          "type": "row",
-          "settings": {
-            "attribute": "Micro-Batch Aging",
-            "brand_val": "6-Month Cellar Aged",
-            "luxury_val": "Rapid Factory Mix",
-            "mass_val": "No Maturation"
-          }
-        },
-        {
-          "type": "row",
-          "settings": {
-            "attribute": "Packaging & Flacons",
-            "brand_val": "Heavy Polish Crystal",
-            "luxury_val": "Standard Glass",
-            "mass_val": "Lightweight Molded"
-          }
-        }
-      ]
+      "name": "Comparison Table - Glow Chic"
     }
   ]
 }

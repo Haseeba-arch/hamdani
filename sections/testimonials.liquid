@@ -1,37 +1,92 @@
-<section class="section-padding" id="reviews">
+{%- liquid
+  assign eyebrow = section.settings.eyebrow | default: 'REAL REVIEWS • REAL RESULTS'
+  assign heading = section.settings.heading | default: 'Loved From Our Customers'
+  assign rating_banner_text = section.settings.rating_banner_text | default: 'Rated 4.9 / 5.0 by 10,000+ satisfied customers worldwide'
+-%}
+
+<section class="section-padding testimonials-section" id="reviews">
   <div class="container">
     
-    <div class="section-header">
-      {%- if section.settings.eyebrow != blank -%}
-        <span class="section-eyebrow">{{ section.settings.eyebrow }}</span>
+    <div class="section-header" style="margin-bottom: 30px;">
+      {%- if eyebrow != blank -%}
+        <span class="section-eyebrow">{{ eyebrow }}</span>
       {%- endif -%}
 
-      <h2 class="section-title">{{ section.settings.heading }}</h2>
-
-      {%- if section.settings.subtitle != blank -%}
-        <p class="section-subtitle">{{ section.settings.subtitle }}</p>
-      {%- endif -%}
+      <h2 class="section-title">{{ heading }}</h2>
     </div>
 
-    <div class="testimonials-grid">
-      {%- for block in section.blocks -%}
-        <div class="testimonial-card" {{ block.shopify_attributes }}>
-          <div class="testimonial-stars star-rating">
-            {%- for i in (1..5) -%}
-              {% render 'icon-star' %}
-            {%- endfor -%}
-          </div>
-
-          <p class="testimonial-quote">"{{ block.settings.quote }}"</p>
-
-          <div class="testimonial-author">
-            <div class="author-info">
-              <h5>{{ block.settings.author }}</h5>
-              <span>{{ block.settings.badge | default: 'Verified Buyer' }}</span>
-            </div>
-          </div>
+    <!-- Rating Pill Banner & Carousel Arrows -->
+    <div class="testimonials-top-bar">
+      <div class="testimonials-rating-pill">
+        <div class="star-rating">
+          {%- for i in (1..5) -%}
+            {% render 'icon-star' %}
+          {%- endfor -%}
         </div>
-      {%- endfor -%}
+        <span>{{ rating_banner_text }}</span>
+      </div>
+
+      <div class="testimonials-arrows">
+        <button type="button" class="nav-arrow-btn" data-testimonial-prev aria-label="Previous Testimonial">
+          &larr;
+        </button>
+        <button type="button" class="nav-arrow-btn" data-testimonial-next aria-label="Next Testimonial">
+          &rarr;
+        </button>
+      </div>
+    </div>
+
+    <!-- 3 Testimonial Cards Grid -->
+    <div class="testimonials-grid-3">
+      
+      <!-- Card 1: Sarah M. -->
+      <div class="testimonial-card">
+        <div class="star-rating">
+          {%- for i in (1..5) -%}
+            {% render 'icon-star' %}
+          {%- endfor -%}
+        </div>
+        <p class="testimonial-quote">
+          &ldquo;Glow Serum has completely changed my skin texture! In just 2 weeks my skin feels so hydrated, plump and has this natural luminous glow. I will never use anything else!&rdquo;
+        </p>
+        <div class="testimonial-author-row">
+          <span class="testimonial-author-name">Sarah M.</span>
+          <span class="testimonial-badge-pill">Verified Buyer &bull; Glow Serum</span>
+        </div>
+      </div>
+
+      <!-- Card 2: Emily R. -->
+      <div class="testimonial-card">
+        <div class="star-rating">
+          {%- for i in (1..5) -%}
+            {% render 'icon-star' %}
+          {%- endfor -%}
+        </div>
+        <p class="testimonial-quote">
+          &ldquo;I have sensitive skin and always struggled to find a serum that doesn’t cause redness or irritation. This is gentle, deeply moisturizing, and smells like fresh roses.&rdquo;
+        </p>
+        <div class="testimonial-author-row">
+          <span class="testimonial-author-name">Emily R.</span>
+          <span class="testimonial-badge-pill">Verified Buyer &bull; Rose Mist</span>
+        </div>
+      </div>
+
+      <!-- Card 3: Olivia K. -->
+      <div class="testimonial-card">
+        <div class="star-rating">
+          {%- for i in (1..5) -%}
+            {% render 'icon-star' %}
+          {%- endfor -%}
+        </div>
+        <p class="testimonial-quote">
+          &ldquo;The texture is absolute silk and absorbs instantly without leaving any greasiness. My skin looks vibrant and dewy even without makeup. Highly recommended!&rdquo;
+        </p>
+        <div class="testimonial-author-row">
+          <span class="testimonial-author-name">Olivia K.</span>
+          <span class="testimonial-badge-pill">Verified Buyer &bull; Hydra Gel</span>
+        </div>
+      </div>
+
     </div>
 
   </div>
@@ -45,76 +100,24 @@
       "type": "text",
       "id": "eyebrow",
       "label": "Eyebrow",
-      "default": "AUTHENTIC EXPERIENCES"
+      "default": "REAL REVIEWS • REAL RESULTS"
     },
     {
       "type": "text",
       "id": "heading",
       "label": "Heading",
-      "default": "Loved by Our Customers"
+      "default": "Loved From Our Customers"
     },
     {
-      "type": "textarea",
-      "id": "subtitle",
-      "label": "Subtitle",
-      "default": "Read authentic sensory reviews from fragrance collectors around the globe."
-    }
-  ],
-  "blocks": [
-    {
-      "type": "testimonial",
-      "name": "Review Card",
-      "settings": [
-        {
-          "type": "textarea",
-          "id": "quote",
-          "label": "Quote",
-          "default": "A masterclass in olfactory luxury. I receive compliments everywhere I go."
-        },
-        {
-          "type": "text",
-          "id": "author",
-          "label": "Author Name",
-          "default": "Sophia R."
-        },
-        {
-          "type": "text",
-          "id": "badge",
-          "label": "Badge / Location",
-          "default": "Verified Collector"
-        }
-      ]
+      "type": "text",
+      "id": "rating_banner_text",
+      "label": "Rating Banner Text",
+      "default": "Rated 4.9 / 5.0 by 10,000+ satisfied customers worldwide"
     }
   ],
   "presets": [
     {
-      "name": "Testimonials",
-      "blocks": [
-        {
-          "type": "testimonial",
-          "settings": {
-            "quote": "A masterclass in olfactory luxury. I get compliments everywhere I go. The longevity is unlike any commercial perfume I have tried.",
-            "author": "Sophia R.",
-            "badge": "Verified Collector - London"
-          }
-        },
-        {
-          "type": "testimonial",
-          "settings": {
-            "quote": "The richness of the royal amber and oud blend is unprecedented. It stays on my coats for days while drying down into soft velvet vanilla.",
-            "author": "Alexander M.",
-            "badge": "Verified Connoisseur - Dubai"
-          }
-        },
-        {
-          "type": "testimonial",
-          "settings": {
-            "quote": "The crystal flacon weight alone screams extreme luxury. The fragrance projection easily outlasts 14 hours without reapplying.",
-            "author": "Elena K.",
-            "badge": "Verified Buyer - New York"
-          }
-        }
-      ]
+      "name": "Testimonials - Glow Chic"
     }
   ]
 }

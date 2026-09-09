@@ -1,155 +1,98 @@
-<section class="section-padding" style="background-color: var(--bg-secondary);">
+{%- liquid
+  assign eyebrow = section.settings.eyebrow | default: 'STEP-BY-STEP BEAUTY ROUTINE'
+  assign heading = section.settings.heading | default: 'Your Daily Glow Ritual'
+  assign subtitle = section.settings.subtitle | default: 'Crafted to nourish your skin from the inside out with pure active botanical science.'
+  assign quote_text = section.settings.quote_text | default: 'Transform your skin in 14 days with our clinically proven 3-step ritual.'
+-%}
+
+<section class="section-padding ritual-section" id="ritual">
   <div class="container">
-    
-    <div class="section-header">
-      {%- if section.settings.eyebrow != blank -%}
-        <span class="section-eyebrow">{{ section.settings.eyebrow }}</span>
-      {%- endif -%}
-
-      <h2 class="section-title">{{ section.settings.heading }}</h2>
-
-      {%- if section.settings.subtitle != blank -%}
-        <p class="section-subtitle">{{ section.settings.subtitle }}</p>
-      {%- endif -%}
-    </div>
-
-    <div class="experience-grid">
-      {%- for block in section.blocks -%}
-        <div class="experience-card" {{ block.shopify_attributes }}>
-          <div class="experience-icon">
-            {%- case block.settings.icon -%}
-              {%- when 'truck' -%}
-                {% render 'icon-truck' %}
-              {%- when 'shield' -%}
-                {% render 'icon-shield' %}
-              {%- when 'flower' -%}
-                {% render 'icon-flower' %}
-              {%- when 'bottle' -%}
-                {% render 'icon-bottle' %}
-              {%- else -%}
-                {% render 'icon-sparkle' %}
-            {%- endcase -%}
-          </div>
-          <div>
-            <h4 class="experience-title">{{ block.settings.title }}</h4>
-            <p class="experience-desc">{{ block.settings.text }}</p>
-          </div>
+    <div class="ritual-grid">
+      
+      <!-- Left Media Column with Quote Bubble -->
+      <div class="ritual-image-wrap">
+        <img src="https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?auto=format&fit=crop&w=1000&q=85" 
+             alt="Glow Chic Skincare Ritual">
+        <div class="ritual-quote-float">
+          &ldquo;{{ quote_text }}&rdquo;
         </div>
-      {%- endfor -%}
-    </div>
+      </div>
 
+      <!-- Right Steps Information Column -->
+      <div class="ritual-info">
+        <span class="section-eyebrow">{{ eyebrow }}</span>
+        <h2 class="section-title">{{ heading }}</h2>
+        <p class="section-subtitle">{{ subtitle }}</p>
+
+        <div class="ritual-steps-grid">
+          
+          <!-- Step 01 -->
+          <div class="ritual-step-card">
+            <span class="step-num-badge">01</span>
+            <h4 class="step-card-title">Brighten & Even Tone</h4>
+            <p class="step-card-text">Vitamin C and Niacinamide help fade dark spots, hyperpigmentation, and create an even glowing surface.</p>
+          </div>
+
+          <!-- Step 02 -->
+          <div class="ritual-step-card">
+            <span class="step-num-badge">02</span>
+            <h4 class="step-card-title">Deep Hydration</h4>
+            <p class="step-card-text">Triple-weight Hyaluronic Acid locks in moisture across all dermal layers for 48 continuous hours.</p>
+          </div>
+
+          <!-- Step 03 -->
+          <div class="ritual-step-card">
+            <span class="step-num-badge">03</span>
+            <h4 class="step-card-title">Radiance with Vitamin C</h4>
+            <p class="step-card-text">Potent botanical antioxidants fight free radicals, environmental stressors, and skin dullness.</p>
+          </div>
+
+          <!-- Step 04 -->
+          <div class="ritual-step-card">
+            <span class="step-num-badge">04</span>
+            <h4 class="step-card-title">Clean & Hypoallergenic</h4>
+            <p class="step-card-text">Formulated without harsh chemicals, 100% vegan, cruelty-free, and safe for sensitive skin.</p>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
   </div>
 </section>
 
 {% schema %}
 {
-  "name": "Brand Experience",
+  "name": "Brand Ritual",
   "settings": [
     {
       "type": "text",
       "id": "eyebrow",
       "label": "Eyebrow",
-      "default": "COMMITTED TO EXCELLENCE"
+      "default": "STEP-BY-STEP BEAUTY ROUTINE"
     },
     {
       "type": "text",
       "id": "heading",
       "label": "Heading",
-      "default": "The Ruhe Noor Experience"
+      "default": "Your Daily Glow Ritual"
     },
     {
       "type": "textarea",
       "id": "subtitle",
       "label": "Subtitle",
-      "default": "Every aspect of our fragrance house is crafted for discerning connoisseurs."
-    }
-  ],
-  "blocks": [
+      "default": "Crafted to nourish your skin from the inside out with pure active botanical science."
+    },
     {
-      "type": "feature",
-      "name": "Experience Feature",
-      "settings": [
-        {
-          "type": "select",
-          "id": "icon",
-          "label": "Icon",
-          "options": [
-            { "value": "sparkle", "label": "Sparkle / Bespoke" },
-            { "value": "bottle", "label": "Bottle / Samples" },
-            { "value": "shield", "label": "Shield / Guarantee" },
-            { "value": "flower", "label": "Flower / Natural" },
-            { "value": "truck", "label": "Truck / Shipping" }
-          ],
-          "default": "sparkle"
-        },
-        {
-          "type": "text",
-          "id": "title",
-          "label": "Title",
-          "default": "Bespoke Olfactory Guidance"
-        },
-        {
-          "type": "textarea",
-          "id": "text",
-          "label": "Description",
-          "default": "Private consultation to discover notes tailored to your unique skin chemistry."
-        }
-      ]
+      "type": "text",
+      "id": "quote_text",
+      "label": "Floating Quote Text",
+      "default": "Transform your skin in 14 days with our clinically proven 3-step ritual."
     }
   ],
   "presets": [
     {
-      "name": "Brand Experience",
-      "blocks": [
-        {
-          "type": "feature",
-          "settings": {
-            "icon": "sparkle",
-            "title": "Bespoke Olfactory Guidance",
-            "text": "Private consultation to discover fragrance notes tailored to your unique skin chemistry."
-          }
-        },
-        {
-          "type": "feature",
-          "settings": {
-            "icon": "bottle",
-            "title": "Complimentary Samples",
-            "text": "Two complimentary 2ml curated discovery samples included with every full flacon order."
-          }
-        },
-        {
-          "type": "feature",
-          "settings": {
-            "icon": "flower",
-            "title": "Signature Gift Presentation",
-            "text": "Encased in luxury textured linen boxes sealed with custom gold foil insignia."
-          }
-        },
-        {
-          "type": "feature",
-          "settings": {
-            "icon": "shield",
-            "title": "14+ Hour Longevity Guarantee",
-            "text": "30% pure perfume oil concentration formulated for all-day sillage projection."
-          }
-        },
-        {
-          "type": "feature",
-          "settings": {
-            "icon": "sparkle",
-            "title": "Temperature-Controlled Storage",
-            "text": "Maintained in dark climate-controlled cellars to preserve volatile top-note nuances."
-          }
-        },
-        {
-          "type": "feature",
-          "settings": {
-            "icon": "truck",
-            "title": "Global Priority Shipping",
-            "text": "Insured door-to-door express delivery with trackable concierge dispatch."
-          }
-        }
-      ]
+      "name": "Brand Ritual - Glow Chic"
     }
   ]
 }

@@ -1,28 +1,53 @@
-<section class="section-padding">
+{%- liquid
+  assign eyebrow = section.settings.eyebrow | default: 'SCIENCE MEETS LUXURY'
+  assign heading = section.settings.heading | default: 'Feel the Difference'
+  assign subtitle = section.settings.subtitle | default: 'A unique formulation designed to deeply penetrate and restore skin barrier function.'
+-%}
+
+<section class="section-padding how-it-works-section" id="how-it-works">
   <div class="container">
     
     <div class="section-header">
-      {%- if section.settings.eyebrow != blank -%}
-        <span class="section-eyebrow">{{ section.settings.eyebrow }}</span>
+      {%- if eyebrow != blank -%}
+        <span class="section-eyebrow">{{ eyebrow }}</span>
       {%- endif -%}
 
-      <h2 class="section-title">{{ section.settings.heading }}</h2>
+      <h2 class="section-title">{{ heading }}</h2>
 
-      {%- if section.settings.subtitle != blank -%}
-        <p class="section-subtitle">{{ section.settings.subtitle }}</p>
+      {%- if subtitle != blank -%}
+        <p class="section-subtitle">{{ subtitle }}</p>
       {%- endif -%}
     </div>
 
-    <div class="process-steps-grid">
-      {%- for block in section.blocks -%}
-        <div class="process-step-card" {{ block.shopify_attributes }}>
-          <div class="process-step-badge">
-            {{ forloop.index | prepend: '0' }}
-          </div>
-          <h3 class="process-step-title">{{ block.settings.title }}</h3>
-          <p class="process-step-desc">{{ block.settings.text }}</p>
+    <div class="steps-3-grid">
+      
+      <!-- Step 1: Prepare -->
+      <div class="step-3-card">
+        <div class="step-circle-icon">
+          {% render 'icon-flower' %}
         </div>
-      {%- endfor -%}
+        <h3 class="step-3-title">Prepare</h3>
+        <p class="step-3-desc">Cleanses and gently prepares your skin surface for optimal hydration and bio-active serum absorption.</p>
+      </div>
+
+      <!-- Step 2: Revitalize -->
+      <div class="step-3-card">
+        <div class="step-circle-icon">
+          {% render 'icon-sparkle' %}
+        </div>
+        <h3 class="step-3-title">Revitalize</h3>
+        <p class="step-3-desc">Active serum penetrates deep into dermal layers to nourish cells with multi-molecular vitamins and antioxidants.</p>
+      </div>
+
+      <!-- Step 3: Radiate -->
+      <div class="step-3-card">
+        <div class="step-circle-icon">
+          {% render 'icon-star' %}
+        </div>
+        <h3 class="step-3-title">Radiate</h3>
+        <p class="step-3-desc">Forms an invisible, breathable moisture seal that locks in all-day luminous, dewy, glass-skin glow.</p>
+      </div>
+
     </div>
 
   </div>
@@ -30,73 +55,30 @@
 
 {% schema %}
 {
-  "name": "Art of Fragrance",
+  "name": "Feel the Difference",
   "settings": [
     {
       "type": "text",
       "id": "eyebrow",
       "label": "Eyebrow",
-      "default": "OUR PHILOSOPHY"
+      "default": "SCIENCE MEETS LUXURY"
     },
     {
       "type": "text",
       "id": "heading",
       "label": "Heading",
-      "default": "The Art of Timeless Fragrance"
+      "default": "Feel the Difference"
     },
     {
       "type": "textarea",
       "id": "subtitle",
       "label": "Subtitle",
-      "default": "Where ancient perfumery tradition meets modern olfactory sophistication."
-    }
-  ],
-  "blocks": [
-    {
-      "type": "step",
-      "name": "Process Step",
-      "settings": [
-        {
-          "type": "text",
-          "id": "title",
-          "label": "Step Title",
-          "default": "Sourcing & Selection"
-        },
-        {
-          "type": "textarea",
-          "id": "text",
-          "label": "Step Description",
-          "default": "Rare botanicals handpicked from sustainable private harvests across Grasse, Taif, and Madagascar."
-        }
-      ]
+      "default": "A unique formulation designed to deeply penetrate and restore skin barrier function."
     }
   ],
   "presets": [
     {
-      "name": "Art of Fragrance",
-      "blocks": [
-        {
-          "type": "step",
-          "settings": {
-            "title": "Sourcing & Selection",
-            "text": "Rare botanicals handpicked from sustainable private harvests across Grasse, Taif, and Madagascar."
-          }
-        },
-        {
-          "type": "step",
-          "settings": {
-            "title": "Precision Blending",
-            "text": "Aged in curated dark glass containers to achieve harmonious depth, nuance, and rich longevity."
-          }
-        },
-        {
-          "type": "step",
-          "settings": {
-            "title": "Flacon Bottling",
-            "text": "Heavy bespoke crystal flacons hand-poured and capped with polished metallic crowns."
-          }
-        }
-      ]
+      "name": "Feel the Difference - Glow Chic"
     }
   ]
 }

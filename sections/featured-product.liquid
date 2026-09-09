@@ -1,28 +1,37 @@
 {%- liquid
-  assign product = section.settings.product
-  assign title = section.settings.title | default: product.title | default: 'Ruhe Noor'
-  assign subtitle = section.settings.subtitle | default: 'A Timeless Exploration of Elegance'
-  assign category = section.settings.category | default: 'EAU DE PARFUM - 100ML 3.4 FL. OZ'
-  assign price = section.settings.price | default: product.price | money | default: '$165.00'
-  assign compare_price = section.settings.compare_price | default: '$210.00'
-  assign description = section.settings.description | default: 'Ruhe Noor opens with an exhilarating burst of sparkling citrus and velvety peach, transitioning into a floral bouquet of Jasmine Sambac and Damask Rose, grounded in an opulent base of royal amber, Madagascar vanilla, and aged sandalwood.'
+  assign title = section.settings.title | default: 'Glow Serum'
+  assign subtitle = section.settings.subtitle | default: 'Multivitamin Radiance Booster Serum 50ml / 1.7 fl. oz.'
+  assign category = section.settings.category | default: 'SKINCARE / SERUM / DEEP HYDRATION'
+  assign price = section.settings.price | default: '$49.99'
+  assign compare_price = section.settings.compare_price | default: '$65.00'
+  assign discount_badge = section.settings.discount_badge | default: 'SAVE 23%'
+  assign description = section.settings.description | default: 'Revitalize your skin with our antioxidant-rich formula. Designed to deeply penetrate, lock in moisture, brighten skin tone, and restore your natural, youthful radiance without feeling heavy or greasy.'
 -%}
 
-<section class="section-padding" id="featured-product">
+<section class="section-padding featured-product-section" id="featured-product">
   <div class="container">
     <div class="featured-product-grid">
       
-      <!-- Product Gallery / Image -->
+      <!-- Product Gallery / Image Carousel -->
       <div class="fp-gallery">
         <div class="fp-main-image-wrap">
-          <span class="fp-badge-float">Signature Scent</span>
-          {%- if section.settings.image != blank -%}
-            {{ section.settings.image | image_url: width: 900 | image_tag: class: 'fp-main-image', alt: title }}
-          {%- elsif product.featured_image -%}
-            {{ product.featured_image | image_url: width: 900 | image_tag: class: 'fp-main-image', alt: title }}
-          {%- else -%}
-            <img src="https://images.unsplash.com/photo-1547887537-6158d64c35b3?auto=format&fit=crop&w=900&q=85" class="fp-main-image" alt="{{ title }}">
-          {%- endif -%}
+          <span class="fp-badge-float">BESTSELLER</span>
+          <img src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=900&q=85" 
+               class="fp-main-image" 
+               alt="{{ title }}">
+        </div>
+
+        <!-- Thumbnails Row -->
+        <div class="fp-thumbs-row">
+          <div class="fp-thumb-item active" data-img-src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=900&q=85">
+            <img src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=200&q=80" alt="Glow Serum Bottle">
+          </div>
+          <div class="fp-thumb-item" data-img-src="https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?auto=format&fit=crop&w=900&q=85">
+            <img src="https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?auto=format&fit=crop&w=200&q=80" alt="Woman applying serum">
+          </div>
+          <div class="fp-thumb-item" data-img-src="https://images.unsplash.com/photo-1608248597359-5975005b6378?auto=format&fit=crop&w=900&q=85">
+            <img src="https://images.unsplash.com/photo-1608248597359-5975005b6378?auto=format&fit=crop&w=200&q=80" alt="Serum Texture Swatch">
+          </div>
         </div>
       </div>
 
@@ -32,72 +41,78 @@
         <h2 class="fp-title">{{ title }}</h2>
         <p class="fp-subtitle">{{ subtitle }}</p>
 
-        <div class="fp-rating-row">
-          <div class="star-rating">
-            {%- for i in (1..5) -%}
-              {% render 'icon-star' %}
-            {%- endfor -%}
-          </div>
-          <span class="fp-review-count">4.9/5 (128 verified reviews)</span>
-        </div>
-
-        <div class="fp-price-row">
+        <div class="fp-price-rating-row">
           <span class="fp-price">{{ price }}</span>
           {%- if compare_price != blank -%}
             <span class="fp-compare-price">{{ compare_price }}</span>
           {%- endif -%}
+          {%- if discount_badge != blank -%}
+            <span class="fp-discount-badge">{{ discount_badge }}</span>
+          {%- endif -%}
+
+          <div class="fp-rating-group">
+            <div class="star-rating">
+              {%- for i in (1..5) -%}
+                {% render 'icon-star' %}
+              {%- endfor -%}
+            </div>
+            <span>4.9 (2,840+ Reviews)</span>
+          </div>
         </div>
 
         <p class="fp-description">{{ description }}</p>
 
-        <!-- Scent Notes Breakdown -->
-        <div class="scent-notes-card">
-          <div class="scent-note-row">
-            <span class="note-tier">Top</span>
-            <span class="note-desc">{{ section.settings.top_notes | default: 'Bergamot, Sparkling Mandarin, Velvety White Peach' }}</span>
+        <!-- 2x2 Highlights Grid -->
+        <div class="fp-highlights-grid">
+          <div class="highlight-pill-item">
+            <span class="highlight-check">✓</span>
+            <span>Hyaluronic Acid + Vitamin C</span>
           </div>
-          <div class="scent-note-row">
-            <span class="note-tier">Heart</span>
-            <span class="note-desc">{{ section.settings.heart_notes | default: 'Jasmine Sambac, Damask Rose, French Orange Blossom' }}</span>
+          <div class="highlight-pill-item">
+            <span class="highlight-check">✓</span>
+            <span>48hr Deep Hydration</span>
           </div>
-          <div class="scent-note-row">
-            <span class="note-tier">Base</span>
-            <span class="note-desc">{{ section.settings.base_notes | default: 'Royal Amber, Aged Oud, Madagascar Vanilla, Sandalwood' }}</span>
+          <div class="highlight-pill-item">
+            <span class="highlight-check">✓</span>
+            <span>Dermatologist Tested</span>
+          </div>
+          <div class="highlight-pill-item">
+            <span class="highlight-check">✓</span>
+            <span>Cruelty-Free & Vegan</span>
           </div>
         </div>
 
-        <!-- Add to Cart & Buy Now Actions -->
-        <div class="fp-actions">
-          <div style="display: flex; gap: 14px; align-items: center;">
-            <div class="quantity-wrapper">
-              <button type="button" class="qty-btn" data-qty-minus aria-label="Decrease quantity">-</button>
-              <input type="text" class="qty-input" value="1" readonly>
-              <button type="button" class="qty-btn" data-qty-plus aria-label="Increase quantity">+</button>
-            </div>
-
-            <button type="button" class="btn btn-dark" style="flex: 1;" data-add-to-cart>
-              Add to Bag &bull; {{ price }}
-            </button>
+        <!-- Quantity & Add to Cart Action -->
+        <div class="fp-actions-row">
+          <div class="quantity-wrapper">
+            <button type="button" class="qty-btn" data-qty-minus aria-label="Decrease quantity">-</button>
+            <input type="text" class="qty-input" value="1" readonly>
+            <button type="button" class="qty-btn" data-qty-plus aria-label="Increase quantity">+</button>
           </div>
 
-          <a href="/checkout" class="btn btn-primary" style="width: 100%;">
-            Buy It Now
-          </a>
+          <button type="button" class="btn btn-primary btn-add-cart-main" data-add-to-cart>
+            {% render 'icon-cart' %}
+            <span>ADD TO CART &mdash; {{ price }}</span>
+          </button>
         </div>
 
-        <!-- Trust Badges -->
-        <div class="fp-trust-badges">
-          <div class="trust-badge-item">
+        <!-- 4 Trust Badges -->
+        <div class="fp-trust-badges-grid">
+          <div class="trust-badge-col">
             {% render 'icon-truck' %}
-            <span>Complimentary Global Shipping</span>
+            <span>Free Express Shipping</span>
           </div>
-          <div class="trust-badge-item">
+          <div class="trust-badge-col">
             {% render 'icon-shield' %}
-            <span>100% Authentic Guarantee</span>
+            <span>30-Day Guarantee</span>
           </div>
-          <div class="trust-badge-item">
+          <div class="trust-badge-col">
+            {% render 'icon-sparkle' %}
+            <span>100% Secure Checkout</span>
+          </div>
+          <div class="trust-badge-col">
             {% render 'icon-flower' %}
-            <span>Cruelty-Free & Sustainable</span>
+            <span>Clean & Organic</span>
           </div>
         </div>
 
@@ -112,73 +127,51 @@
   "name": "Featured Product",
   "settings": [
     {
-      "type": "product",
-      "id": "product",
-      "label": "Select Product"
-    },
-    {
-      "type": "image_picker",
-      "id": "image",
-      "label": "Custom Product Image"
-    },
-    {
       "type": "text",
       "id": "category",
-      "label": "Category / Size",
-      "default": "EAU DE PARFUM - 100ML 3.4 FL. OZ"
+      "label": "Category Eyebrow",
+      "default": "SKINCARE / SERUM / DEEP HYDRATION"
     },
     {
       "type": "text",
       "id": "title",
-      "label": "Title",
-      "default": "Ruhe Noor"
+      "label": "Product Title",
+      "default": "Glow Serum"
     },
     {
       "type": "text",
       "id": "subtitle",
       "label": "Subtitle",
-      "default": "A Timeless Exploration of Elegance"
+      "default": "Multivitamin Radiance Booster Serum 50ml / 1.7 fl. oz."
     },
     {
       "type": "text",
       "id": "price",
       "label": "Price",
-      "default": "$165.00"
+      "default": "$49.99"
     },
     {
       "type": "text",
       "id": "compare_price",
       "label": "Compare Price",
-      "default": "$210.00"
+      "default": "$65.00"
+    },
+    {
+      "type": "text",
+      "id": "discount_badge",
+      "label": "Discount Badge Text",
+      "default": "SAVE 23%"
     },
     {
       "type": "textarea",
       "id": "description",
       "label": "Description",
-      "default": "Ruhe Noor opens with an exhilarating burst of sparkling citrus and velvety peach, transitioning into a floral bouquet of Jasmine Sambac and Damask Rose, grounded in an opulent base of royal amber, Madagascar vanilla, and aged sandalwood."
-    },
-    {
-      "type": "text",
-      "id": "top_notes",
-      "label": "Top Notes",
-      "default": "Bergamot, Sparkling Mandarin, Velvety White Peach"
-    },
-    {
-      "type": "text",
-      "id": "heart_notes",
-      "label": "Heart Notes",
-      "default": "Jasmine Sambac, Damask Rose, French Orange Blossom"
-    },
-    {
-      "type": "text",
-      "id": "base_notes",
-      "label": "Base Notes",
-      "default": "Royal Amber, Aged Oud, Madagascar Vanilla, Sandalwood"
+      "default": "Revitalize your skin with our antioxidant-rich formula. Designed to deeply penetrate, lock in moisture, brighten skin tone, and restore your natural, youthful radiance without feeling heavy or greasy."
     }
   ],
   "presets": [
     {
-      "name": "Featured Product"
+      "name": "Featured Product - Glow Serum"
     }
   ]
 }

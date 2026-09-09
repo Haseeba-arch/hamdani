@@ -1,32 +1,116 @@
-<section class="section-padding" style="background-color: var(--bg-secondary);">
+{%- liquid
+  assign eyebrow = section.settings.eyebrow | default: 'COMMON QUESTIONS & ANSWERS'
+  assign heading = section.settings.heading | default: 'Frequently Asked Questions'
+  assign subtitle = section.settings.subtitle | default: 'Everything you need to know about our products, ingredients, shipping, and return policies.'
+-%}
+
+<section class="section-padding faq-section" id="faq">
   <div class="container">
     
     <div class="section-header">
-      {%- if section.settings.eyebrow != blank -%}
-        <span class="section-eyebrow">{{ section.settings.eyebrow }}</span>
+      {%- if eyebrow != blank -%}
+        <span class="section-eyebrow">{{ eyebrow }}</span>
       {%- endif -%}
 
-      <h2 class="section-title">{{ section.settings.heading }}</h2>
+      <h2 class="section-title">{{ heading }}</h2>
 
-      {%- if section.settings.subtitle != blank -%}
-        <p class="section-subtitle">{{ section.settings.subtitle }}</p>
+      {%- if subtitle != blank -%}
+        <p class="section-subtitle">{{ subtitle }}</p>
       {%- endif -%}
     </div>
 
-    <div class="faq-list">
-      {%- for block in section.blocks -%}
-        <div class="faq-item{% if forloop.first %} active{% endif %}" {{ block.shopify_attributes }}>
-          <button type="button" class="faq-header" aria-expanded="{% if forloop.first %}true{% else %}false{% endif %}">
-            <span>{{ block.settings.question }}</span>
-            <span class="faq-icon">&#9662;</span>
-          </button>
-          <div class="faq-body">
-            <div class="faq-content">
-              {{ block.settings.answer }}
-            </div>
-          </div>
+    <div class="faq-accordion-wrap">
+      
+      <!-- FAQ 1 -->
+      <div class="faq-item active">
+        <button type="button" class="faq-question-btn" aria-expanded="true">
+          <span>What is Glow Serum?</span>
+          <svg class="faq-chevron" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+          </svg>
+        </button>
+        <div class="faq-answer-panel" style="max-height: 200px;">
+          <p class="faq-answer-text">
+            Glow Serum is our award-winning, dermatologist-formulated radiance serum. It combines multi-molecular Hyaluronic Acid, bio-available Vitamin C, Niacinamide, and organic Rose Extract to deeply hydrate, brighten dullness, and strengthen the skin barrier for 48 hours.
+          </p>
         </div>
-      {%- endfor -%}
+      </div>
+
+      <!-- FAQ 2 -->
+      <div class="faq-item">
+        <button type="button" class="faq-question-btn" aria-expanded="false">
+          <span>How do I use Glow Serum daily?</span>
+          <svg class="faq-chevron" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+          </svg>
+        </button>
+        <div class="faq-answer-panel">
+          <p class="faq-answer-text">
+            Apply 3 to 4 drops onto cleansed, slightly damp facial skin every morning and evening. Gently press and massage upward until fully absorbed before applying your favorite moisturizer or sunscreen.
+          </p>
+        </div>
+      </div>
+
+      <!-- FAQ 3 -->
+      <div class="faq-item">
+        <button type="button" class="faq-question-btn" aria-expanded="false">
+          <span>Can I use this on sensitive skin?</span>
+          <svg class="faq-chevron" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+          </svg>
+        </button>
+        <div class="faq-answer-panel">
+          <p class="faq-answer-text">
+            Yes! Our formulation is 100% hypoallergenic, non-comedogenic, and rigorously dermatologist-tested on sensitive skin panels. It is free from alcohol, parabens, sulfates, and synthetic fragrances.
+          </p>
+        </div>
+      </div>
+
+      <!-- FAQ 4 -->
+      <div class="faq-item">
+        <button type="button" class="faq-question-btn" aria-expanded="false">
+          <span>When should I expect to see results?</span>
+          <svg class="faq-chevron" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+          </svg>
+        </button>
+        <div class="faq-answer-panel">
+          <p class="faq-answer-text">
+            You will experience immediate hydration and a luminous dewy finish from the very first application. Visible improvements in skin tone, reduced dark spots, and smoother texture typically appear within 7 to 14 days of consistent twice-daily use.
+          </p>
+        </div>
+      </div>
+
+      <!-- FAQ 5 -->
+      <div class="faq-item">
+        <button type="button" class="faq-question-btn" aria-expanded="false">
+          <span>Is it cruelty-free and vegan-friendly?</span>
+          <svg class="faq-chevron" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+          </svg>
+        </button>
+        <div class="faq-answer-panel">
+          <p class="faq-answer-text">
+            Absolutely. Glow Chic products are Leaping Bunny certified cruelty-free, 100% vegan, and packaged in fully recyclable glass bottles.
+          </p>
+        </div>
+      </div>
+
+      <!-- FAQ 6 -->
+      <div class="faq-item">
+        <button type="button" class="faq-question-btn" aria-expanded="false">
+          <span>Can I use Glow Serum under makeup or sunscreen?</span>
+          <svg class="faq-chevron" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+          </svg>
+        </button>
+        <div class="faq-answer-panel">
+          <p class="faq-answer-text">
+            Yes, our lightweight formula absorbs instantly with zero pilling, making it an extraordinary hydrating primer under SPF, foundation, or tinted moisturizers.
+          </p>
+        </div>
+      </div>
+
     </div>
 
   </div>
@@ -40,7 +124,7 @@
       "type": "text",
       "id": "eyebrow",
       "label": "Eyebrow",
-      "default": "CONCIERGE HELP"
+      "default": "COMMON QUESTIONS & ANSWERS"
     },
     {
       "type": "text",
@@ -52,69 +136,12 @@
       "type": "textarea",
       "id": "subtitle",
       "label": "Subtitle",
-      "default": "Everything you need to know regarding our formulations, longevity, and care."
-    }
-  ],
-  "blocks": [
-    {
-      "type": "faq",
-      "name": "Question & Answer",
-      "settings": [
-        {
-          "type": "text",
-          "id": "question",
-          "label": "Question",
-          "default": "What makes Ruhe Noor fragrances unique?"
-        },
-        {
-          "type": "textarea",
-          "id": "answer",
-          "label": "Answer",
-          "default": "We formulate exclusively in Extrait de Parfum concentration (30%+ perfume oils) using cold-distilled botanicals and vintage aged resins. Each batch matures for six months in our cellars before bottling."
-        }
-      ]
+      "default": "Everything you need to know about our products, ingredients, shipping, and return policies."
     }
   ],
   "presets": [
     {
-      "name": "FAQ Accordion",
-      "blocks": [
-        {
-          "type": "faq",
-          "settings": {
-            "question": "What makes Ruhe Noor fragrances unique?",
-            "answer": "We formulate exclusively in Extrait de Parfum concentration (30%+ perfume oils) using cold-distilled botanicals and vintage aged resins. Each batch matures for six months in our cellars before bottling."
-          }
-        },
-        {
-          "type": "faq",
-          "settings": {
-            "question": "How long do the fragrances last on skin and fabric?",
-            "answer": "Because of our high concentration of natural resinous base notes (such as Amber, Oud, and Bourbon Vanilla), our extraits typically project for 12 to 16+ hours on skin and remain discernable on garments for multiple days."
-          }
-        },
-        {
-          "type": "faq",
-          "settings": {
-            "question": "Are Ruhe Noor fragrances unisex?",
-            "answer": "Yes. We believe olfactory elegance transcends conventional gender boundaries. Our compositions are balanced with harmonic top, heart, and base tiers that evolve uniquely on each individual's skin chemistry."
-          }
-        },
-        {
-          "type": "faq",
-          "settings": {
-            "question": "Can I test the fragrances before purchasing a full flacon?",
-            "answer": "Absolutely. We offer our Atelier Discovery Wardrobe (5 x 10ml vials), and every full-size flacon order automatically includes two complimentary travel samples so you can test on your skin before opening the main presentation box."
-          }
-        },
-        {
-          "type": "faq",
-          "settings": {
-            "question": "How should I store my luxury perfume flacon?",
-            "answer": "Keep your flacon in a cool, dry place away from direct sunlight, humidity, and drastic temperature changes. Storing it inside its original linen presentation box ensures the volatile natural top notes remain pristine."
-          }
-        }
-      ]
+      "name": "FAQ Accordion - Glow Chic"
     }
   ]
 }

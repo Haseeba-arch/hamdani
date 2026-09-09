@@ -1,116 +1,120 @@
-<section class="section-padding">
-  <div class="container container-narrow">
-    
-    <div class="stats-box">
-      <div class="section-header" style="margin-bottom: 40px;">
-        {%- if section.settings.eyebrow != blank -%}
-          <span class="section-eyebrow">{{ section.settings.eyebrow }}</span>
-        {%- endif -%}
+{%- liquid
+  assign eyebrow = section.settings.eyebrow | default: 'CLINICAL STUDY RESULTS'
+  assign heading = section.settings.heading | default: 'Why Customers Love Glow Serum'
+  assign description = section.settings.description | default: 'Real results from a 4-week independent clinical study of 120 women who incorporated Glow Serum into their morning and night routines.'
+  assign report_link_text = section.settings.report_link_text | default: 'VIEW CLINICAL STUDY REPORT →'
+  assign report_link_url = section.settings.report_link_url | default: '#'
+-%}
 
-        <h2 class="section-title">{{ section.settings.heading }}</h2>
+<section class="section-padding clinical-stats-section">
+  <div class="container">
+    <div class="clinical-stats-grid">
+      
+      <!-- Left Content Column -->
+      <div>
+        <span class="section-eyebrow">{{ eyebrow }}</span>
+        <h2 class="section-title">{{ heading }}</h2>
+        <p class="section-subtitle">{{ description }}</p>
 
-        {%- if section.settings.subtitle != blank -%}
-          <p class="section-subtitle">{{ section.settings.subtitle }}</p>
-        {%- endif -%}
+        <a href="{{ report_link_url }}" class="clinical-report-link">
+          {{ report_link_text }}
+        </a>
       </div>
 
-      <div class="stats-grid">
-        {%- for block in section.blocks -%}
-          <div class="stat-item" {{ block.shopify_attributes }}>
-            <div class="stat-header">
-              <span class="stat-label">{{ block.settings.label }}</span>
-              <span class="stat-value">{{ block.settings.percentage }}%</span>
-            </div>
-            <div class="progress-track">
-              <div class="progress-fill" style="width: {{ block.settings.percentage }}%;"></div>
-            </div>
+      <!-- Right Progress Bars Column -->
+      <div class="progress-bars-stack">
+        
+        <!-- Metric 1: 98% -->
+        <div class="progress-item">
+          <div class="progress-header-row">
+            <span class="progress-label">Noticeably Brighter & Glowing Skin</span>
+            <span class="progress-val">98%</span>
           </div>
-        {%- endfor -%}
-      </div>
-    </div>
+          <div class="progress-track">
+            <div class="progress-fill" data-percentage="98" style="width: 98%;"></div>
+          </div>
+          <p class="progress-desc">Visible skin radiance improvements within 7 days of daily use.</p>
+        </div>
 
+        <!-- Metric 2: 96% -->
+        <div class="progress-item">
+          <div class="progress-header-row">
+            <span class="progress-label">48-Hour Deep Hydration Retained</span>
+            <span class="progress-val">96%</span>
+          </div>
+          <div class="progress-track">
+            <div class="progress-fill" data-percentage="96" style="width: 96%;"></div>
+          </div>
+          <p class="progress-desc">Confirmed via clinical moisture barrier instrumentation.</p>
+        </div>
+
+        <!-- Metric 3: 94% -->
+        <div class="progress-item">
+          <div class="progress-header-row">
+            <span class="progress-label">Reduction in Fine Lines & Texture</span>
+            <span class="progress-val">94%</span>
+          </div>
+          <div class="progress-track">
+            <div class="progress-fill" data-percentage="94" style="width: 94%;"></div>
+          </div>
+          <p class="progress-desc">Smoother, plumper, and significantly firmer skin feel.</p>
+        </div>
+
+        <!-- Metric 4: 99% -->
+        <div class="progress-item">
+          <div class="progress-header-row">
+            <span class="progress-label">Overall Customer Satisfaction</span>
+            <span class="progress-val">99%</span>
+          </div>
+          <div class="progress-track">
+            <div class="progress-fill" data-percentage="99" style="width: 99%;"></div>
+          </div>
+          <p class="progress-desc">Would recommend to friends and incorporate into daily regimen.</p>
+        </div>
+
+      </div>
+
+    </div>
   </div>
 </section>
 
 {% schema %}
 {
-  "name": "Craftsmanship Stats",
+  "name": "Clinical Stats",
   "settings": [
     {
       "type": "text",
       "id": "eyebrow",
       "label": "Eyebrow",
-      "default": "PROVEN PERFECTION"
+      "default": "CLINICAL STUDY RESULTS"
     },
     {
       "type": "text",
       "id": "heading",
       "label": "Heading",
-      "default": "Consumer Reaction & Craftsmanship"
+      "default": "Why Customers Love Glow Serum"
     },
     {
       "type": "textarea",
-      "id": "subtitle",
-      "label": "Subtitle",
-      "default": "Independent sensory evaluations conducted across 450 verified luxury perfume collectors."
-    }
-  ],
-  "blocks": [
+      "id": "description",
+      "label": "Description",
+      "default": "Real results from a 4-week independent clinical study of 120 women who incorporated Glow Serum into their morning and night routines."
+    },
     {
-      "type": "metric",
-      "name": "Stat Metric",
-      "settings": [
-        {
-          "type": "text",
-          "id": "label",
-          "label": "Metric Label",
-          "default": "Long-Lasting All Day Wear"
-        },
-        {
-          "type": "range",
-          "id": "percentage",
-          "min": 50,
-          "max": 100,
-          "step": 1,
-          "label": "Percentage",
-          "default": 98
-        }
-      ]
+      "type": "text",
+      "id": "report_link_text",
+      "label": "Report Link Text",
+      "default": "VIEW CLINICAL STUDY REPORT →"
+    },
+    {
+      "type": "url",
+      "id": "report_link_url",
+      "label": "Report Link URL"
     }
   ],
   "presets": [
     {
-      "name": "Craftsmanship Stats",
-      "blocks": [
-        {
-          "type": "metric",
-          "settings": {
-            "label": "Long-Lasting All Day Wear (12+ hrs)",
-            "percentage": 98
-          }
-        },
-        {
-          "type": "metric",
-          "settings": {
-            "label": "Distinctive Sillage & Projection",
-            "percentage": 96
-          }
-        },
-        {
-          "type": "metric",
-          "settings": {
-            "label": "Natural & Pure Botanical Ingredients",
-            "percentage": 99
-          }
-        },
-        {
-          "type": "metric",
-          "settings": {
-            "label": "Luxury Compliments Received",
-            "percentage": 97
-          }
-        }
-      ]
+      "name": "Clinical Stats - Glow Chic"
     }
   ]
 }

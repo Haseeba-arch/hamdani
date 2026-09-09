@@ -1,9 +1,9 @@
 [
   {
     "name": "theme_info",
-    "theme_name": "Ruhe Noor - Haute Parfumerie",
+    "theme_name": "Glow Chic - Luxury Skincare 2.0",
     "theme_version": "1.0.0",
-    "theme_author": "Shopify 2.0 Artisanal Team",
+    "theme_author": "Antigravity Luxury Team",
     "theme_documentation_url": "https://github.com",
     "theme_support_url": "https://github.com"
   },
@@ -12,33 +12,33 @@
     "settings": [
       {
         "type": "color",
+        "id": "color_primary",
+        "label": "Primary Accent / Burgundy",
+        "default": "#6C1D2F"
+      },
+      {
+        "type": "color",
         "id": "color_primary_bg",
         "label": "Primary Background",
-        "default": "#FBF9F5"
+        "default": "#FFF8F6"
       },
       {
         "type": "color",
         "id": "color_secondary_bg",
-        "label": "Secondary Background",
-        "default": "#F4EFEA"
-      },
-      {
-        "type": "color",
-        "id": "color_gold",
-        "label": "Gold Accent",
-        "default": "#C29B53"
+        "label": "Secondary Blush Background",
+        "default": "#FDF0ED"
       },
       {
         "type": "color",
         "id": "color_text",
         "label": "Primary Text",
-        "default": "#231E1B"
+        "default": "#251E20"
       },
       {
         "type": "color",
         "id": "color_dark_bg",
-        "label": "Dark Surface / Footer",
-        "default": "#191412"
+        "label": "Dark Surface / Contrast",
+        "default": "#1E1618"
       }
     ]
   },
@@ -49,13 +49,13 @@
         "type": "font_picker",
         "id": "heading_font",
         "label": "Heading Font",
-        "default": "playfair_display_n4"
+        "default": "playfair_display_n5"
       },
       {
         "type": "font_picker",
         "id": "body_font",
         "label": "Body Font",
-        "default": "assistant_n4"
+        "default": "plus_jakarta_sans_n4"
       }
     ]
   },
@@ -80,23 +80,13 @@
       },
       {
         "type": "text",
-        "id": "social_pinterest_link",
-        "label": "Pinterest URL"
+        "id": "social_tiktok_link",
+        "label": "TikTok URL"
       },
       {
         "type": "text",
-        "id": "social_facebook_link",
-        "label": "Facebook URL"
-      }
-    ]
-  },
-  {
-    "name": "Favicon",
-    "settings": [
-      {
-        "type": "image_picker",
-        "id": "favicon",
-        "label": "Favicon image"
+        "id": "social_pinterest_link",
+        "label": "Pinterest URL"
       }
     ]
   }
