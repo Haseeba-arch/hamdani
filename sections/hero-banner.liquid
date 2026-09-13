@@ -1,83 +1,80 @@
 {%- liquid
-  assign badge_text = section.settings.badge_text | default: 'BEST SELLING GLOW ESSENTIALS'
-  assign heading_main = section.settings.heading_main | default: 'Glow From'
-  assign heading_accent = section.settings.heading_accent | default: 'Within'
-  assign subtitle = section.settings.subtitle | default: 'Discover the secret to radiant, hydrated, and beautifully glowing skin.'
-  assign body_text = section.settings.body_text | default: 'A lightweight serum formulated with Hyaluronic Acid and Rose Extract, crafted to hydrate and soothe dry skin and lock in moisture for 48 hours. Suitable for all skin types.'
-  assign btn_1_text = section.settings.btn_1_text | default: 'SHOP GLOW SERUM'
-  assign btn_1_link = section.settings.btn_1_link | default: '#featured-product'
-  assign btn_2_text = section.settings.btn_2_text | default: 'EXPLORE SUITE'
-  assign btn_2_link = section.settings.btn_2_link | default: '#collections'
+  assign badge_text = section.settings.badge_text | default: '✨ NEW SPRING/SUMMER COLLECTION 2026'
+  assign heading_line1 = section.settings.heading_line1 | default: 'Little Styles,'
+  assign heading_gradient = section.settings.heading_gradient | default: 'Big Smiles.'
+  assign body_text = section.settings.body_text | default: 'Discover delightfully comfortable, stylish and skin-friendly outfits for your little ones. Crafted with love, organic cotton and playful designs that keep kids smiling all day long.'
+  assign btn_primary_text = section.settings.btn_primary_text | default: 'SHOP COLLECTION'
+  assign btn_primary_link = section.settings.btn_primary_link | default: '#collections'
+  assign btn_secondary_text = section.settings.btn_secondary_text | default: 'EXPLORE OFFERS'
+  assign btn_secondary_link = section.settings.btn_secondary_link | default: '#featured-products'
   assign hero_image = section.settings.image
+  assign trust_1_text = section.settings.trust_1_text | default: 'Free Shipping (Orders over Rs. 3,000)'
+  assign trust_2_text = section.settings.trust_2_text | default: '100% Organic Cotton (Safe for sensitive skin)'
+  assign floating_badge_text = section.settings.floating_badge_text | default: 'Rated 4.9/5 by 10k+ Mums 💕'
 -%}
 
-<section class="hero-section-skincare">
+<section class="hero-banner-section">
   <div class="container">
     <div class="hero-grid">
       
       <!-- Left Content Column -->
       <div class="hero-content-col">
+        <!-- Collection Pill Badge -->
         <div class="hero-badge-pill">
-          {% render 'icon-sparkle' %}
           <span>{{ badge_text }}</span>
         </div>
 
+        <!-- Main Headline -->
         <h1 class="hero-title-main">
-          {{ heading_main }} <span class="italic-accent">{{ heading_accent }}</span>
+          {{ heading_line1 }}<br>
+          <span class="hero-text-gradient">{{ heading_gradient }}</span>
         </h1>
 
-        <p class="hero-subtitle-highlight">{{ subtitle }}</p>
-
+        <!-- Body / Subtitle -->
         <p class="hero-body-text">{{ body_text }}</p>
 
+        <!-- CTA Buttons -->
         <div class="hero-actions-row">
-          <a href="{{ btn_1_link }}" class="btn btn-primary">
-            {{ btn_1_text }}
+          <a href="{{ btn_primary_link }}" class="btn btn-hero-primary">
+            <span>{{ btn_primary_text }}</span>
+            {% render 'icon-arrow' %}
           </a>
-          <a href="{{ btn_2_link }}" class="btn btn-outline">
-            {{ btn_2_text }}
+          <a href="{{ btn_secondary_link }}" class="btn btn-hero-secondary">
+            <span>{{ btn_secondary_text }}</span>
+            <span class="btn-sparkle-icon">✨</span>
           </a>
         </div>
 
-        <div class="hero-stats-row">
-          <div class="hero-stat-item">
-            <span class="hero-stat-val">{{ section.settings.stat_1_val | default: '24/7' }}</span>
-            <span class="hero-stat-lbl">{{ section.settings.stat_1_lbl | default: 'Deep Hydration' }}</span>
+        <!-- Trust Badges Row -->
+        <div class="hero-trust-row">
+          <div class="hero-trust-item">
+            <span class="trust-icon">🚚</span>
+            <span class="trust-label">{{ trust_1_text }}</span>
           </div>
-          <div class="hero-stat-item">
-            <span class="hero-stat-val">{{ section.settings.stat_2_val | default: '100%' }}</span>
-            <span class="hero-stat-lbl">{{ section.settings.stat_2_lbl | default: 'Organic Extracts' }}</span>
-          </div>
-          <div class="hero-stat-item">
-            <span class="hero-stat-val">{{ section.settings.stat_3_val | default: '4.9 ★' }}</span>
-            <span class="hero-stat-lbl">{{ section.settings.stat_3_lbl | default: '10,000+ Reviews' }}</span>
+          <div class="hero-trust-item">
+            <span class="trust-icon">🌿</span>
+            <span class="trust-label">{{ trust_2_text }}</span>
           </div>
         </div>
       </div>
 
-      <!-- Right Media Column with Floating Badges -->
-      <div class="hero-media-wrap">
+      <!-- Right Media Column with Card & Floating Badge -->
+      <div class="hero-media-col">
         <div class="hero-image-card">
-          <!-- Top Floating Badge -->
-          <div class="floating-badge-top">
-            {% render 'icon-sparkle' %}
-            <span>24HR GLOW FORMULA</span>
-          </div>
-
-          <!-- Main Hero Image -->
+          <!-- Main Toddler Hero Image -->
           {%- if hero_image != blank -%}
-            {{ hero_image | image_url: width: 1000 | image_tag: alt: 'Glow Chic Serum' }}
+            {{ hero_image | image_url: width: 900 | image_tag: alt: 'KIDDO ME Kids Clothing', class: 'hero-main-img' }}
           {%- else -%}
-            <img src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=1000&q=85" alt="Glow Chic Serum Luxury Skincare">
+            <img src="https://images.unsplash.com/photo-1519689680058-324335c77eba?auto=format&fit=crop&w=900&q=85" alt="Cute Toddlers in Matching Clothes" class="hero-main-img">
           {%- endif -%}
 
-          <!-- Bottom Floating Badge -->
-          <div class="floating-badge-bottom">
-            <span class="floating-badge-price">$49.99</span>
-            <span style="color: var(--color-border);">|</span>
-            <div class="floating-badge-rating">
-              <span style="color: var(--color-gold-star);">★</span>
-              <span>4.9 (2,840+ Reviews)</span>
+          <!-- Floating Review Pill Badge -->
+          <div class="hero-floating-badge">
+            <div class="floating-badge-icon">
+              {% render 'icon-bear' %}
+            </div>
+            <div class="floating-badge-text">
+              <span>{{ floating_badge_text }}</span>
             </div>
           </div>
         </div>
@@ -94,107 +91,78 @@
     {
       "type": "text",
       "id": "badge_text",
-      "label": "Pill Badge Text",
-      "default": "BEST SELLING GLOW ESSENTIALS"
+      "label": "Top Badge Text",
+      "default": "✨ NEW SPRING/SUMMER COLLECTION 2026"
     },
     {
       "type": "text",
-      "id": "heading_main",
-      "label": "Main Heading",
-      "default": "Glow From"
+      "id": "heading_line1",
+      "label": "Headline Line 1",
+      "default": "Little Styles,"
     },
     {
       "type": "text",
-      "id": "heading_accent",
-      "label": "Accent Italic Word",
-      "default": "Within"
-    },
-    {
-      "type": "text",
-      "id": "subtitle",
-      "label": "Subtitle Highlight",
-      "default": "Discover the secret to radiant, hydrated, and beautifully glowing skin."
+      "id": "heading_gradient",
+      "label": "Headline Gradient Accent",
+      "default": "Big Smiles."
     },
     {
       "type": "textarea",
       "id": "body_text",
       "label": "Body Description",
-      "default": "A lightweight serum formulated with Hyaluronic Acid and Rose Extract, crafted to hydrate and soothe dry skin and lock in moisture for 48 hours. Suitable for all skin types."
+      "default": "Discover delightfully comfortable, stylish and skin-friendly outfits for your little ones. Crafted with love, organic cotton and playful designs that keep kids smiling all day long."
     },
     {
       "type": "text",
-      "id": "btn_1_text",
+      "id": "btn_primary_text",
       "label": "Primary Button Text",
-      "default": "SHOP GLOW SERUM"
+      "default": "SHOP COLLECTION"
     },
     {
       "type": "url",
-      "id": "btn_1_link",
+      "id": "btn_primary_link",
       "label": "Primary Button Link",
       "default": "/collections/all"
     },
     {
       "type": "text",
-      "id": "btn_2_text",
+      "id": "btn_secondary_text",
       "label": "Secondary Button Text",
-      "default": "EXPLORE SUITE"
+      "default": "EXPLORE OFFERS"
     },
     {
       "type": "url",
-      "id": "btn_2_link",
+      "id": "btn_secondary_link",
       "label": "Secondary Button Link",
       "default": "/collections"
     },
     {
       "type": "image_picker",
       "id": "image",
-      "label": "Hero Product Image"
-    },
-    {
-      "type": "header",
-      "content": "Stats Counter"
+      "label": "Hero Image"
     },
     {
       "type": "text",
-      "id": "stat_1_val",
-      "label": "Stat 1 Value",
-      "default": "24/7"
+      "id": "trust_1_text",
+      "label": "Trust Item 1",
+      "default": "Free Shipping (Orders over Rs. 3,000)"
     },
     {
       "type": "text",
-      "id": "stat_1_lbl",
-      "label": "Stat 1 Label",
-      "default": "Deep Hydration"
+      "id": "trust_2_text",
+      "label": "Trust Item 2",
+      "default": "100% Organic Cotton (Safe for sensitive skin)"
     },
     {
       "type": "text",
-      "id": "stat_2_val",
-      "label": "Stat 2 Value",
-      "default": "100%"
-    },
-    {
-      "type": "text",
-      "id": "stat_2_lbl",
-      "label": "Stat 2 Label",
-      "default": "Organic Extracts"
-    },
-    {
-      "type": "text",
-      "id": "stat_3_val",
-      "label": "Stat 3 Value",
-      "default": "4.9 ★"
-    },
-    {
-      "type": "stat_3_lbl",
-      "type": "text",
-      "id": "stat_3_lbl",
-      "label": "Stat 3 Label",
-      "default": "10,000+ Reviews"
+      "id": "floating_badge_text",
+      "label": "Floating Review Badge Text",
+      "default": "Rated 4.9/5 by 10k+ Mums 💕"
     }
   ],
   "presets": [
     {
-      "name": "Hero Banner - Glow Chic"
+      "name": "Hero Banner - KIDDO ME"
     }
   ]
 }

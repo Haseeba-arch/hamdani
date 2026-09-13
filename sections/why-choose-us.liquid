@@ -1,89 +1,94 @@
 {%- liquid
-  assign eyebrow = section.settings.eyebrow | default: 'DESIGNED FOR MAXIMUM RESULTS'
-  assign heading = section.settings.heading | default: 'Glow Serum Benefits'
-  assign subtitle = section.settings.subtitle | default: 'Formulated with the highest grade active botanicals and vitamins to deliver visible transformation.'
-  assign btn_text = section.settings.btn_text | default: 'GET GLOW SERUM NOW'
-  assign btn_link = section.settings.btn_link | default: '#featured-product'
+  assign eyebrow = section.settings.eyebrow | default: 'DESIGNED WITH TENDER LOVE'
+  assign heading = section.settings.heading | default: 'Why Choose KIDDO ME?'
+  assign subtitle = section.settings.subtitle | default: 'Designed with tender love, perfected for active play.'
 -%}
 
-<section class="section-padding benefits-section" id="benefits">
+<section class="section-padding why-choose-us-section" id="benefits">
   <div class="container">
     
-    <div class="section-header">
-      {%- if eyebrow != blank -%}
-        <span class="section-eyebrow">{{ eyebrow }}</span>
-      {%- endif -%}
-
-      <h2 class="section-title">{{ heading }}</h2>
-
-      {%- if subtitle != blank -%}
-        <p class="section-subtitle">{{ subtitle }}</p>
-      {%- endif -%}
+    <!-- Section Header Center -->
+    <div class="section-header-center">
+      <span class="section-eyebrow-pill pill-yellow">{{ eyebrow }}</span>
+      <h2 class="section-heading-main">{{ heading }}</h2>
+      <p class="section-subtitle">{{ subtitle }}</p>
     </div>
 
-    <div class="benefits-grid-6">
+    <!-- 8 Benefit Cards Grid -->
+    <div class="benefits-grid-8">
       
-      <!-- Card 1 -->
-      <div class="benefit-box">
+      <!-- Card 1 (Pink) -->
+      <div class="benefit-card card-pink">
         <div class="benefit-icon-wrap">
-          {% render 'icon-sparkle' %}
+          <span class="benefit-emoji">🧸</span>
         </div>
-        <h4 class="benefit-box-title">Deep Cellular Hydration</h4>
-        <p class="benefit-box-text">Multi-molecular hyaluronic acid delivers moisture across all 5 layers of the epidermis.</p>
+        <h3 class="benefit-title">100% Pure Organic Cotton</h3>
+        <p class="benefit-text">Chemical-free, hypoallergenic & ultra-soft for sensitive baby skin.</p>
       </div>
 
-      <!-- Card 2 -->
-      <div class="benefit-box">
+      <!-- Card 2 (Yellow) -->
+      <div class="benefit-card card-yellow">
         <div class="benefit-icon-wrap">
-          {% render 'icon-flower' %}
+          <span class="benefit-emoji">📐</span>
         </div>
-        <h4 class="benefit-box-title">Vitamin C & Niacinamide</h4>
-        <p class="benefit-box-text">Clinically proven actives fade discoloration, even skin tone, and boost natural collagen synthesis.</p>
+        <h3 class="benefit-title">Tailored for Growing Tots</h3>
+        <p class="benefit-text">Smart stretch fabrics and roomy fits that move as your kid grows.</p>
       </div>
 
-      <!-- Card 3 -->
-      <div class="benefit-box">
+      <!-- Card 3 (Mint) -->
+      <div class="benefit-card card-mint">
         <div class="benefit-icon-wrap">
-          {% render 'icon-shield' %}
+          <span class="benefit-emoji">⚡</span>
         </div>
-        <h4 class="benefit-box-title">Dermatologist Approved</h4>
-        <p class="benefit-box-text">Safe and gentle for sensitive, acne-prone, dry, oily, and combination skin types.</p>
+        <h3 class="benefit-title">Easy Snap & Zip Changing</h3>
+        <p class="benefit-text">Stress-free diaper changes with nickel-free snaps & anti-pinch zips.</p>
       </div>
 
-      <!-- Card 4 -->
-      <div class="benefit-box">
+      <!-- Card 4 (Lavender) -->
+      <div class="benefit-card card-lavender">
         <div class="benefit-icon-wrap">
-          {% render 'icon-bottle' %}
+          <span class="benefit-emoji">🧺</span>
         </div>
-        <h4 class="benefit-box-title">48hr Moisture Lock Barrier</h4>
-        <p class="benefit-box-text">Bio-fermented squalane forms a lightweight breathable shield that locks hydration for 48 hours.</p>
+        <h3 class="benefit-title">Durable & Wash Resistant</h3>
+        <p class="benefit-text">Retains vibrant colors and softness even after 100+ washes.</p>
       </div>
 
-      <!-- Card 5 -->
-      <div class="benefit-box">
+      <!-- Card 5 (Blue) -->
+      <div class="benefit-card card-blue">
         <div class="benefit-icon-wrap">
-          {% render 'icon-truck' %}
+          <span class="benefit-emoji">🎨</span>
         </div>
-        <h4 class="benefit-box-title">Non-Greasy & Fast Absorbing</h4>
-        <p class="benefit-box-text">Silky featherlight texture melts instantly into pores with zero sticky residue or heavy feeling.</p>
+        <h3 class="benefit-title">Colour-Fast Dyes</h3>
+        <p class="benefit-text">Non-toxic baby-safe eco dyes without harsh aromas or chemicals.</p>
       </div>
 
-      <!-- Card 6 -->
-      <div class="benefit-box">
+      <!-- Card 6 (Coral) -->
+      <div class="benefit-card card-coral">
         <div class="benefit-icon-wrap">
-          {% render 'icon-star' %}
+          <span class="benefit-emoji">📏</span>
         </div>
-        <h4 class="benefit-box-title">Cruelty-Free & 100% Clean</h4>
-        <p class="benefit-box-text">Formulated without parabens, sulfates, synthetic dyes, artificial fragrances, or animal testing.</p>
+        <h3 class="benefit-title">Pre-Shrunk Clothing</h3>
+        <p class="benefit-text">What you buy is what stays fitting. No unexpected laundry shrinkage.</p>
       </div>
 
-    </div>
+      <!-- Card 7 (Gold) -->
+      <div class="benefit-card card-gold">
+        <div class="benefit-icon-wrap">
+          <span class="benefit-emoji">🪡</span>
+        </div>
+        <h3 class="benefit-title">Handmade With Care</h3>
+        <p class="benefit-text">Reinforced double stitching on every seam to prevent unravelling.</p>
+      </div>
 
-    <!-- CTA Button -->
-    <div style="text-align: center;">
-      <a href="{{ btn_link }}" class="btn btn-primary">
-        {{ btn_text }}
-      </a>
+      <!-- Card 8 (Mint Light) -->
+      <div class="benefit-card card-mint-light">
+        <div class="benefit-icon-wrap">
+          <span class="benefit-emoji">🌍</span>
+        </div>
+        <h3 class="benefit-title">Earth-Friendly Care</h3>
+        <p class="benefit-text">Sustainably sourced materials and biodegradable packaging.</p>
+      </div>
+
     </div>
 
   </div>
@@ -91,41 +96,30 @@
 
 {% schema %}
 {
-  "name": "Serum Benefits",
+  "name": "Why Choose Us (8 Cards)",
   "settings": [
     {
       "type": "text",
       "id": "eyebrow",
-      "label": "Eyebrow",
-      "default": "DESIGNED FOR MAXIMUM RESULTS"
+      "label": "Eyebrow Text",
+      "default": "DESIGNED WITH TENDER LOVE"
     },
     {
       "type": "text",
       "id": "heading",
       "label": "Heading",
-      "default": "Glow Serum Benefits"
-    },
-    {
-      "type": "textarea",
-      "id": "subtitle",
-      "label": "Subtitle",
-      "default": "Formulated with the highest grade active botanicals and vitamins to deliver visible transformation."
+      "default": "Why Choose KIDDO ME?"
     },
     {
       "type": "text",
-      "id": "btn_text",
-      "label": "Button Text",
-      "default": "GET GLOW SERUM NOW"
-    },
-    {
-      "type": "url",
-      "id": "btn_link",
-      "label": "Button Link"
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Designed with tender love, perfected for active play."
     }
   ],
   "presets": [
     {
-      "name": "Serum Benefits - Glow Chic"
+      "name": "Why Choose Us (8 Cards)"
     }
   ]
 }

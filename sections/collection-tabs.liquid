@@ -1,0 +1,152 @@
+{%- liquid
+  assign eyebrow = section.settings.eyebrow | default: '✨ MOST LOVED'
+  assign heading = section.settings.heading | default: 'Little Favorites'
+  assign subtitle = section.settings.subtitle | default: 'Handpicked cozy essentials adored by thousands of little explorers'
+-%}
+
+<section class="section-padding collection-tabs-section" id="featured-products">
+  <div class="container">
+    
+    <!-- Section Header Center -->
+    <div class="section-header-center">
+      <span class="section-eyebrow-pill pill-rose">{{ eyebrow }}</span>
+      <h2 class="section-heading-main">{{ heading }}</h2>
+      <p class="section-subtitle">{{ subtitle }}</p>
+      
+      <!-- Interactive Category Tabs -->
+      <div class="collection-filter-tabs">
+        <button type="button" class="tab-btn active" data-tab="all">All Outfits</button>
+        <button type="button" class="tab-btn" data-tab="baby-girl">Baby Girl Essentials</button>
+        <button type="button" class="tab-btn" data-tab="boys">Boys Streetwear</button>
+        <button type="button" class="tab-btn" data-tab="newborn">Newborn Rompers</button>
+      </div>
+    </div>
+
+    <!-- Products Grid -->
+    <div class="products-grid-6" id="ProductsGrid">
+      
+      <!-- Product 1 -->
+      <div class="product-item-wrap" data-category="all boys newborn">
+        {% render 'product-card',
+          title: 'Cosy Knit Cardigan & Hat Set',
+          price: 'Rs. 2,450',
+          compare_price: 'Rs. 3,200',
+          discount: '-23%',
+          rating: '5.0',
+          reviews_count: '128',
+          card_badge: 'HOT SELLER',
+          card_badge_type: 'badge-purple',
+          image_url: 'https://images.unsplash.com/photo-1522771930-78848d9293e8?auto=format&fit=crop&w=600&q=80'
+        %}
+      </div>
+
+      <!-- Product 2 -->
+      <div class="product-item-wrap" data-category="all baby-girl newborn">
+        {% render 'product-card',
+          title: 'Organic Cotton 3-Piece Set',
+          price: 'Rs. 1,750',
+          compare_price: 'Rs. 2,300',
+          discount: '-24%',
+          rating: '5.0',
+          reviews_count: '94',
+          card_badge: 'TOP PICK',
+          card_badge_type: 'badge-pink',
+          image_url: 'https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?auto=format&fit=crop&w=600&q=80'
+        %}
+      </div>
+
+      <!-- Product 3 -->
+      <div class="product-item-wrap" data-category="all baby-girl">
+        {% render 'product-card',
+          title: 'Floral Party Dress & Hairband',
+          price: 'Rs. 2,150',
+          compare_price: 'Rs. 2,800',
+          discount: '-23%',
+          rating: '5.0',
+          reviews_count: '156',
+          card_badge: 'NEW',
+          card_badge_type: 'badge-mint',
+          image_url: 'https://images.unsplash.com/photo-1596870230751-ebdfce98ec42?auto=format&fit=crop&w=600&q=80'
+        %}
+      </div>
+
+      <!-- Product 4 -->
+      <div class="product-item-wrap" data-category="all boys">
+        {% render 'product-card',
+          title: 'Toddler Neutral Sweatsuit Set',
+          price: 'Rs. 2,650',
+          compare_price: 'Rs. 3,500',
+          discount: '-24%',
+          rating: '5.0',
+          reviews_count: '82',
+          card_badge: 'POPULAR',
+          card_badge_type: 'badge-purple',
+          image_url: 'https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?auto=format&fit=crop&w=600&q=80'
+        %}
+      </div>
+
+      <!-- Product 5 -->
+      <div class="product-item-wrap" data-category="all newborn baby-girl">
+        {% render 'product-card',
+          title: 'Pastel Rainbow Romper',
+          price: 'Rs. 1,450',
+          compare_price: 'Rs. 1,950',
+          discount: '-26%',
+          rating: '5.0',
+          reviews_count: '210',
+          card_badge: 'ORGANIC',
+          card_badge_type: 'badge-yellow',
+          image_url: 'https://images.unsplash.com/photo-1519689680058-324335c77eba?auto=format&fit=crop&w=600&q=80'
+        %}
+      </div>
+
+      <!-- Product 6 -->
+      <div class="product-item-wrap" data-category="all newborn">
+        {% render 'product-card',
+          title: 'Handmade Knit Blanket & Booties',
+          price: 'Rs. 1,850',
+          compare_price: 'Rs. 2,400',
+          discount: '-23%',
+          rating: '5.0',
+          reviews_count: '73',
+          card_badge: 'HANDMADE',
+          card_badge_type: 'badge-dark-purple',
+          image_url: 'https://images.unsplash.com/photo-1543332164-6e82f355badc?auto=format&fit=crop&w=600&q=80'
+        %}
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Little Favorites (Tabs)",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow Text",
+      "default": "✨ MOST LOVED"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Section Heading",
+      "default": "Little Favorites"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Section Subtitle",
+      "default": "Handpicked cozy essentials adored by thousands of little explorers"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Little Favorites (Tabs)"
+    }
+  ]
+}
+{% endschema %}

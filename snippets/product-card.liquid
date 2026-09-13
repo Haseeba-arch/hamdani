@@ -1,58 +1,90 @@
 {%- comment -%}
-  Renders a product card for collection grids and product carousels
+  Product Card Snippet - KIDDO ME Theme
   Accepts:
-  - title: {String} Product title
-  - price: {String} Product price
-  - compare_price: {String} Optional compare price
-  - subtitle: {String} Short product description / benefit
-  - badge: {String} Badge text (BESTSELLER, NEW, POPULAR, ORGANIC)
-  - category: {String} Category identifier for JS filtering
-  - image_url: {String} Image URL
-  - rating: {String} Rating text (default: '4.9 (1.2k)')
+  - product: Product object or dummy mock object
+  - card_badge: Badge text (e.g., 'HOT SELLER', 'TOP PICK', 'NEW')
+  - card_badge_type: 'purple', 'pink', 'green', 'yellow'
+  - title: Product title
+  - price: Formatted price (e.g., 'Rs. 2,450')
+  - compare_price: Formatted original price (e.g., 'Rs. 3,200')
+  - discount: Discount percentage (e.g., '-23%')
+  - rating: Rating score (e.g., '5.0')
+  - reviews_count: Number of reviews (e.g., '128')
+  - image_url: Main product image URL
+  - hover_image_url: Hover product image URL
+  - colors: Comma-separated list of hex or color names
+  - sizes: Comma-separated list of sizes (e.g., '0-3M, 3-6M, 6-12M')
 {%- endcomment -%}
 
-<div class="product-card" data-category="{{ category | default: 'all' }}">
-  <div class="product-card-media">
-    {%- if badge != blank -%}
-      <div class="card-badge">
-        <span class="badge-pill {% if badge == 'BESTSELLER' %}badge-pill-primary{% elsif badge == 'NEW' %}badge-pill-rose{% elsif badge == 'ORGANIC' %}badge-pill-green{% else %}badge-pill-rose{% endif %}">
-          {{ badge }}
-        </span>
-      </div>
-    {%- endif -%}
+{%- liquid
+  assign p_title = title | default: product.title | default: 'Cozy Knit Cardigan & Hat Set'
+  assign p_price = price | default: product.price | money | default: 'Rs. 2,450'
+  assign p_compare = compare_price | default: product.compare_at_price | money | default: 'Rs. 3,200'
+  assign p_discount = discount | default: '-23%'
+  assign p_rating = rating | default: '5.0'
+  assign p_reviews = reviews_count | default: '128'
+  assign p_badge = card_badge | default: 'HOT SELLER'
+  assign p_badge_class = card_badge_type | default: 'badge-purple'
+  assign p_image = image_url | default: 'https://images.unsplash.com/photo-1522771930-78848d9293e8?auto=format&fit=crop&w=600&q=80'
+  assign p_hover_image = hover_image_url | default: p_image
+-%}
 
-    <button type="button" class="card-wishlist-btn" aria-label="Add to wishlist">
+<div class="product-card" data-product-id="{{ product.id | default: p_title | handleize }}">
+  <div class="product-card-media">
+    <!-- Badges -->
+    <div class="product-badge-wrap">
+      {%- if p_badge != blank -%}
+        <span class="product-badge {{ p_badge_class }}">{{ p_badge }}</span>
+      {%- endif -%}
+    </div>
+
+    <!-- Wishlist Button -->
+    <button type="button" class="product-wishlist-btn" aria-label="Add to Wishlist" data-wishlist-btn>
       {% render 'icon-heart' %}
     </button>
 
-    <img src="{{ image_url | default: 'https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=600&q=80' }}" 
-         alt="{{ title | escape }}" 
-         loading="lazy">
+    <!-- Main Image & Hover Image -->
+    <a href="{{ product.url | default: '#featured-product' }}" class="product-card-link">
+      <img src="{{ p_image }}" alt="{{ p_title | escape }}" class="product-card-img" loading="lazy" width="360" height="360">
+    </a>
   </div>
 
-  <div class="product-card-body">
-    <div class="card-rating-row">
-      <div class="star-rating">
+  <div class="product-card-info">
+    <!-- Rating -->
+    <div class="product-card-rating">
+      <div class="stars-row">
         {%- for i in (1..5) -%}
-          {% render 'icon-star' %}
+          <span class="star-filled">★</span>
         {%- endfor -%}
       </div>
-      <span>{{ rating | default: '4.9 (1.2k)' }}</span>
+      <span class="rating-count">({{ p_reviews }})</span>
     </div>
 
-    <h3 class="card-title">{{ title }}</h3>
-    <p class="card-subtitle">{{ subtitle | default: 'Radiance & Hydration Booster' }}</p>
+    <!-- Title -->
+    <h3 class="product-card-title">
+      <a href="{{ product.url | default: '#featured-product' }}">{{ p_title }}</a>
+    </h3>
 
-    <div class="card-footer-row">
-      <div>
-        <span class="card-price">{{ price }}</span>
-        {%- if compare_price != blank -%}
-          <span style="font-size: 0.85rem; color: var(--color-text-light); text-decoration: line-through; margin-left: 6px;">{{ compare_price }}</span>
-        {%- endif -%}
-      </div>
-      <button type="button" class="card-add-btn" data-add-to-cart>
-        Add to Cart
-      </button>
+    <!-- Price Row -->
+    <div class="product-card-price-row">
+      <span class="price-current">{{ p_price }}</span>
+      {%- if p_compare != blank -%}
+        <span class="price-compare">{{ p_compare }}</span>
+        <span class="price-discount-pill">{{ p_discount }}</span>
+      {%- endif -%}
     </div>
+
+    <!-- Color Swatches Preview -->
+    <div class="product-card-swatches">
+      <span class="swatch-dot" style="background-color: #F8D7DA;" title="Blush"></span>
+      <span class="swatch-dot active" style="background-color: #E2E8F0;" title="Cream"></span>
+      <span class="swatch-dot" style="background-color: #C1E1C1;" title="Sage"></span>
+    </div>
+
+    <!-- Add to Cart CTA Button -->
+    <button type="button" class="btn btn-card-add-cart" data-add-to-cart-btn data-product-title="{{ p_title }}" data-product-price="{{ p_price }}" data-product-image="{{ p_image }}">
+      {% render 'icon-cart' %}
+      <span>Add to Cart</span>
+    </button>
   </div>
 </div>

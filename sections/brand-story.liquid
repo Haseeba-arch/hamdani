@@ -1,26 +1,58 @@
 {%- liquid
-  assign heading = section.settings.heading | default: 'Beautiful Skin Starts With Care'
-  assign quote_body = section.settings.quote_body | default: 'Glow Chic is more than skincare. It’s a daily ritual of self-love, confidence, and natural radiance. We believe everyone deserves to feel confident in their own glowing skin, every single day.'
-  assign signature = section.settings.signature | default: 'FOUNDER & DERMATOLOGIST, DR. ELEANOR VANE — GLOW CHIC'
+  assign eyebrow = section.settings.eyebrow | default: '✨ OUR PHILOSOPHY'
+  assign heading = section.settings.heading | default: 'Designed for Little Moments'
+  assign description = section.settings.description | default: "We believe children's clothing should inspire wonder, joy and free movement. Every stitch in our collection is thoughtfully planned to keep little adventurers snug, whether they're exploring the living room carpet or taking their first steps outdoors."
+  assign btn_text = section.settings.btn_text | default: 'Discover Our Story'
+  assign btn_link = section.settings.btn_link | default: '/pages/about'
+  assign image = section.settings.image
 -%}
 
-<section class="quote-banner-section">
+<section class="section-padding brand-story-section" id="story">
   <div class="container">
-    <div class="quote-banner-card">
+    <div class="brand-story-grid">
       
-      <div class="quote-icon-top">
-        {% render 'icon-flower' %}
+      <!-- Left: Image Card with Top Pick Badge -->
+      <div class="story-image-wrap">
+        <div class="story-image-card">
+          <span class="story-top-pick-badge">TOP PICK 2026 ⭐</span>
+          {%- if image != blank -%}
+            {{ image | image_url: width: 800 | image_tag: alt: 'KIDDO ME Philosophy', class: 'story-img' }}
+          {%- else -%}
+            <img src="https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?auto=format&fit=crop&w=800&q=85" alt="Toddlers playing happily" class="story-img">
+          {%- endif -%}
+        </div>
       </div>
 
-      <h2 class="quote-banner-heading">&ldquo;{{ heading }}&rdquo;</h2>
+      <!-- Right: Story Details & Badges -->
+      <div class="story-content-wrap">
+        <span class="section-eyebrow-pill pill-pink">{{ eyebrow }}</span>
+        <h2 class="section-heading-main">{{ heading }}</h2>
+        <p class="story-body-text">{{ description }}</p>
 
-      <p class="quote-banner-body">
-        &ldquo;{{ quote_body }}&rdquo;
-      </p>
+        <!-- 3 Feature Badges Row -->
+        <div class="story-bullets-row">
+          <div class="story-bullet-item">
+            <span class="bullet-icon">🌱</span>
+            <span class="bullet-text">100% GOTS Certified</span>
+          </div>
+          <div class="story-bullet-item">
+            <span class="bullet-icon">🧸</span>
+            <span class="bullet-text">Extra Soft Seams</span>
+          </div>
+          <div class="story-bullet-item">
+            <span class="bullet-icon">⚡</span>
+            <span class="bullet-text">Scratch-Free Labels</span>
+          </div>
+        </div>
 
-      <span class="quote-banner-signature">
-        {{ signature }}
-      </span>
+        <!-- CTA Button -->
+        <div class="story-action-row">
+          <a href="{{ btn_link }}" class="btn btn-story-cta">
+            <span>{{ btn_text }}</span>
+            {% render 'icon-arrow' %}
+          </a>
+        </div>
+      </div>
 
     </div>
   </div>
@@ -28,30 +60,47 @@
 
 {% schema %}
 {
-  "name": "Brand Quote Banner",
+  "name": "Brand Story / Philosophy",
   "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow Text",
+      "default": "✨ OUR PHILOSOPHY"
+    },
     {
       "type": "text",
       "id": "heading",
       "label": "Heading",
-      "default": "Beautiful Skin Starts With Care"
+      "default": "Designed for Little Moments"
     },
     {
       "type": "textarea",
-      "id": "quote_body",
-      "label": "Quote Body",
-      "default": "Glow Chic is more than skincare. It’s a daily ritual of self-love, confidence, and natural radiance. We believe everyone deserves to feel confident in their own glowing skin, every single day."
+      "id": "description",
+      "label": "Description",
+      "default": "We believe children's clothing should inspire wonder, joy and free movement. Every stitch in our collection is thoughtfully planned to keep little adventurers snug, whether they're exploring the living room carpet or taking their first steps outdoors."
     },
     {
       "type": "text",
-      "id": "signature",
-      "label": "Signature",
-      "default": "FOUNDER & DERMATOLOGIST, DR. ELEANOR VANE — GLOW CHIC"
+      "id": "btn_text",
+      "label": "Button Text",
+      "default": "Discover Our Story"
+    },
+    {
+      "type": "url",
+      "id": "btn_link",
+      "label": "Button Link",
+      "default": "/pages/about"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Story Image"
     }
   ],
   "presets": [
     {
-      "name": "Brand Quote Banner - Glow Chic"
+      "name": "Brand Story / Philosophy"
     }
   ]
 }

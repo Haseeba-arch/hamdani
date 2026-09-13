@@ -1,104 +1,18 @@
-<section class="section-padding">
+<div class="main-product-page section-padding">
   <div class="container">
-    <div class="featured-product-grid">
-      
-      <div class="fp-gallery">
-        <div class="fp-main-image-wrap">
-          <span class="fp-badge-float">BESTSELLER</span>
-          {%- if product.featured_image -%}
-            {{ product.featured_image | image_url: width: 900 | image_tag: class: 'fp-main-image', alt: product.title }}
-          {%- else -%}
-            <img src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=900&q=85" class="fp-main-image" alt="{{ product.title | default: 'Glow Serum' }}">
-          {%- endif -%}
-        </div>
-      </div>
-
-      <div class="fp-info">
-        <span class="fp-category">{{ product.type | default: 'SKINCARE / SERUM / DEEP HYDRATION' }}</span>
-        <h1 class="fp-title">{{ product.title | default: 'Glow Serum' }}</h1>
-
-        <div class="fp-price-rating-row">
-          <span class="fp-price">{{ product.price | money | default: '$49.99' }}</span>
-          {%- if product.compare_at_price > product.price -%}
-            <span class="fp-compare-price">{{ product.compare_at_price | money }}</span>
-          {%- endif -%}
-          <div class="fp-rating-group">
-            <div class="star-rating">
-              {%- for i in (1..5) -%}
-                {% render 'icon-star' %}
-              {%- endfor -%}
-            </div>
-            <span>4.9 (2,840+ Reviews)</span>
-          </div>
-        </div>
-
-        <div class="fp-description">
-          {{ product.description | default: 'Revitalize your skin with our antioxidant-rich formula. Designed to deeply penetrate, lock in moisture, brighten skin tone, and restore your natural, youthful radiance without feeling heavy or greasy.' }}
-        </div>
-
-        <!-- 2x2 Highlights Grid -->
-        <div class="fp-highlights-grid">
-          <div class="highlight-pill-item">
-            <span class="highlight-check">✓</span>
-            <span>Hyaluronic Acid + Vitamin C</span>
-          </div>
-          <div class="highlight-pill-item">
-            <span class="highlight-check">✓</span>
-            <span>48hr Deep Hydration</span>
-          </div>
-          <div class="highlight-pill-item">
-            <span class="highlight-check">✓</span>
-            <span>Dermatologist Tested</span>
-          </div>
-          <div class="highlight-pill-item">
-            <span class="highlight-check">✓</span>
-            <span>Cruelty-Free & Vegan</span>
-          </div>
-        </div>
-
-        {% form 'product', product, class: 'fp-actions' %}
-          <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
-          
-          <div class="fp-actions-row">
-            <div class="quantity-wrapper">
-              <button type="button" class="qty-btn" data-qty-minus>-</button>
-              <input type="number" name="quantity" class="qty-input" value="1" min="1">
-              <button type="button" class="qty-btn" data-qty-plus>+</button>
-            </div>
-
-            <button type="submit" name="add" class="btn btn-primary btn-add-cart-main" data-add-to-cart>
-              {% render 'icon-cart' %}
-              <span>Add to Bag &bull; {{ product.price | money | default: '$49.99' }}</span>
-            </button>
-          </div>
-
-          {{ form | payment_button }}
-        {% endform %}
-
-        <div class="fp-trust-badges-grid">
-          <div class="trust-badge-col">
-            {% render 'icon-truck' %}
-            <span>Free Express Shipping</span>
-          </div>
-          <div class="trust-badge-col">
-            {% render 'icon-shield' %}
-            <span>30-Day Guarantee</span>
-          </div>
-          <div class="trust-badge-col">
-            {% render 'icon-sparkle' %}
-            <span>100% Secure Checkout</span>
-          </div>
-          <div class="trust-badge-col">
-            {% render 'icon-flower' %}
-            <span>Clean & Organic</span>
-          </div>
-        </div>
-
-      </div>
-
-    </div>
+    {% render 'product-card',
+      title: product.title,
+      price: product.price | money,
+      compare_price: product.compare_at_price | money,
+      discount: '-25%',
+      rating: '5.0',
+      reviews_count: '148',
+      card_badge: 'BESTSELLER',
+      card_badge_type: 'badge-purple',
+      image_url: product.featured_image | image_url: width: 800
+    %}
   </div>
-</section>
+</div>
 
 {% schema %}
 {

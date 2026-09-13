@@ -1,0 +1,78 @@
+{%- liquid
+  assign heading = section.settings.heading | default: 'Happy Little Customers, Happy Parents'
+-%}
+
+<section class="section-padding customer-quotes-section">
+  <div class="container">
+    
+    <!-- Section Heading -->
+    <div class="section-header-center">
+      <h2 class="section-heading-main">{{ heading }}</h2>
+    </div>
+
+    <!-- 4 Review Quotes Grid -->
+    <div class="quotes-grid-4">
+      
+      <!-- Quote 1 -->
+      <div class="quote-card">
+        <div class="quote-stars">★★★★★</div>
+        <p class="quote-text">"The softest baby clothing we have ever bought. Doesn't pill or shrink after dozens of machine washes."</p>
+        <div class="quote-author-row">
+          <span class="quote-author">Ayesha K.</span>
+          <span class="quote-badge">Verified</span>
+        </div>
+      </div>
+
+      <!-- Quote 2 -->
+      <div class="quote-card">
+        <div class="quote-stars">★★★★★</div>
+        <p class="quote-text">"Cutest designs ever! My toddler refuses to wear anything else now. Super soft and breathable fabric."</p>
+        <div class="quote-author-row">
+          <span class="quote-author">Sana M.</span>
+          <span class="quote-badge">Verified</span>
+        </div>
+      </div>
+
+      <!-- Quote 3 -->
+      <div class="quote-card">
+        <div class="quote-stars">★★★★★</div>
+        <p class="quote-text">"Fast 48h shipping, premium eco packaging, and top-notch organic quality. Highly recommend to all moms!"</p>
+        <div class="quote-author-row">
+          <span class="quote-author">Bilal T.</span>
+          <span class="quote-badge">Verified</span>
+        </div>
+      </div>
+
+      <!-- Quote 4 -->
+      <div class="quote-card">
+        <div class="quote-stars">★★★★★</div>
+        <p class="quote-text">"Worth every single rupee. Snaps are sturdy, zero scratchy tags, and colors stay bright and vibrant."</p>
+        <div class="quote-author-row">
+          <span class="quote-author">Nadia R.</span>
+          <span class="quote-badge">Verified</span>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Happy Customers Quotes",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Happy Little Customers, Happy Parents"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Happy Customers Quotes"
+    }
+  ]
+}
+{% endschema %}

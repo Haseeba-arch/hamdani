@@ -1,0 +1,108 @@
+{%- liquid
+  assign badge_text = section.settings.badge_text | default: '✨ PURE SOFT FABRIC'
+  assign heading = section.settings.heading | default: 'Comfort Meets Cuteness'
+  assign subtitle = section.settings.subtitle | default: 'Gentle on newborn skin, durable for playful toddlers.'
+  assign btn_text = section.settings.btn_text | default: "Why We're Loved"
+  assign btn_link = section.settings.btn_link | default: '#story'
+  assign flash_badge = section.settings.flash_badge | default: '⚡ LIMITED TIME OFFERS ⚡'
+  assign flash_text = section.settings.flash_text | default: 'Get Extra 15% Off On Baby Bundles & Seasonal Outfits!'
+  assign flash_btn_text = section.settings.flash_btn_text | default: 'Discounts'
+-%}
+
+<section class="promo-banner-section">
+  <div class="container">
+    
+    <!-- Large Feature Notice Ribbon Card -->
+    <div class="promo-feature-card">
+      <div class="promo-feature-left">
+        <span class="promo-tag-pill">{{ badge_text }}</span>
+        <h3 class="promo-heading">{{ heading }}</h3>
+        <p class="promo-subtext">{{ subtitle }}</p>
+      </div>
+      <div class="promo-feature-right">
+        <a href="{{ btn_link }}" class="btn btn-promo-action">
+          <span>{{ btn_text }}</span>
+          {% render 'icon-arrow' %}
+        </a>
+        <div class="promo-dots-indicator">
+          <span class="promo-dot active"></span>
+          <span class="promo-dot"></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Flash Offer Ticker Banner -->
+    <div class="flash-offer-banner">
+      <div class="flash-offer-content">
+        <span class="flash-tag">{{ flash_badge }}</span>
+        <span class="flash-message">{{ flash_text }}</span>
+      </div>
+      <a href="#featured-products" class="flash-btn">
+        <span>{{ flash_btn_text }}</span>
+        {% render 'icon-arrow' %}
+      </a>
+    </div>
+
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Promo & Flash Banner",
+  "settings": [
+    {
+      "type": "text",
+      "id": "badge_text",
+      "label": "Feature Badge",
+      "default": "✨ PURE SOFT FABRIC"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Feature Heading",
+      "default": "Comfort Meets Cuteness"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Feature Subtitle",
+      "default": "Gentle on newborn skin, durable for playful toddlers."
+    },
+    {
+      "type": "text",
+      "id": "btn_text",
+      "label": "Feature Button Text",
+      "default": "Why We're Loved"
+    },
+    {
+      "type": "url",
+      "id": "btn_link",
+      "label": "Feature Button Link",
+      "default": "/pages/about"
+    },
+    {
+      "type": "text",
+      "id": "flash_badge",
+      "label": "Flash Offer Badge",
+      "default": "⚡ LIMITED TIME OFFERS ⚡"
+    },
+    {
+      "type": "text",
+      "id": "flash_text",
+      "label": "Flash Offer Text",
+      "default": "Get Extra 15% Off On Baby Bundles & Seasonal Outfits!"
+    },
+    {
+      "type": "text",
+      "id": "flash_btn_text",
+      "label": "Flash Button Text",
+      "default": "Discounts"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Promo & Flash Banner"
+    }
+  ]
+}
+{% endschema %}

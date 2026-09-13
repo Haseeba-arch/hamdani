@@ -1,135 +1,130 @@
 {%- liquid
-  assign logo_text = section.settings.logo_text | default: 'GLOW CHIC'
-  assign announcement_text = section.settings.announcement_text | default: 'FREE WORLDWIDE EXPRESS SHIPPING ON ALL ORDERS OVER $50 | 30-DAY GLOW GUARANTEE'
+  assign announcement_text = section.settings.announcement_text | default: 'Free shipping on orders over Rs. 3,000 | 24/7 Customer Support | ✨ 20% OFF FIRST ORDER: KIDDO20'
+  assign logo_text = section.settings.logo_text | default: 'KIDDO ME'
+  assign logo_tagline = section.settings.logo_tagline | default: 'BABY & TODDLER CLOTHING'
 -%}
 
-<!-- Announcement Bar -->
-{%- if section.settings.show_announcement -%}
+<div class="header-wrapper" id="siteHeaderWrap">
+  <!-- Top Announcement Bar -->
   <div class="announcement-bar">
     <div class="container">
-      <span>{{ announcement_text }}</span>
-      {%- if section.settings.announcement_link != blank -%}
-        <a href="{{ section.settings.announcement_link }}">{{ section.settings.announcement_link_text | default: 'Shop Now' }}</a>
-      {%- endif -%}
+      <div class="announcement-inner">
+        <span class="announcement-truck">🚚</span>
+        <span class="announcement-content">{{ announcement_text }}</span>
+      </div>
     </div>
   </div>
-{%- endif -%}
 
-<!-- Main Navigation Header -->
-<header class="site-header" id="siteHeader">
-  <div class="container">
-    <div class="header-inner">
-      
-      <!-- Brand Logo -->
-      <div class="header-brand">
-        <a href="/" class="header-logo">
-          {%- if section.settings.logo != blank -%}
-            {{ section.settings.logo | image_url: width: 220 | image_tag: alt: shop.name }}
-          {%- else -%}
-            GLOW <span>CHIC</span>
-          {%- endif -%}
-        </a>
-      </div>
+  <!-- Main Site Header -->
+  <header class="site-header" id="siteHeader">
+    <div class="container">
+      <div class="header-inner">
+        
+        <!-- Brand Logo -->
+        <div class="header-brand">
+          <a href="/" class="header-logo">
+            <div class="logo-icon-badge">
+              {% render 'icon-bear' %}
+            </div>
+            <div class="logo-text-group">
+              <span class="brand-title">{{ logo_text }}</span>
+              <span class="brand-tagline">{{ logo_tagline }}</span>
+            </div>
+          </a>
+        </div>
 
-      <!-- Navigation Links -->
-      <nav class="header-nav" role="navigation" aria-label="Primary">
-        {%- if section.settings.menu != blank -%}
-          {%- for link in linklists[section.settings.menu].links -%}
-            <a href="{{ link.url }}" class="nav-link{% if link.active %} active{% endif %}">
-              {{ link.title }}
-            </a>
-          {%- endfor -%}
-        {%- else -%}
+        <!-- Desktop Navigation -->
+        <nav class="header-nav" role="navigation" aria-label="Primary Navigation">
           <a href="/" class="nav-link active">Home</a>
-          <a href="#featured-product" class="nav-link">Shop</a>
           <a href="#collections" class="nav-link">Collections</a>
-          <a href="#ritual" class="nav-link">About Us</a>
-          <a href="#faq" class="nav-link">Contact</a>
-        {%- endif -%}
-      </nav>
+          <a href="#featured-products" class="nav-link">New Arrivals</a>
+          <a href="#featured-product" class="nav-link">Best Sellers</a>
+          <a href="#story" class="nav-link">About Us</a>
+          <a href="#contact" class="nav-link">Contact</a>
+        </nav>
 
-      <!-- Action Icons & Button -->
-      <div class="header-actions">
-        <a href="/search" class="header-icon-btn" aria-label="Search">
-          {% render 'icon-search' %}
-        </a>
-        <a href="/pages/wishlist" class="header-icon-btn" aria-label="Wishlist">
-          {% render 'icon-heart' %}
-          <span class="wishlist-count-badge">0</span>
-        </a>
-        <a href="/account" class="header-icon-btn" aria-label="Account">
-          {% render 'icon-user' %}
-        </a>
-        <a href="/cart" class="header-icon-btn" data-cart-drawer-trigger aria-label="Shopping Bag">
-          {% render 'icon-cart' %}
-          <span class="cart-count-badge" id="CartCount">{{ cart.item_count | default: 1 }}</span>
-        </a>
+        <!-- Header Actions (Search, Account, Wishlist, Cart) -->
+        <div class="header-actions">
+          <!-- Search -->
+          <button type="button" class="header-icon-btn" aria-label="Search" data-search-trigger>
+            {% render 'icon-search' %}
+          </button>
 
-        <!-- Header CTA Button -->
-        <a href="#featured-product" class="header-cta-btn">
-          {{ section.settings.cta_text | default: 'ORDER NOW' }}
-        </a>
+          <!-- Account -->
+          <a href="/account" class="header-icon-btn" aria-label="My Account">
+            {% render 'icon-user' %}
+          </a>
 
-        <button class="header-icon-btn mobile-menu-toggle" aria-label="Toggle Menu">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <line x1="3" y1="12" x2="21" y2="12"></line>
-            <line x1="3" y1="6" x2="21" y2="6"></line>
-            <line x1="3" y1="18" x2="21" y2="18"></line>
-          </svg>
-        </button>
+          <!-- Wishlist -->
+          <button type="button" class="header-icon-btn wishlist-icon-btn" aria-label="Wishlist" data-wishlist-header>
+            {% render 'icon-heart' %}
+            <span class="action-count-badge" id="WishlistHeaderCount">0</span>
+          </button>
+
+          <!-- Cart Trigger with amount & badge -->
+          <button type="button" class="header-cart-btn" data-cart-drawer-trigger aria-label="Open Cart Drawer">
+            <div class="cart-icon-wrap">
+              {% render 'icon-cart' %}
+              <span class="cart-count-badge" id="CartCount">2</span>
+            </div>
+            <span class="header-cart-price" id="HeaderCartTotal">Rs. 4,798</span>
+          </button>
+
+          <!-- Mobile Hamburger Toggle -->
+          <button type="button" class="header-icon-btn mobile-menu-toggle" aria-label="Toggle Navigation Menu" id="MobileMenuToggle">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="3" y1="12" x2="21" y2="12"></line>
+              <line x1="3" y1="6" x2="21" y2="6"></line>
+              <line x1="3" y1="18" x2="21" y2="18"></line>
+            </svg>
+          </button>
+        </div>
+
       </div>
-
     </div>
+  </header>
+</div>
+
+<!-- Mobile Navigation Drawer -->
+<div class="mobile-nav-drawer" id="MobileNavDrawer">
+  <div class="mobile-nav-header">
+    <div class="logo-text-group">
+      <span class="brand-title">{{ logo_text }}</span>
+    </div>
+    <button type="button" class="mobile-nav-close" id="MobileNavClose">&times;</button>
   </div>
-</header>
+  <nav class="mobile-nav-links">
+    <a href="/" class="mobile-nav-link">Home</a>
+    <a href="#collections" class="mobile-nav-link">Collections</a>
+    <a href="#featured-products" class="mobile-nav-link">New Arrivals</a>
+    <a href="#featured-product" class="mobile-nav-link">Best Sellers</a>
+    <a href="#story" class="mobile-nav-link">About Us</a>
+    <a href="#faq" class="mobile-nav-link">FAQ</a>
+    <a href="#contact" class="mobile-nav-link">Contact</a>
+  </nav>
+</div>
 
 {% schema %}
 {
-  "name": "Header",
+  "name": "Header & Announcement",
   "settings": [
-    {
-      "type": "checkbox",
-      "id": "show_announcement",
-      "label": "Show Announcement Bar",
-      "default": true
-    },
     {
       "type": "text",
       "id": "announcement_text",
-      "label": "Announcement Text",
-      "default": "FREE WORLDWIDE EXPRESS SHIPPING ON ALL ORDERS OVER $50 | 30-DAY GLOW GUARANTEE"
-    },
-    {
-      "type": "url",
-      "id": "announcement_link",
-      "label": "Announcement Link"
-    },
-    {
-      "type": "text",
-      "id": "announcement_link_text",
-      "label": "Announcement Link Text"
-    },
-    {
-      "type": "image_picker",
-      "id": "logo",
-      "label": "Logo Image"
+      "label": "Announcement Bar Text",
+      "default": "Free shipping on orders over Rs. 3,000 | 24/7 Customer Support | ✨ 20% OFF FIRST ORDER: KIDDO20"
     },
     {
       "type": "text",
       "id": "logo_text",
-      "label": "Logo Text",
-      "default": "GLOW CHIC"
-    },
-    {
-      "type": "link_list",
-      "id": "menu",
-      "label": "Main Navigation Menu"
+      "label": "Logo Brand Name",
+      "default": "KIDDO ME"
     },
     {
       "type": "text",
-      "id": "cta_text",
-      "label": "Header CTA Text",
-      "default": "ORDER NOW"
+      "id": "logo_tagline",
+      "label": "Logo Tagline",
+      "default": "BABY & TODDLER CLOTHING"
     }
   ]
 }

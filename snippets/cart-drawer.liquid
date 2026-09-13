@@ -1,58 +1,97 @@
-<div class="cart-drawer-overlay" id="cartDrawerOverlay"></div>
+<div class="cart-drawer-overlay" id="CartDrawerOverlay" aria-hidden="true"></div>
 
-<div class="cart-drawer" id="cartDrawer" role="dialog" aria-modal="true" aria-label="Your Bag">
-  
+<aside class="cart-drawer" id="CartDrawer" role="dialog" aria-modal="true" aria-label="Your Shopping Cart">
+  <!-- Drawer Header -->
   <div class="cart-drawer-header">
-    <h3 class="cart-drawer-title">Your Bag</h3>
-    <button type="button" class="cart-drawer-close" id="cartDrawerClose" aria-label="Close Cart">
+    <div class="cart-drawer-title-wrap">
+      <h2 class="cart-drawer-title">Your Cart (<span id="CartDrawerCount">2</span>)</h2>
+      <span class="cart-drawer-sparkle">✨</span>
+    </div>
+    <button type="button" class="cart-drawer-close" id="CartDrawerClose" aria-label="Close Cart">
       {% render 'icon-close' %}
     </button>
   </div>
 
-  <div class="cart-shipping-meter">
-    <p class="meter-text">✨ You're <strong>$10.01</strong> away from <strong>FREE Express Shipping</strong>!</p>
-    <div class="meter-track">
-      <div class="meter-fill" style="width: 80%;"></div>
+  <!-- Free Shipping Progress Bar -->
+  <div class="cart-shipping-bar">
+    <div class="shipping-bar-text">
+      <span class="shipping-icon">🎉</span>
+      <span>You've unlocked <strong>FREE Shipping!</strong></span>
+    </div>
+    <div class="shipping-progress-track">
+      <div class="shipping-progress-fill" style="width: 100%;"></div>
     </div>
   </div>
 
-  <div class="cart-drawer-items">
-    
-    <!-- Item 1: Glow Serum -->
-    <div class="cart-drawer-item">
-      <img src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=300&q=80" alt="Glow Serum" class="cart-item-img">
-      <div class="cart-item-info">
-        <h4 class="cart-item-title">Glow Serum</h4>
-        <span class="cart-item-price">$49.99</span>
-        <span style="font-size: 0.78rem; color: var(--color-text-muted); margin-bottom: 8px;">Size: 50ml / 1.7 fl. oz.</span>
-        <div class="cart-item-bottom">
-          <div class="quantity-wrapper" style="height: 36px; padding: 2px;">
-            <button type="button" class="qty-btn" data-qty-minus aria-label="Decrease quantity" style="width: 28px; height: 28px; font-size: 0.9rem;">-</button>
-            <input type="text" class="qty-input" value="1" readonly style="width: 30px; font-size: 0.85rem;">
-            <button type="button" class="qty-btn" data-qty-plus aria-label="Increase quantity" style="width: 28px; height: 28px; font-size: 0.9rem;">+</button>
+  <!-- Cart Items List -->
+  <div class="cart-drawer-items" id="CartDrawerItems">
+    <!-- Item 1 -->
+    <div class="cart-item" data-item-id="item-1">
+      <div class="cart-item-image">
+        <img src="https://images.unsplash.com/photo-1522771930-78848d9293e8?auto=format&fit=crop&w=180&q=80" alt="Signature Cosy Stripe Sweatshirt Set" width="80" height="80">
+      </div>
+      <div class="cart-item-details">
+        <h4 class="cart-item-title">All-In-One Baby Collections – Signature Set</h4>
+        <span class="cart-item-variant">Sage Green / 3-6M</span>
+        <div class="cart-item-price-row">
+          <div class="cart-quantity-stepper">
+            <button type="button" class="qty-btn minus" data-qty-change="-1" aria-label="Decrease quantity">-</button>
+            <span class="qty-val">1</span>
+            <button type="button" class="qty-btn plus" data-qty-change="1" aria-label="Increase quantity">+</button>
           </div>
-          <button type="button" style="font-size: 0.75rem; color: #B91C1C; text-decoration: underline;">Remove</button>
+          <span class="cart-item-price">Rs. 2,450</span>
         </div>
       </div>
+      <button type="button" class="cart-item-remove" data-remove-item aria-label="Remove item">
+        &times;
+      </button>
     </div>
 
+    <!-- Item 2 -->
+    <div class="cart-item" data-item-id="item-2">
+      <div class="cart-item-image">
+        <img src="https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?auto=format&fit=crop&w=180&q=80" alt="Cotton Knit Cardigan" width="80" height="80">
+      </div>
+      <div class="cart-item-details">
+        <h4 class="cart-item-title">Cotton Knit Cardigan & Hat Set</h4>
+        <span class="cart-item-variant">Vanilla Cream / 0-3M</span>
+        <div class="cart-item-price-row">
+          <div class="cart-quantity-stepper">
+            <button type="button" class="qty-btn minus" data-qty-change="-1" aria-label="Decrease quantity">-</button>
+            <span class="qty-val">1</span>
+            <button type="button" class="qty-btn plus" data-qty-change="1" aria-label="Increase quantity">+</button>
+          </div>
+          <span class="cart-item-price">Rs. 2,348</span>
+        </div>
+      </div>
+      <button type="button" class="cart-item-remove" data-remove-item aria-label="Remove item">
+        &times;
+      </button>
+    </div>
   </div>
 
+  <!-- Drawer Footer -->
   <div class="cart-drawer-footer">
-    <div class="cart-subtotal-row">
-      <span>Subtotal</span>
-      <span>$49.99</span>
+    <div class="cart-summary-row">
+      <span class="summary-label">Subtotal</span>
+      <span class="summary-val" id="CartSubtotal">Rs. 4,798</span>
     </div>
-    <p style="font-size: 0.78rem; color: var(--color-text-muted); margin-bottom: 16px;">Taxes and shipping calculated at checkout.</p>
-    <a href="/checkout" class="btn btn-primary btn-full">
-      Proceed to Checkout
+    <div class="cart-summary-row">
+      <span class="summary-label">Delivery</span>
+      <span class="summary-val green-text">FREE</span>
+    </div>
+    <div class="cart-summary-row cart-total-row">
+      <span class="summary-label">Total</span>
+      <span class="summary-val" id="CartTotal">Rs. 4,798</span>
+    </div>
+
+    <a href="/checkout" class="btn btn-checkout-yellow" id="CartCheckoutBtn">
+      <span>Proceed to Checkout</span>
+      {% render 'icon-arrow' %}
     </a>
+
+    <div class="cart-guarantee-note">
+      <span>🔒 100% Secure Checkout &bull; 30-Day Easy Returns</span>
+    </div>
   </div>
-
-</div>
-
-<!-- Cart Toast -->
-<div class="cart-toast" id="cartToast">
-  {% render 'icon-check' %}
-  <span>Item added to your bag!</span>
-</div>
+</aside>

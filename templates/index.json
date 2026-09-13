@@ -3,143 +3,159 @@
     "hero_banner": {
       "type": "hero-banner",
       "settings": {
-        "badge_text": "BEST SELLING GLOW ESSENTIALS",
-        "heading_main": "Glow From",
-        "heading_accent": "Within",
-        "subtitle": "Discover the secret to radiant, hydrated, and beautifully glowing skin.",
-        "body_text": "A lightweight serum formulated with Hyaluronic Acid and Rose Extract, crafted to hydrate and soothe dry skin and lock in moisture for 48 hours. Suitable for all skin types.",
-        "btn_1_text": "SHOP GLOW SERUM",
-        "btn_1_link": "#featured-product",
-        "btn_2_text": "EXPLORE SUITE",
-        "btn_2_link": "#collections",
-        "stat_1_val": "24/7",
-        "stat_1_lbl": "Deep Hydration",
-        "stat_2_val": "100%",
-        "stat_2_lbl": "Organic Extracts",
-        "stat_3_val": "4.9 ★",
-        "stat_3_lbl": "10,000+ Reviews"
+        "badge_text": "✨ NEW SPRING/SUMMER COLLECTION 2026",
+        "heading_line1": "Little Styles,",
+        "heading_gradient": "Big Smiles.",
+        "body_text": "Discover delightfully comfortable, stylish and skin-friendly outfits for your little ones. Crafted with love, organic cotton and playful designs that keep kids smiling all day long.",
+        "btn_primary_text": "SHOP COLLECTION",
+        "btn_primary_link": "#collections",
+        "btn_secondary_text": "EXPLORE OFFERS",
+        "btn_secondary_link": "#featured-products",
+        "trust_1_text": "Free Shipping (Orders over Rs. 3,000)",
+        "trust_2_text": "100% Organic Cotton (Safe for sensitive skin)",
+        "floating_badge_text": "Rated 4.9/5 by 10k+ Mums 💕"
       }
     },
-    "featured_product": {
-      "type": "featured-product",
+    "promo_banner": {
+      "type": "promo-banner",
       "settings": {
-        "category": "SKINCARE / SERUM / DEEP HYDRATION",
-        "title": "Glow Serum",
-        "subtitle": "Multivitamin Radiance Booster Serum 50ml / 1.7 fl. oz.",
-        "price": "$49.99",
-        "compare_price": "$65.00",
-        "discount_badge": "SAVE 23%",
-        "description": "Revitalize your skin with our antioxidant-rich formula. Designed to deeply penetrate, lock in moisture, brighten skin tone, and restore your natural, youthful radiance without feeling heavy or greasy."
+        "badge_text": "✨ PURE SOFT FABRIC",
+        "heading": "Comfort Meets Cuteness",
+        "subtitle": "Gentle on newborn skin, durable for playful toddlers.",
+        "btn_text": "Why We're Loved",
+        "btn_link": "#story",
+        "flash_badge": "⚡ LIMITED TIME OFFERS ⚡",
+        "flash_text": "Get Extra 15% Off On Baby Bundles & Seasonal Outfits!",
+        "flash_btn_text": "Discounts"
       }
     },
     "collection_grid": {
       "type": "collection-grid",
       "settings": {
-        "eyebrow": "OUR BEST SELLER COLLECTION",
-        "heading": "Discover Your Glow",
-        "subtitle": "From restorative serums to revitalizing mists, find the perfect addition to your daily skincare routine."
+        "eyebrow": "OUR SIGNATURE RANGES",
+        "heading": "Explore Our Collections",
+        "subtitle": "Find the perfect outfit for every age, season and celebration",
+        "view_all_text": "View all categories",
+        "view_all_link": "#collections"
       }
     },
-    "brand_experience": {
-      "type": "brand-experience",
+    "collection_tabs": {
+      "type": "collection-tabs",
       "settings": {
-        "eyebrow": "STEP-BY-STEP BEAUTY ROUTINE",
-        "heading": "Your Daily Glow Ritual",
-        "subtitle": "Crafted to nourish your skin from the inside out with pure active botanical science.",
-        "quote_text": "Transform your skin in 14 days with our clinically proven 3-step ritual."
+        "eyebrow": "✨ MOST LOVED",
+        "heading": "Little Favorites",
+        "subtitle": "Handpicked cozy essentials adored by thousands of little explorers"
       }
     },
-    "brand_story": {
-      "type": "brand-story",
+    "featured_product": {
+      "type": "featured-product",
       "settings": {
-        "heading": "Beautiful Skin Starts With Care",
-        "quote_body": "Glow Chic is more than skincare. It’s a daily ritual of self-love, confidence, and natural radiance. We believe everyone deserves to feel confident in their own glowing skin, every single day.",
-        "signature": "FOUNDER & DERMATOLOGIST, DR. ELEANOR VANE — GLOW CHIC"
-      }
-    },
-    "craftsmanship_stats": {
-      "type": "craftsmanship-stats",
-      "settings": {
-        "eyebrow": "CLINICAL STUDY RESULTS",
-        "heading": "Why Customers Love Glow Serum",
-        "description": "Real results from a 4-week independent clinical study of 120 women who incorporated Glow Serum into their morning and night routines.",
-        "report_link_text": "VIEW CLINICAL STUDY REPORT →"
+        "rating_text": "⭐⭐⭐⭐⭐ | 148+ REVIEWS",
+        "title": "ALL-IN-ONE Baby Collections – Signature Cosy Stripe Sweatshirt Set",
+        "price": "Rs. 2,450",
+        "compare_price": "Rs. 3,290",
+        "discount_badge": "SAVE 25%",
+        "description": "Designed with ultra-soft 100% combed cotton, this iconic matching set gives your toddler effortless comfort and premium durability. Hypoallergenic, breathable, and pre-shrunk."
       }
     },
     "why_choose_us": {
       "type": "why-choose-us",
       "settings": {
-        "eyebrow": "DESIGNED FOR MAXIMUM RESULTS",
-        "heading": "Glow Serum Benefits",
-        "subtitle": "Formulated with the highest grade active botanicals and vitamins to deliver visible transformation.",
-        "btn_text": "GET GLOW SERUM NOW",
-        "btn_link": "#featured-product"
+        "eyebrow": "DESIGNED WITH TENDER LOVE",
+        "heading": "Why Choose KIDDO ME?",
+        "subtitle": "Designed with tender love, perfected for active play."
       }
     },
-    "art_of_fragrance": {
-      "type": "art-of-fragrance",
+    "brand_story": {
+      "type": "brand-story",
       "settings": {
-        "eyebrow": "SCIENCE MEETS LUXURY",
-        "heading": "Feel the Difference",
-        "subtitle": "A unique formulation designed to deeply penetrate and restore skin barrier function."
-      }
-    },
-    "comparison_table": {
-      "type": "comparison-table",
-      "settings": {
-        "eyebrow": "HONEST COMPARISON",
-        "heading": "Why Choose Glow Serum?",
-        "subtitle": "See how our premium formulation outperforms traditional serums in every category."
+        "eyebrow": "✨ OUR PHILOSOPHY",
+        "heading": "Designed for Little Moments",
+        "description": "We believe children's clothing should inspire wonder, joy and free movement. Every stitch in our collection is thoughtfully planned to keep little adventurers snug, whether they're exploring the living room carpet or taking their first steps outdoors.",
+        "btn_text": "Discover Our Story",
+        "btn_link": "#story"
       }
     },
     "testimonials": {
       "type": "testimonials",
       "settings": {
-        "eyebrow": "REAL REVIEWS • REAL RESULTS",
-        "heading": "Loved From Our Customers",
-        "rating_banner_text": "Rated 4.9 / 5.0 by 10,000+ satisfied customers worldwide"
+        "eyebrow": "✨ REAL REVIEWS",
+        "heading": "Why Parents Love KIDDO ME",
+        "subtitle": "Over 15,000 happy families and counting across the country",
+        "reviews_link_text": "See All 1,450+ Real Customer Reviews",
+        "reviews_link_url": "#reviews"
+      }
+    },
+    "color_palette": {
+      "type": "color-palette",
+      "settings": {
+        "heading": "Pick Their Perfect Color",
+        "tagline": "Explore outfits by hue & mood ✨"
       }
     },
     "cta_banner": {
       "type": "cta-banner",
       "settings": {
-        "eyebrow": "SPECIAL LIMITED TIME OFFER",
-        "heading": "Your Glow, Your Ritual, Your Moment.",
-        "text": "Treat your skin to the luxury it deserves. Enjoy 20% off plus a free rose travel pouch with every order today.",
-        "btn_text": "SHOP SPECIAL OFFER",
-        "btn_link": "#featured-product"
+        "badge_text": "✨ LIMITED TIME SPRING EDITION",
+        "heading": "Made For Little Adventures ✨",
+        "subtitle": "Get ready for sunny park days, birthday laughs, and cozy bedtime cuddles.",
+        "btn_text": "Explore Spring Collection",
+        "btn_link": "#collections"
+      }
+    },
+    "customer_reviews": {
+      "type": "customer-reviews",
+      "settings": {
+        "heading": "Happy Little Customers, Happy Parents"
+      }
+    },
+    "comparison_table": {
+      "type": "comparison-table",
+      "settings": {
+        "heading": "Why Choose KIDDO ME?",
+        "subtitle": "See how we compare against traditional babywear brands"
+      }
+    },
+    "craftsmanship_stats": {
+      "type": "craftsmanship-stats",
+      "settings": {
+        "eyebrow": "✨ QUALITY FIRST",
+        "heading": "Made With Love & Precision",
+        "subtitle": "We hold every single garment to the highest safety and comfort standards"
       }
     },
     "faq_accordion": {
       "type": "faq-accordion",
       "settings": {
-        "eyebrow": "COMMON QUESTIONS & ANSWERS",
+        "eyebrow": "✨ GOT QUESTIONS?",
         "heading": "Frequently Asked Questions",
-        "subtitle": "Everything you need to know about our products, ingredients, shipping, and return policies."
+        "subtitle": "Everything you need to know about our products, sizing, and delivery"
       }
     },
     "newsletter_banner": {
       "type": "newsletter-banner",
       "settings": {
-        "heading": "Join the Glow Club",
-        "subtitle": "Subscribe for 15% off your first order, exclusive VIP deals, skincare tips, and new product launches.",
-        "placeholder": "Enter your email address...",
-        "button_text": "SUBSCRIBE"
+        "heading": "Every Little Outfit Tells a Story",
+        "subtitle": "Join 20,000+ parents who receive our private seasonal drops, exclusive discount codes, and nursery styling guides directly to their inbox.",
+        "placeholder": "Enter your email address for 15% off...",
+        "button_text": "Subscribe"
       }
     }
   },
   "order": [
     "hero_banner",
-    "featured_product",
+    "promo_banner",
     "collection_grid",
-    "brand_experience",
-    "brand_story",
-    "craftsmanship_stats",
+    "collection_tabs",
+    "featured_product",
     "why_choose_us",
-    "art_of_fragrance",
-    "comparison_table",
+    "brand_story",
     "testimonials",
+    "color_palette",
     "cta_banner",
+    "customer_reviews",
+    "comparison_table",
+    "craftsmanship_stats",
     "faq_accordion",
     "newsletter_banner"
   ]

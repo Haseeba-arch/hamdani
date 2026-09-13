@@ -1,27 +1,33 @@
 {%- liquid
-  assign eyebrow = section.settings.eyebrow | default: 'SPECIAL LIMITED TIME OFFER'
-  assign heading = section.settings.heading | default: 'Your Glow, Your Ritual, Your Moment.'
-  assign text = section.settings.text | default: 'Treat your skin to the luxury it deserves. Enjoy 20% off plus a free rose travel pouch with every order today.'
-  assign btn_text = section.settings.btn_text | default: 'SHOP SPECIAL OFFER'
-  assign btn_link = section.settings.btn_link | default: '#featured-product'
+  assign badge_text = section.settings.badge_text | default: '✨ LIMITED TIME SPRING EDITION'
+  assign heading = section.settings.heading | default: 'Made For Little Adventures ✨'
+  assign subtitle = section.settings.subtitle | default: 'Get ready for sunny park days, birthday laughs, and cozy bedtime cuddles.'
+  assign btn_text = section.settings.btn_text | default: 'Explore Spring Collection'
+  assign btn_link = section.settings.btn_link | default: '#collections'
 -%}
 
-<section class="cta-banner-section">
+<section class="section-padding cta-banner-section">
   <div class="container">
-    <div class="cta-banner-content">
+    <div class="cta-gradient-card">
       
-      <div class="badge-pill badge-pill-rose" style="margin-bottom: 18px;">
-        {% render 'icon-sparkle' %}
-        <span>{{ eyebrow }}</span>
+      <!-- Badge Pill -->
+      <div class="cta-badge-pill">
+        <span>{{ badge_text }}</span>
       </div>
 
-      <h2 class="cta-banner-title">{{ heading }}</h2>
+      <!-- Heading -->
+      <h2 class="cta-banner-heading">{{ heading }}</h2>
 
-      <p class="cta-banner-text">{{ text }}</p>
+      <!-- Subtitle -->
+      <p class="cta-banner-subtext">{{ subtitle }}</p>
 
-      <a href="{{ btn_link }}" class="btn btn-primary">
-        {{ btn_text }}
-      </a>
+      <!-- CTA Button -->
+      <div class="cta-banner-btn-wrap">
+        <a href="{{ btn_link }}" class="btn btn-cta-purple">
+          <span>{{ btn_text }}</span>
+          {% render 'icon-arrow' %}
+        </a>
+      </div>
 
     </div>
   </div>
@@ -29,41 +35,42 @@
 
 {% schema %}
 {
-  "name": "CTA Banner",
+  "name": "CTA Gradient Banner",
   "settings": [
     {
       "type": "text",
-      "id": "eyebrow",
-      "label": "Eyebrow",
-      "default": "SPECIAL LIMITED TIME OFFER"
+      "id": "badge_text",
+      "label": "Badge Text",
+      "default": "✨ LIMITED TIME SPRING EDITION"
     },
     {
       "type": "text",
       "id": "heading",
       "label": "Heading",
-      "default": "Your Glow, Your Ritual, Your Moment."
+      "default": "Made For Little Adventures ✨"
     },
     {
       "type": "textarea",
-      "id": "text",
-      "label": "Text",
-      "default": "Treat your skin to the luxury it deserves. Enjoy 20% off plus a free rose travel pouch with every order today."
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Get ready for sunny park days, birthday laughs, and cozy bedtime cuddles."
     },
     {
       "type": "text",
       "id": "btn_text",
       "label": "Button Text",
-      "default": "SHOP SPECIAL OFFER"
+      "default": "Explore Spring Collection"
     },
     {
       "type": "url",
       "id": "btn_link",
-      "label": "Button Link"
+      "label": "Button Link",
+      "default": "/collections/all"
     }
   ],
   "presets": [
     {
-      "name": "CTA Banner - Glow Chic"
+      "name": "CTA Gradient Banner"
     }
   ]
 }

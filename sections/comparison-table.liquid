@@ -1,63 +1,114 @@
 {%- liquid
-  assign eyebrow = section.settings.eyebrow | default: 'HONEST COMPARISON'
-  assign heading = section.settings.heading | default: 'Why Choose Glow Serum?'
-  assign subtitle = section.settings.subtitle | default: 'See how our premium formulation outperforms traditional serums in every category.'
+  assign heading = section.settings.heading | default: 'Why Choose KIDDO ME?'
+  assign subtitle = section.settings.subtitle | default: 'See how we compare against traditional babywear brands'
 -%}
 
 <section class="section-padding comparison-section" id="comparison">
   <div class="container">
     
-    <div class="section-header">
-      {%- if eyebrow != blank -%}
-        <span class="section-eyebrow">{{ eyebrow }}</span>
-      {%- endif -%}
-
-      <h2 class="section-title">{{ heading }}</h2>
-
-      {%- if subtitle != blank -%}
-        <p class="section-subtitle">{{ subtitle }}</p>
-      {%- endif -%}
+    <!-- Section Header Center -->
+    <div class="section-header-center">
+      <h2 class="section-heading-main">{{ heading }}</h2>
+      <p class="section-subtitle">{{ subtitle }}</p>
     </div>
 
-    <div class="comparison-table-wrap">
-      <table class="comp-table">
-        <thead>
-          <tr>
-            <th>Features</th>
-            <th class="brand-col-header">
-              <span class="comp-brand-badge">GLOW SERUM</span>
-            </th>
-            <th style="text-align: center;">Other Brands</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class="feature-col">Hyaluronic Acid Matrix</td>
-            <td class="brand-col">Multi-Molecular 3D Matrix</td>
-            <td class="others-col">Single Molecular Weight</td>
-          </tr>
-          <tr>
-            <td class="feature-col">Deep Hydration</td>
-            <td class="brand-col">48 Hours Locked-In</td>
-            <td class="others-col">4-6 Hours Surface Only</td>
-          </tr>
-          <tr>
-            <td class="feature-col">100% Clean &amp; Non-Toxic</td>
-            <td class="brand-col">✓ Certified Organic Actives</td>
-            <td class="others-col">Contains Fillers &amp; Dyes</td>
-          </tr>
-          <tr>
-            <td class="feature-col">Dermatologist Tested</td>
-            <td class="brand-col">✓ 98% Proven Clinical Results</td>
-            <td class="others-col">Basic Unverified Testing</td>
-          </tr>
-          <tr>
-            <td class="feature-col">Sustainable &amp; Recyclable</td>
-            <td class="brand-col">100% Recyclable Glass Flacon</td>
-            <td class="others-col">Single-Use Plastic Bottles</td>
-          </tr>
-        </tbody>
-      </table>
+    <!-- Comparison Table Card -->
+    <div class="comparison-card">
+      <div class="comparison-table-wrap">
+        <table class="comparison-table">
+          <thead>
+            <tr>
+              <th class="col-feature">Features</th>
+              <th class="col-brand-highlight">
+                <div class="table-brand-header">
+                  <span class="table-brand-name">KIDDO ME</span>
+                  <span class="table-brand-tag">Our Promise</span>
+                </div>
+              </th>
+              <th class="col-market">Traditional Market Brands</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="feature-name">100% Certified Organic Cotton</td>
+              <td class="brand-cell">
+                <span class="check-icon">✔</span>
+                <span class="cell-highlight-text">Certified GOTS Organic</span>
+              </td>
+              <td class="market-cell">
+                <span class="cross-icon">✖</span>
+                <span>Mixed Polyester Blends</span>
+              </td>
+            </tr>
+            <tr>
+              <td class="feature-name">Tagless Scratch-Free Design</td>
+              <td class="brand-cell">
+                <span class="check-icon">✔</span>
+                <span class="cell-highlight-text">100% Tagless & Soft</span>
+              </td>
+              <td class="market-cell">
+                <span class="cross-icon">✖</span>
+                <span>Scratchy Neck Tags</span>
+              </td>
+            </tr>
+            <tr>
+              <td class="feature-name">Nickel-Free Baby Safe Snaps</td>
+              <td class="brand-cell">
+                <span class="check-icon">✔</span>
+                <span class="cell-highlight-text">Premium Hypoallergenic</span>
+              </td>
+              <td class="market-cell">
+                <span class="cross-icon">✖</span>
+                <span>Standard Metal Snaps</span>
+              </td>
+            </tr>
+            <tr>
+              <td class="feature-name">Natural Non-Toxic Eco Dyes</td>
+              <td class="brand-cell">
+                <span class="check-icon">✔</span>
+                <span class="cell-highlight-text">100% Plant & Baby Safe</span>
+              </td>
+              <td class="market-cell">
+                <span class="cross-icon">✖</span>
+                <span>Harsh Chemical Dyes</span>
+              </td>
+            </tr>
+            <tr>
+              <td class="feature-name">Pre-Shrunk Long-Lasting Fabric</td>
+              <td class="brand-cell">
+                <span class="check-icon">✔</span>
+                <span class="cell-highlight-text">Holds Size & Softness</span>
+              </td>
+              <td class="market-cell">
+                <span class="cross-icon">✖</span>
+                <span>Shrinks After 1st Wash</span>
+              </td>
+            </tr>
+            <tr>
+              <td class="feature-name">30-Day Easy Exchange Policy</td>
+              <td class="brand-cell">
+                <span class="check-icon">✔</span>
+                <span class="cell-highlight-text">Hassle-Free 30 Days</span>
+              </td>
+              <td class="market-cell">
+                <span class="cross-icon">✖</span>
+                <span>Strict 3-7 Days Only</span>
+              </td>
+            </tr>
+            <tr>
+              <td class="feature-name">Free Delivery on Rs. 3,000+</td>
+              <td class="brand-cell">
+                <span class="check-icon">✔</span>
+                <span class="cell-highlight-text">Always Fast & Free</span>
+              </td>
+              <td class="market-cell">
+                <span class="cross-icon">✖</span>
+                <span>High Courier Fees</span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
 
   </div>
@@ -69,26 +120,20 @@
   "settings": [
     {
       "type": "text",
-      "id": "eyebrow",
-      "label": "Eyebrow",
-      "default": "HONEST COMPARISON"
+      "id": "heading",
+      "label": "Heading",
+      "default": "Why Choose KIDDO ME?"
     },
     {
       "type": "text",
-      "id": "heading",
-      "label": "Heading",
-      "default": "Why Choose Glow Serum?"
-    },
-    {
-      "type": "textarea",
       "id": "subtitle",
       "label": "Subtitle",
-      "default": "See how our premium formulation outperforms traditional serums in every category."
+      "default": "See how we compare against traditional babywear brands"
     }
   ],
   "presets": [
     {
-      "name": "Comparison Table - Glow Chic"
+      "name": "Comparison Table"
     }
   ]
 }

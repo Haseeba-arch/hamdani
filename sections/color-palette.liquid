@@ -1,0 +1,77 @@
+{%- liquid
+  assign heading = section.settings.heading | default: 'Pick Their Perfect Color'
+  assign tagline = section.settings.tagline | default: 'Explore outfits by hue & mood ✨'
+-%}
+
+<section class="section-padding color-palette-section" id="palette">
+  <div class="container">
+    <div class="color-palette-wrap">
+      
+      <!-- Section Heading -->
+      <h2 class="color-palette-title">{{ heading }}</h2>
+
+      <!-- 7 Color Swatch Circles -->
+      <div class="color-swatches-interactive">
+        <button type="button" class="palette-swatch-item active" data-color="pastel-pink">
+          <span class="palette-swatch-circle" style="background-color: #FBCFE8;"></span>
+          <span class="palette-swatch-label">Pastel Pink</span>
+        </button>
+        <button type="button" class="palette-swatch-item" data-color="baby-blue">
+          <span class="palette-swatch-circle" style="background-color: #BAE6FD;"></span>
+          <span class="palette-swatch-label">Baby Blue</span>
+        </button>
+        <button type="button" class="palette-swatch-item" data-color="honey-peach">
+          <span class="palette-swatch-circle" style="background-color: #FED7AA;"></span>
+          <span class="palette-swatch-label">Honey Peach</span>
+        </button>
+        <button type="button" class="palette-swatch-item" data-color="lemon-yellow">
+          <span class="palette-swatch-circle" style="background-color: #FEF08A;"></span>
+          <span class="palette-swatch-label">Lemon</span>
+        </button>
+        <button type="button" class="palette-swatch-item" data-color="sage-mint">
+          <span class="palette-swatch-circle" style="background-color: #A7F3D0;"></span>
+          <span class="palette-swatch-label">Sage Mint</span>
+        </button>
+        <button type="button" class="palette-swatch-item" data-color="lavender">
+          <span class="palette-swatch-circle" style="background-color: #E9D5FF;"></span>
+          <span class="palette-swatch-label">Lavender</span>
+        </button>
+        <button type="button" class="palette-swatch-item" data-color="vanilla-cream">
+          <span class="palette-swatch-circle" style="background-color: #FEF3C7;"></span>
+          <span class="palette-swatch-label">Vanilla</span>
+        </button>
+      </div>
+
+      <!-- Tagline -->
+      <div class="color-palette-tagline">
+        <a href="#featured-products" class="palette-tagline-link">{{ tagline }}</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Pick Perfect Color",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Pick Their Perfect Color"
+    },
+    {
+      "type": "text",
+      "id": "tagline",
+      "label": "Tagline",
+      "default": "Explore outfits by hue & mood ✨"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Pick Perfect Color"
+    }
+  ]
+}
+{% endschema %}

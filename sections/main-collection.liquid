@@ -1,23 +1,12 @@
-<section class="section-padding">
+<div class="main-collection-page section-padding">
   <div class="container">
-    
-    <div class="section-header">
-      <h1 class="section-title">{{ collection.title }}</h1>
-      {%- if collection.description != blank -%}
-        <p class="section-subtitle">{{ collection.description }}</p>
-      {%- endif -%}
+    <div class="section-header-center">
+      <h1 class="section-heading-main">{{ collection.title | default: 'All Baby Outfits' }}</h1>
+      <p class="section-subtitle">{{ collection.description | default: 'Explore our cozy, organic and stylish baby & toddler collections.' }}</p>
     </div>
-
-    <div class="products-grid-4">
-      {%- for product in collection.products -%}
-        {% render 'product-card', card_product: product %}
-      {%- else -%}
-        <p style="grid-column: 1 / -1; text-align: center; padding: 40px 0;">No fragrances found in this collection.</p>
-      {%- endfor -%}
-    </div>
-
+    {% section 'collection-tabs' %}
   </div>
-</section>
+</div>
 
 {% schema %}
 {

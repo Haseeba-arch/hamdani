@@ -1,258 +1,393 @@
 /**
- * GLOW CHIC - Luxury Skincare Shopify 2.0 Theme JS
- * Interactive features: Cart Drawer, FAQ Accordion, Image Gallery Switcher,
- * Category Filter Tabs, Quantity Adjusters, Testimonial Controls, and Toasts.
+ * KIDDO ME – BABY & TODDLER BOUTIQUE SHOPIFY THEME JS
+ * Complete interactive functionalities
  */
 
 document.addEventListener('DOMContentLoaded', () => {
-  initHeaderScroll();
-  initFaqAccordion();
-  initCategoryTabs();
-  initGallerySwitcher();
-  initQuantityControls();
-  initCartDrawer();
-  initAddToCart();
-  initProgressBars();
-  initTestimonialNav();
-});
 
-// 1. Sticky Header scroll effect
-function initHeaderScroll() {
-  const header = document.getElementById('siteHeader');
-  if (!header) return;
+  // --- 1. CART DRAWER & STATE ---
+  const cartDrawer = document.getElementById('CartDrawer');
+  const cartOverlay = document.getElementById('CartDrawerOverlay');
+  const cartCloseBtn = document.getElementById('CartDrawerClose');
+  const cartTriggers = document.querySelectorAll('[data-cart-drawer-trigger]');
+  const cartCountBadges = document.querySelectorAll('#CartCount, #CartDrawerCount');
+  const headerCartTotal = document.getElementById('HeaderCartTotal');
+  const cartSubtotal = document.getElementById('CartSubtotal');
+  const cartTotal = document.getElementById('CartTotal');
+  const cartItemsContainer = document.getElementById('CartDrawerItems');
 
-  window.addEventListener('scroll', () => {
-    if (window.scrollY > 30) {
-      header.classList.add('scrolled');
-    } else {
-      header.classList.remove('scrolled');
+  let cartState = [
+    {
+      id: 'item-1',
+      title: 'All-In-One Baby Collections – Signature Set',
+      variant: 'Sage Green / 3-6M',
+      price: 2450,
+      quantity: 1,
+      image: 'https://images.unsplash.com/photo-1522771930-78848d9293e8?auto=format&fit=crop&w=180&q=80'
+    },
+    {
+      id: 'item-2',
+      title: 'Cotton Knit Cardigan & Hat Set',
+      variant: 'Vanilla Cream / 0-3M',
+      price: 2348,
+      quantity: 1,
+      image: 'https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?auto=format&fit=crop&w=180&q=80'
     }
-  }, { passive: true });
-}
+  ];
 
-// 2. FAQ Accordion
-function initFaqAccordion() {
-  const faqItems = document.querySelectorAll('.faq-item');
-  if (!faqItems.length) return;
-
-  faqItems.forEach(item => {
-    const btn = item.querySelector('.faq-question-btn');
-    const panel = item.querySelector('.faq-answer-panel');
-    if (!btn || !panel) return;
-
-    btn.addEventListener('click', () => {
-      const isActive = item.classList.contains('active');
-
-      // Close all other items
-      faqItems.forEach(otherItem => {
-        if (otherItem !== item) {
-          otherItem.classList.remove('active');
-          const otherPanel = otherItem.querySelector('.faq-answer-panel');
-          if (otherPanel) otherPanel.style.maxHeight = null;
-        }
-      });
-
-      // Toggle current item
-      if (isActive) {
-        item.classList.remove('active');
-        panel.style.maxHeight = null;
-      } else {
-        item.classList.add('active');
-        panel.style.maxHeight = panel.scrollHeight + 30 + 'px';
-      }
-    });
-  });
-
-  // Open first item by default
-  if (faqItems[0]) {
-    faqItems[0].classList.add('active');
-    const firstPanel = faqItems[0].querySelector('.faq-answer-panel');
-    if (firstPanel) {
-      firstPanel.style.maxHeight = firstPanel.scrollHeight + 30 + 'px';
+  function openCartDrawer() {
+    if (cartDrawer && cartOverlay) {
+      cartDrawer.classList.add('open');
+      cartOverlay.classList.add('open');
+      document.body.style.overflow = 'hidden';
     }
   }
-}
 
-// 3. Category Filter Tabs for Collection Grid
-function initCategoryTabs() {
-  const tabBtns = document.querySelectorAll('.tab-btn');
-  const cards = document.querySelectorAll('.product-card');
-  if (!tabBtns.length) return;
+  function closeCartDrawer() {
+    if (cartDrawer && cartOverlay) {
+      cartDrawer.classList.remove('open');
+      cartOverlay.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+  }
 
-  tabBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      tabBtns.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
+  cartTriggers.forEach(btn => btn.addEventListener('click', (e) => {
+    e.preventDefault();
+    openCartDrawer();
+  }));
 
-      const filter = btn.getAttribute('data-filter') || 'all';
+  if (cartCloseBtn) cartCloseBtn.addEventListener('click', closeCartDrawer);
+  if (cartOverlay) cartOverlay.addEventListener('click', closeCartDrawer);
 
-      cards.forEach(card => {
-        const category = (card.getAttribute('data-category') || '').toLowerCase();
-        if (filter === 'all' || category.includes(filter.toLowerCase())) {
-          card.style.display = 'flex';
-          card.style.opacity = '0';
-          setTimeout(() => {
-            card.style.transition = 'opacity 0.4s ease';
-            card.style.opacity = '1';
-          }, 30);
+  function renderCart() {
+    if (!cartItemsContainer) return;
+    
+    let totalItems = 0;
+    let totalPrice = 0;
+
+    cartItemsContainer.innerHTML = '';
+
+    if (cartState.length === 0) {
+      cartItemsContainer.innerHTML = `
+        <div style="text-align: center; padding: 40px 20px; color: var(--color-text-muted);">
+          <span style="font-size: 3rem; display: block; margin-bottom: 12px;">🧸</span>
+          <p style="font-weight: 700; margin-bottom: 8px;">Your cart is currently empty</p>
+          <a href="#collections" class="btn btn-hero-primary" style="margin-top: 12px; font-size: 0.85rem;" onclick="document.getElementById('CartDrawerClose').click();">Start Shopping</a>
+        </div>
+      `;
+    } else {
+      cartState.forEach((item, index) => {
+        totalItems += item.quantity;
+        totalPrice += item.price * item.quantity;
+
+        const itemEl = document.createElement('div');
+        itemEl.className = 'cart-item';
+        itemEl.dataset.itemId = item.id;
+        itemEl.innerHTML = `
+          <div class="cart-item-image">
+            <img src="${item.image}" alt="${item.title}" width="80" height="80">
+          </div>
+          <div class="cart-item-details">
+            <h4 class="cart-item-title">${item.title}</h4>
+            <span class="cart-item-variant">${item.variant}</span>
+            <div class="cart-item-price-row">
+              <div class="cart-quantity-stepper">
+                <button type="button" class="qty-btn minus" data-cart-index="${index}" data-change="-1">-</button>
+                <span class="qty-val">${item.quantity}</span>
+                <button type="button" class="qty-btn plus" data-cart-index="${index}" data-change="1">+</button>
+              </div>
+              <span class="cart-item-price">Rs. ${(item.price * item.quantity).toLocaleString()}</span>
+            </div>
+          </div>
+          <button type="button" class="cart-item-remove" data-cart-remove="${index}">&times;</button>
+        `;
+        cartItemsContainer.appendChild(itemEl);
+      });
+    }
+
+    // Update counts & totals
+    cartCountBadges.forEach(badge => badge.textContent = totalItems);
+    const formattedTotal = 'Rs. ' + totalPrice.toLocaleString();
+    if (headerCartTotal) headerCartTotal.textContent = formattedTotal;
+    if (cartSubtotal) cartSubtotal.textContent = formattedTotal;
+    if (cartTotal) cartTotal.textContent = formattedTotal;
+  }
+
+  // Handle Cart item +/- and remove
+  if (cartItemsContainer) {
+    cartItemsContainer.addEventListener('click', (e) => {
+      if (e.target.closest('[data-change]')) {
+        const btn = e.target.closest('[data-change]');
+        const index = parseInt(btn.dataset.cartIndex);
+        const change = parseInt(btn.dataset.change);
+        if (cartState[index]) {
+          cartState[index].quantity += change;
+          if (cartState[index].quantity <= 0) {
+            cartState.splice(index, 1);
+          }
+          renderCart();
+        }
+      } else if (e.target.closest('[data-cart-remove]')) {
+        const btn = e.target.closest('[data-cart-remove]');
+        const index = parseInt(btn.dataset.cartRemove);
+        cartState.splice(index, 1);
+        renderCart();
+      }
+    });
+  }
+
+  // Toast Notification
+  function showToast(message) {
+    let toast = document.querySelector('.cart-toast');
+    if (!toast) {
+      toast = document.createElement('div');
+      toast.className = 'cart-toast';
+      document.body.appendChild(toast);
+    }
+    toast.innerHTML = `<span>✨</span><span>${message}</span>`;
+    toast.classList.add('show');
+    setTimeout(() => {
+      toast.classList.remove('show');
+    }, 2800);
+  }
+
+  // Add to cart from Product Cards
+  document.querySelectorAll('[data-add-to-cart-btn]').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const title = btn.dataset.productTitle || 'Cozy Baby Outfit';
+      const priceStr = btn.dataset.productPrice || 'Rs. 2,450';
+      const image = btn.dataset.productImage || 'https://images.unsplash.com/photo-1522771930-78848d9293e8?auto=format&fit=crop&w=180&q=80';
+      const price = parseInt(priceStr.replace(/[^0-9]/g, '')) || 2450;
+
+      // Check if already in cart
+      const existing = cartState.find(item => item.title === title);
+      if (existing) {
+        existing.quantity += 1;
+      } else {
+        cartState.push({
+          id: 'item-' + Date.now(),
+          title: title,
+          variant: 'Standard / 3-6M',
+          price: price,
+          quantity: 1,
+          image: image
+        });
+      }
+
+      renderCart();
+      showToast(`${title} added to cart!`);
+      openCartDrawer();
+    });
+  });
+
+  // --- 2. COLLECTION TABS FILTERING ---
+  const tabButtons = document.querySelectorAll('.collection-filter-tabs .tab-btn');
+  const productItems = document.querySelectorAll('.products-grid-6 .product-item-wrap');
+
+  tabButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      tabButtons.forEach(b => b.classList.remove('active'));
+      button.classList.add('active');
+
+      const targetTab = button.dataset.tab;
+
+      productItems.forEach(item => {
+        const categories = item.dataset.category || '';
+        if (targetTab === 'all' || categories.includes(targetTab)) {
+          item.style.display = 'block';
+          item.style.animation = 'fadeIn 0.4s ease';
         } else {
-          card.style.display = 'none';
+          item.style.display = 'none';
         }
       });
     });
   });
-}
 
-// 4. Product Gallery Thumbnail Switcher
-function initGallerySwitcher() {
-  const thumbs = document.querySelectorAll('.fp-thumb-item');
-  const mainImage = document.querySelector('.fp-main-image');
-  if (!thumbs.length || !mainImage) return;
+  // --- 3. FEATURED PRODUCT SHOWCASE INTERACTIONS ---
+  // Gallery Switcher
+  const fpMainImage = document.getElementById('FpMainImage');
+  const fpThumbs = document.querySelectorAll('.fp-thumb');
 
-  thumbs.forEach(thumb => {
+  fpThumbs.forEach(thumb => {
     thumb.addEventListener('click', () => {
-      thumbs.forEach(t => t.classList.remove('active'));
+      fpThumbs.forEach(t => t.classList.remove('active'));
       thumb.classList.add('active');
-
-      const newSrc = thumb.getAttribute('data-img-src') || thumb.querySelector('img')?.src;
-      if (newSrc) {
-        mainImage.style.opacity = '0.3';
+      const newSrc = thumb.dataset.imgSrc;
+      if (fpMainImage && newSrc) {
+        fpMainImage.style.opacity = '0.4';
         setTimeout(() => {
-          mainImage.src = newSrc;
-          mainImage.style.opacity = '1';
+          fpMainImage.src = newSrc;
+          fpMainImage.style.opacity = '1';
         }, 150);
       }
     });
   });
-}
 
-// 5. Quantity Controls
-function initQuantityControls() {
-  document.querySelectorAll('.quantity-wrapper').forEach(wrapper => {
-    const minusBtn = wrapper.querySelector('[data-qty-minus]');
-    const plusBtn = wrapper.querySelector('[data-qty-plus]');
-    const input = wrapper.querySelector('.qty-input');
-    if (!minusBtn || !plusBtn || !input) return;
+  // Color Swatches
+  const colorSwatches = document.querySelectorAll('.fp-swatch-circle');
+  const selectedColorLabel = document.getElementById('SelectedColorLabel');
 
-    minusBtn.addEventListener('click', () => {
-      let val = parseInt(input.value, 10) || 1;
-      if (val > 1) {
-        input.value = val - 1;
+  colorSwatches.forEach(swatch => {
+    swatch.addEventListener('click', () => {
+      colorSwatches.forEach(s => s.classList.remove('active'));
+      swatch.classList.add('active');
+      if (selectedColorLabel && swatch.dataset.colorName) {
+        selectedColorLabel.textContent = swatch.dataset.colorName;
       }
     });
+  });
 
-    plusBtn.addEventListener('click', () => {
-      let val = parseInt(input.value, 10) || 1;
-      input.value = val + 1;
+  // Size Chips
+  const sizeChips = document.querySelectorAll('.fp-size-chip');
+  const selectedSizeLabel = document.getElementById('SelectedSizeLabel');
+
+  sizeChips.forEach(chip => {
+    chip.addEventListener('click', () => {
+      sizeChips.forEach(c => c.classList.remove('active'));
+      chip.classList.add('active');
+      if (selectedSizeLabel && chip.dataset.size) {
+        selectedSizeLabel.textContent = chip.dataset.size;
+      }
     });
   });
-}
 
-// 6. Slide-out Cart Drawer
-function initCartDrawer() {
-  const triggers = document.querySelectorAll('[data-cart-drawer-trigger]');
-  const drawer = document.getElementById('cartDrawer');
-  const overlay = document.getElementById('cartDrawerOverlay');
-  const closeBtn = document.getElementById('cartDrawerClose');
+  // Quantity Stepper
+  const fpQtyMinus = document.getElementById('FpQtyMinus');
+  const fpQtyPlus = document.getElementById('FpQtyPlus');
+  const fpQtyNum = document.getElementById('FpQtyNum');
+  let fpQty = 1;
 
-  if (!drawer || !overlay) return;
+  if (fpQtyMinus && fpQtyPlus && fpQtyNum) {
+    fpQtyMinus.addEventListener('click', () => {
+      if (fpQty > 1) {
+        fpQty--;
+        fpQtyNum.textContent = fpQty;
+      }
+    });
+    fpQtyPlus.addEventListener('click', () => {
+      fpQty++;
+      fpQtyNum.textContent = fpQty;
+    });
+  }
 
-  const openDrawer = (e) => {
-    if (e) e.preventDefault();
-    drawer.classList.add('active');
-    overlay.classList.add('active');
-    document.body.style.overflow = 'hidden';
-  };
+  // Featured Product Add to Cart
+  const fpAddToCartBtn = document.getElementById('FpAddToCartBtn');
+  if (fpAddToCartBtn) {
+    fpAddToCartBtn.addEventListener('click', () => {
+      const selectedColor = selectedColorLabel ? selectedColorLabel.textContent : 'Sage Green';
+      const selectedSize = selectedSizeLabel ? selectedSizeLabel.textContent : '3-6 Months';
+      const activeThumb = document.querySelector('.fp-thumb.active');
+      const img = activeThumb ? activeThumb.dataset.imgSrc : 'https://images.unsplash.com/photo-1522771930-78848d9293e8?auto=format&fit=crop&w=180&q=80';
 
-  const closeDrawer = () => {
-    drawer.classList.remove('active');
-    overlay.classList.remove('active');
-    document.body.style.overflow = '';
-  };
+      cartState.push({
+        id: 'item-' + Date.now(),
+        title: 'ALL-IN-ONE Baby Collections – Signature Set',
+        variant: `${selectedColor} / ${selectedSize}`,
+        price: 2450,
+        quantity: fpQty,
+        image: img
+      });
 
-  triggers.forEach(t => t.addEventListener('click', openDrawer));
-  if (closeBtn) closeBtn.addEventListener('click', closeDrawer);
-  overlay.addEventListener('click', closeDrawer);
+      renderCart();
+      showToast(`Added ${fpQty}x Signature Baby Set to Cart!`);
+      openCartDrawer();
+    });
+  }
 
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && drawer.classList.contains('active')) {
-      closeDrawer();
+  // Featured Product Buy Now
+  const fpBuyNowBtn = document.getElementById('FpBuyNowBtn');
+  if (fpBuyNowBtn) {
+    fpBuyNowBtn.addEventListener('click', () => {
+      openCartDrawer();
+    });
+  }
+
+  // --- 4. SIZE GUIDE MODAL ---
+  const sizeGuideBtn = document.getElementById('SizeGuideBtn');
+  const sizeGuideModal = document.getElementById('SizeGuideModal');
+  const sizeGuideClose = document.getElementById('SizeGuideClose');
+
+  if (sizeGuideBtn && sizeGuideModal) {
+    sizeGuideBtn.addEventListener('click', () => {
+      sizeGuideModal.classList.add('open');
+    });
+  }
+
+  if (sizeGuideClose && sizeGuideModal) {
+    sizeGuideClose.addEventListener('click', () => {
+      sizeGuideModal.classList.remove('open');
+    });
+    sizeGuideModal.addEventListener('click', (e) => {
+      if (e.target === sizeGuideModal) {
+        sizeGuideModal.classList.remove('open');
+      }
+    });
+  }
+
+  // --- 5. FAQ ACCORDION ---
+  const faqItems = document.querySelectorAll('.faq-item');
+  faqItems.forEach(item => {
+    const btn = item.querySelector('.faq-question-btn');
+    if (btn) {
+      btn.addEventListener('click', () => {
+        const isActive = item.classList.contains('active');
+        faqItems.forEach(i => i.classList.remove('active'));
+        if (!isActive) {
+          item.classList.add('active');
+        }
+      });
     }
   });
 
-  // Export globally for cart actions
-  window.openCartDrawer = openDrawer;
-  window.closeCartDrawer = closeDrawer;
-}
-
-// 7. Add to Cart Toast & Counter increment
-function initAddToCart() {
-  const addButtons = document.querySelectorAll('[data-add-to-cart]');
-  const cartBadge = document.querySelector('.cart-count-badge');
-  const toast = document.getElementById('cartToast');
-
-  addButtons.forEach(btn => {
+  // --- 6. WISHLIST TOGGLE ---
+  let wishlistCount = 0;
+  const wishlistHeaderCount = document.getElementById('WishlistHeaderCount');
+  document.querySelectorAll('[data-wishlist-btn]').forEach(btn => {
     btn.addEventListener('click', (e) => {
       e.preventDefault();
-      
-      // Update badge
-      if (cartBadge) {
-        let count = parseInt(cartBadge.textContent, 10) || 0;
-        cartBadge.textContent = count + 1;
-        cartBadge.style.transform = 'scale(1.3)';
-        setTimeout(() => {
-          cartBadge.style.transform = 'scale(1)';
-        }, 250);
-      }
-
-      // Show Toast Notification
-      if (toast) {
-        toast.classList.add('active');
-        setTimeout(() => {
-          toast.classList.remove('active');
-        }, 3000);
-      }
-
-      // Optional: Open cart drawer directly on add
-      // if (window.openCartDrawer) window.openCartDrawer();
+      const isActive = btn.classList.toggle('active');
+      wishlistCount += isActive ? 1 : -1;
+      if (wishlistCount < 0) wishlistCount = 0;
+      if (wishlistHeaderCount) wishlistHeaderCount.textContent = wishlistCount;
+      showToast(isActive ? 'Added to your Wishlist 💕' : 'Removed from Wishlist');
     });
   });
-}
 
-// 8. Progress Bars Animation when visible
-function initProgressBars() {
-  const progressBars = document.querySelectorAll('.progress-fill');
-  if (!progressBars.length) return;
-
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const bar = entry.target;
-        const targetWidth = bar.getAttribute('data-percentage') || '90';
-        bar.style.width = targetWidth + '%';
-        observer.unobserve(bar);
-      }
+  // --- 7. COLOR PALETTE SWATCHES ---
+  const paletteSwatches = document.querySelectorAll('.palette-swatch-item');
+  paletteSwatches.forEach(item => {
+    item.addEventListener('click', () => {
+      paletteSwatches.forEach(p => p.classList.remove('active'));
+      item.classList.add('active');
+      const colorName = item.querySelector('.palette-swatch-label').textContent;
+      showToast(`Browsing ${colorName} collection ✨`);
     });
-  }, { threshold: 0.2 });
-
-  progressBars.forEach(bar => {
-    bar.style.width = '0%';
-    observer.observe(bar);
-  });
-}
-
-// 9. Testimonial Nav Arrows
-function initTestimonialNav() {
-  const prevBtn = document.querySelector('[data-testimonial-prev]');
-  const nextBtn = document.querySelector('[data-testimonial-next]');
-  const grid = document.querySelector('.testimonials-grid-3');
-  if (!prevBtn || !nextBtn || !grid) return;
-
-  nextBtn.addEventListener('click', () => {
-    grid.scrollBy({ left: 320, behavior: 'smooth' });
   });
 
-  prevBtn.addEventListener('click', () => {
-    grid.scrollBy({ left: -320, behavior: 'smooth' });
+  // --- 8. MOBILE MENU ---
+  const mobileToggle = document.getElementById('MobileMenuToggle');
+  const mobileDrawer = document.getElementById('MobileNavDrawer');
+  const mobileClose = document.getElementById('MobileNavClose');
+
+  if (mobileToggle && mobileDrawer) {
+    mobileToggle.addEventListener('click', () => {
+      mobileDrawer.classList.add('open');
+    });
+  }
+
+  if (mobileClose && mobileDrawer) {
+    mobileClose.addEventListener('click', () => {
+      mobileDrawer.classList.remove('open');
+    });
+  }
+
+  document.querySelectorAll('.mobile-nav-link').forEach(link => {
+    link.addEventListener('click', () => {
+      if (mobileDrawer) mobileDrawer.classList.remove('open');
+    });
   });
-}
+
+  // Initial cart render
+  renderCart();
+});

@@ -1,177 +1,237 @@
 {%- liquid
-  assign title = section.settings.title | default: 'Glow Serum'
-  assign subtitle = section.settings.subtitle | default: 'Multivitamin Radiance Booster Serum 50ml / 1.7 fl. oz.'
-  assign category = section.settings.category | default: 'SKINCARE / SERUM / DEEP HYDRATION'
-  assign price = section.settings.price | default: '$49.99'
-  assign compare_price = section.settings.compare_price | default: '$65.00'
-  assign discount_badge = section.settings.discount_badge | default: 'SAVE 23%'
-  assign description = section.settings.description | default: 'Revitalize your skin with our antioxidant-rich formula. Designed to deeply penetrate, lock in moisture, brighten skin tone, and restore your natural, youthful radiance without feeling heavy or greasy.'
+  assign rating_text = section.settings.rating_text | default: '⭐⭐⭐⭐⭐ | 148+ REVIEWS'
+  assign title = section.settings.title | default: 'ALL-IN-ONE Baby Collections – Signature Cosy Stripe Sweatshirt Set'
+  assign price = section.settings.price | default: 'Rs. 2,450'
+  assign compare_price = section.settings.compare_price | default: 'Rs. 3,290'
+  assign discount_badge = section.settings.discount_badge | default: 'SAVE 25%'
+  assign description = section.settings.description | default: 'Designed with ultra-soft 100% combed cotton, this iconic matching set gives your toddler effortless comfort and premium durability. Hypoallergenic, breathable, and pre-shrunk.'
 -%}
 
 <section class="section-padding featured-product-section" id="featured-product">
   <div class="container">
-    <div class="featured-product-grid">
-      
-      <!-- Product Gallery / Image Carousel -->
-      <div class="fp-gallery">
-        <div class="fp-main-image-wrap">
-          <span class="fp-badge-float">BESTSELLER</span>
-          <img src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=900&q=85" 
-               class="fp-main-image" 
-               alt="{{ title }}">
+    
+    <!-- Large Card Container -->
+    <div class="fp-showcase-card">
+      <div class="fp-showcase-grid">
+        
+        <!-- Left: Image Gallery -->
+        <div class="fp-gallery-wrap">
+          <div class="fp-main-image-box">
+            <span class="fp-special-badge">LIMITED SPECIAL EDITION</span>
+            <img src="https://images.unsplash.com/photo-1522771930-78848d9293e8?auto=format&fit=crop&w=900&q=85" 
+                 id="FpMainImage" 
+                 class="fp-main-img" 
+                 alt="{{ title | escape }}">
+          </div>
+
+          <!-- Thumbnails Row -->
+          <div class="fp-thumbnails-row">
+            <button type="button" class="fp-thumb active" data-img-src="https://images.unsplash.com/photo-1522771930-78848d9293e8?auto=format&fit=crop&w=900&q=85">
+              <img src="https://images.unsplash.com/photo-1522771930-78848d9293e8?auto=format&fit=crop&w=200&q=80" alt="Thumbnail 1">
+            </button>
+            <button type="button" class="fp-thumb" data-img-src="https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?auto=format&fit=crop&w=900&q=85">
+              <img src="https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?auto=format&fit=crop&w=200&q=80" alt="Thumbnail 2">
+            </button>
+            <button type="button" class="fp-thumb" data-img-src="https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?auto=format&fit=crop&w=900&q=85">
+              <img src="https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?auto=format&fit=crop&w=200&q=80" alt="Thumbnail 3">
+            </button>
+          </div>
         </div>
 
-        <!-- Thumbnails Row -->
-        <div class="fp-thumbs-row">
-          <div class="fp-thumb-item active" data-img-src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=900&q=85">
-            <img src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=200&q=80" alt="Glow Serum Bottle">
+        <!-- Right: Product Information & Selectors -->
+        <div class="fp-details-wrap">
+          
+          <!-- Rating -->
+          <div class="fp-rating-badge">
+            <span class="fp-rating-stars">★★★★★</span>
+            <span class="fp-rating-text">148+ REVIEWS</span>
           </div>
-          <div class="fp-thumb-item" data-img-src="https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?auto=format&fit=crop&w=900&q=85">
-            <img src="https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?auto=format&fit=crop&w=200&q=80" alt="Woman applying serum">
+
+          <!-- Product Title -->
+          <h2 class="fp-product-title">{{ title }}</h2>
+
+          <!-- Price & Discount Row -->
+          <div class="fp-price-row">
+            <span class="fp-price-current">{{ price }}</span>
+            <span class="fp-price-compare">{{ compare_price }}</span>
+            <span class="fp-discount-pill">{{ discount_badge }}</span>
           </div>
-          <div class="fp-thumb-item" data-img-src="https://images.unsplash.com/photo-1608248597359-5975005b6378?auto=format&fit=crop&w=900&q=85">
-            <img src="https://images.unsplash.com/photo-1608248597359-5975005b6378?auto=format&fit=crop&w=200&q=80" alt="Serum Texture Swatch">
-          </div>
-        </div>
-      </div>
 
-      <!-- Product Information -->
-      <div class="fp-info">
-        <span class="fp-category">{{ category }}</span>
-        <h2 class="fp-title">{{ title }}</h2>
-        <p class="fp-subtitle">{{ subtitle }}</p>
+          <!-- Description -->
+          <p class="fp-description">{{ description }}</p>
 
-        <div class="fp-price-rating-row">
-          <span class="fp-price">{{ price }}</span>
-          {%- if compare_price != blank -%}
-            <span class="fp-compare-price">{{ compare_price }}</span>
-          {%- endif -%}
-          {%- if discount_badge != blank -%}
-            <span class="fp-discount-badge">{{ discount_badge }}</span>
-          {%- endif -%}
-
-          <div class="fp-rating-group">
-            <div class="star-rating">
-              {%- for i in (1..5) -%}
-                {% render 'icon-star' %}
-              {%- endfor -%}
+          <!-- Color Selector -->
+          <div class="fp-option-group">
+            <div class="fp-option-header">
+              <span class="fp-option-label">Select Color: <strong id="SelectedColorLabel">Sage Green</strong></span>
             </div>
-            <span>4.9 (2,840+ Reviews)</span>
-          </div>
-        </div>
-
-        <p class="fp-description">{{ description }}</p>
-
-        <!-- 2x2 Highlights Grid -->
-        <div class="fp-highlights-grid">
-          <div class="highlight-pill-item">
-            <span class="highlight-check">✓</span>
-            <span>Hyaluronic Acid + Vitamin C</span>
-          </div>
-          <div class="highlight-pill-item">
-            <span class="highlight-check">✓</span>
-            <span>48hr Deep Hydration</span>
-          </div>
-          <div class="highlight-pill-item">
-            <span class="highlight-check">✓</span>
-            <span>Dermatologist Tested</span>
-          </div>
-          <div class="highlight-pill-item">
-            <span class="highlight-check">✓</span>
-            <span>Cruelty-Free & Vegan</span>
-          </div>
-        </div>
-
-        <!-- Quantity & Add to Cart Action -->
-        <div class="fp-actions-row">
-          <div class="quantity-wrapper">
-            <button type="button" class="qty-btn" data-qty-minus aria-label="Decrease quantity">-</button>
-            <input type="text" class="qty-input" value="1" readonly>
-            <button type="button" class="qty-btn" data-qty-plus aria-label="Increase quantity">+</button>
+            <div class="fp-swatches-row">
+              <button type="button" class="fp-swatch-circle" style="background-color: #BFDBFE;" data-color-name="Sky Blue" aria-label="Sky Blue"></button>
+              <button type="button" class="fp-swatch-circle" style="background-color: #FBCFE8;" data-color-name="Blush Pink" aria-label="Blush Pink"></button>
+              <button type="button" class="fp-swatch-circle" style="background-color: #FDE68A;" data-color-name="Sand Beige" aria-label="Sand Beige"></button>
+              <button type="button" class="fp-swatch-circle active" style="background-color: #A7F3D0;" data-color-name="Sage Green" aria-label="Sage Green"></button>
+              <button type="button" class="fp-swatch-circle" style="background-color: #FAF5FF;" data-color-name="Vanilla Cream" aria-label="Vanilla Cream"></button>
+            </div>
           </div>
 
-          <button type="button" class="btn btn-primary btn-add-cart-main" data-add-to-cart>
-            {% render 'icon-cart' %}
-            <span>ADD TO CART &mdash; {{ price }}</span>
-          </button>
-        </div>
+          <!-- Size Selector Chips -->
+          <div class="fp-option-group">
+            <div class="fp-option-header">
+              <span class="fp-option-label">Select Size: <strong id="SelectedSizeLabel">3-6 Months</strong></span>
+              <button type="button" class="fp-size-guide-link" id="SizeGuideBtn">Size Guide</button>
+            </div>
+            <div class="fp-sizes-row">
+              <button type="button" class="fp-size-chip" data-size="0-3 Months">0-3M</button>
+              <button type="button" class="fp-size-chip active" data-size="3-6 Months">3-6M</button>
+              <button type="button" class="fp-size-chip" data-size="6-12 Months">6-12M</button>
+              <button type="button" class="fp-size-chip" data-size="12-18 Months">12-18M</button>
+              <button type="button" class="fp-size-chip" data-size="18-24 Months">18-24M</button>
+            </div>
+          </div>
 
-        <!-- 4 Trust Badges -->
-        <div class="fp-trust-badges-grid">
-          <div class="trust-badge-col">
-            {% render 'icon-truck' %}
-            <span>Free Express Shipping</span>
+          <!-- Quantity and Action Buttons -->
+          <div class="fp-purchase-row">
+            <!-- Quantity Stepper -->
+            <div class="fp-quantity-box">
+              <button type="button" class="qty-btn minus" id="FpQtyMinus">-</button>
+              <span class="qty-num" id="FpQtyNum">1</span>
+              <button type="button" class="qty-btn plus" id="FpQtyPlus">+</button>
+            </div>
+
+            <!-- Add to Cart (Purple Button) -->
+            <button type="button" class="btn btn-fp-add-cart" id="FpAddToCartBtn">
+              {% render 'icon-cart' %}
+              <span>Add to Cart</span>
+            </button>
+
+            <!-- Buy Now (Yellow Button) -->
+            <button type="button" class="btn btn-fp-buy-now" id="FpBuyNowBtn">
+              <span>Buy Now</span>
+            </button>
           </div>
-          <div class="trust-badge-col">
-            {% render 'icon-shield' %}
-            <span>30-Day Guarantee</span>
+
+          <!-- Feature Trust List -->
+          <div class="fp-features-list">
+            <div class="fp-feature-bullet">
+              <span class="feature-bullet-icon">🚚</span>
+              <span>Free 48-Hour Delivery Nationwide</span>
+            </div>
+            <div class="fp-feature-bullet">
+              <span class="feature-bullet-icon">🔄</span>
+              <span>30-Day Hassle-Free Exchange Guarantee</span>
+            </div>
+            <div class="fp-feature-bullet">
+              <span class="feature-bullet-icon">🌿</span>
+              <span>100% GOTS Certified Organic Combed Cotton</span>
+            </div>
           </div>
-          <div class="trust-badge-col">
-            {% render 'icon-sparkle' %}
-            <span>100% Secure Checkout</span>
-          </div>
-          <div class="trust-badge-col">
-            {% render 'icon-flower' %}
-            <span>Clean & Organic</span>
-          </div>
+
         </div>
 
       </div>
-
     </div>
+
   </div>
 </section>
 
+<!-- Size Guide Modal -->
+<div class="modal-overlay" id="SizeGuideModal" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-header">
+      <h3 class="modal-title">👶 Baby & Toddler Size Guide</h3>
+      <button type="button" class="modal-close" id="SizeGuideClose">&times;</button>
+    </div>
+    <div class="modal-body">
+      <table class="size-guide-table">
+        <thead>
+          <tr>
+            <th>Size</th>
+            <th>Age</th>
+            <th>Baby Height</th>
+            <th>Baby Weight</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>0-3M</strong></td>
+            <td>0 to 3 Months</td>
+            <td>50 - 60 cm</td>
+            <td>3 - 5.5 kg</td>
+          </tr>
+          <tr>
+            <td><strong>3-6M</strong></td>
+            <td>3 to 6 Months</td>
+            <td>60 - 68 cm</td>
+            <td>5.5 - 7.5 kg</td>
+          </tr>
+          <tr>
+            <td><strong>6-12M</strong></td>
+            <td>6 to 12 Months</td>
+            <td>68 - 76 cm</td>
+            <td>7.5 - 10 kg</td>
+          </tr>
+          <tr>
+            <td><strong>12-18M</strong></td>
+            <td>12 to 18 Months</td>
+            <td>76 - 84 cm</td>
+            <td>10 - 12 kg</td>
+          </tr>
+          <tr>
+            <td><strong>18-24M</strong></td>
+            <td>18 to 24 Months</td>
+            <td>84 - 92 cm</td>
+            <td>12 - 14 kg</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
 {% schema %}
 {
-  "name": "Featured Product",
+  "name": "Featured Product Showcase",
   "settings": [
     {
       "type": "text",
-      "id": "category",
-      "label": "Category Eyebrow",
-      "default": "SKINCARE / SERUM / DEEP HYDRATION"
+      "id": "rating_text",
+      "label": "Rating Text",
+      "default": "⭐⭐⭐⭐⭐ | 148+ REVIEWS"
     },
     {
       "type": "text",
       "id": "title",
       "label": "Product Title",
-      "default": "Glow Serum"
-    },
-    {
-      "type": "text",
-      "id": "subtitle",
-      "label": "Subtitle",
-      "default": "Multivitamin Radiance Booster Serum 50ml / 1.7 fl. oz."
+      "default": "ALL-IN-ONE Baby Collections – Signature Cosy Stripe Sweatshirt Set"
     },
     {
       "type": "text",
       "id": "price",
-      "label": "Price",
-      "default": "$49.99"
+      "label": "Current Price",
+      "default": "Rs. 2,450"
     },
     {
       "type": "text",
       "id": "compare_price",
-      "label": "Compare Price",
-      "default": "$65.00"
+      "label": "Original Price",
+      "default": "Rs. 3,290"
     },
     {
       "type": "text",
       "id": "discount_badge",
       "label": "Discount Badge Text",
-      "default": "SAVE 23%"
+      "default": "SAVE 25%"
     },
     {
       "type": "textarea",
       "id": "description",
       "label": "Description",
-      "default": "Revitalize your skin with our antioxidant-rich formula. Designed to deeply penetrate, lock in moisture, brighten skin tone, and restore your natural, youthful radiance without feeling heavy or greasy."
+      "default": "Designed with ultra-soft 100% combed cotton, this iconic matching set gives your toddler effortless comfort and premium durability. Hypoallergenic, breathable, and pre-shrunk."
     }
   ],
   "presets": [
     {
-      "name": "Featured Product - Glow Serum"
+      "name": "Featured Product Showcase"
     }
   ]
 }

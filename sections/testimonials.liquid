@@ -1,92 +1,104 @@
 {%- liquid
-  assign eyebrow = section.settings.eyebrow | default: 'REAL REVIEWS • REAL RESULTS'
-  assign heading = section.settings.heading | default: 'Loved From Our Customers'
-  assign rating_banner_text = section.settings.rating_banner_text | default: 'Rated 4.9 / 5.0 by 10,000+ satisfied customers worldwide'
+  assign eyebrow = section.settings.eyebrow | default: '✨ REAL REVIEWS'
+  assign heading = section.settings.heading | default: 'Why Parents Love KIDDO ME'
+  assign subtitle = section.settings.subtitle | default: 'Over 15,000 happy families and counting across the country'
+  assign reviews_link_text = section.settings.reviews_link_text | default: 'See All 1,450+ Real Customer Reviews'
+  assign reviews_link_url = section.settings.reviews_link_url | default: '#reviews'
 -%}
 
 <section class="section-padding testimonials-section" id="reviews">
   <div class="container">
     
-    <div class="section-header" style="margin-bottom: 30px;">
-      {%- if eyebrow != blank -%}
-        <span class="section-eyebrow">{{ eyebrow }}</span>
-      {%- endif -%}
-
-      <h2 class="section-title">{{ heading }}</h2>
+    <!-- Section Header Center -->
+    <div class="section-header-center">
+      <span class="section-eyebrow-pill pill-purple">{{ eyebrow }}</span>
+      <h2 class="section-heading-main">{{ heading }}</h2>
+      <p class="section-subtitle">{{ subtitle }}</p>
     </div>
 
-    <!-- Rating Pill Banner & Carousel Arrows -->
-    <div class="testimonials-top-bar">
-      <div class="testimonials-rating-pill">
-        <div class="star-rating">
-          {%- for i in (1..5) -%}
-            {% render 'icon-star' %}
-          {%- endfor -%}
-        </div>
-        <span>{{ rating_banner_text }}</span>
-      </div>
-
-      <div class="testimonials-arrows">
-        <button type="button" class="nav-arrow-btn" data-testimonial-prev aria-label="Previous Testimonial">
-          &larr;
-        </button>
-        <button type="button" class="nav-arrow-btn" data-testimonial-next aria-label="Next Testimonial">
-          &rarr;
-        </button>
-      </div>
-    </div>
-
-    <!-- 3 Testimonial Cards Grid -->
-    <div class="testimonials-grid-3">
+    <!-- 4 Testimonials Grid -->
+    <div class="testimonials-grid-4">
       
-      <!-- Card 1: Sarah M. -->
+      <!-- Card 1 -->
       <div class="testimonial-card">
-        <div class="star-rating">
-          {%- for i in (1..5) -%}
-            {% render 'icon-star' %}
-          {%- endfor -%}
+        <div class="testimonial-top">
+          <div class="testimonial-avatar avatar-pink">
+            <span>🌸</span>
+          </div>
+          <div class="testimonial-stars">
+            ★★★★★
+          </div>
         </div>
-        <p class="testimonial-quote">
-          &ldquo;Glow Serum has completely changed my skin texture! In just 2 weeks my skin feels so hydrated, plump and has this natural luminous glow. I will never use anything else!&rdquo;
-        </p>
+        <h4 class="testimonial-highlight">Superb Quality</h4>
+        <p class="testimonial-quote">"My daughter wears this daily and it still looks brand new after dozens of machine washes!"</p>
         <div class="testimonial-author-row">
-          <span class="testimonial-author-name">Sarah M.</span>
-          <span class="testimonial-badge-pill">Verified Buyer &bull; Glow Serum</span>
+          <span class="author-name">Ayesha M., Lahore</span>
+          <span class="verified-pill">Verified Mum</span>
         </div>
       </div>
 
-      <!-- Card 2: Emily R. -->
+      <!-- Card 2 -->
       <div class="testimonial-card">
-        <div class="star-rating">
-          {%- for i in (1..5) -%}
-            {% render 'icon-star' %}
-          {%- endfor -%}
+        <div class="testimonial-top">
+          <div class="testimonial-avatar avatar-yellow">
+            <span>⭐</span>
+          </div>
+          <div class="testimonial-stars">
+            ★★★★★
+          </div>
         </div>
-        <p class="testimonial-quote">
-          &ldquo;I have sensitive skin and always struggled to find a serum that doesn’t cause redness or irritation. This is gentle, deeply moisturizing, and smells like fresh roses.&rdquo;
-        </p>
+        <h4 class="testimonial-highlight">True to Size & Comfy</h4>
+        <p class="testimonial-quote">"The fabric is so soft! No skin redness or rashes. Will definitely order the full summer set."</p>
         <div class="testimonial-author-row">
-          <span class="testimonial-author-name">Emily R.</span>
-          <span class="testimonial-badge-pill">Verified Buyer &bull; Rose Mist</span>
+          <span class="author-name">Fatima K., Karachi</span>
+          <span class="verified-pill">Verified Buyer</span>
         </div>
       </div>
 
-      <!-- Card 3: Olivia K. -->
+      <!-- Card 3 -->
       <div class="testimonial-card">
-        <div class="star-rating">
-          {%- for i in (1..5) -%}
-            {% render 'icon-star' %}
-          {%- endfor -%}
+        <div class="testimonial-top">
+          <div class="testimonial-avatar avatar-mint">
+            <span>🌿</span>
+          </div>
+          <div class="testimonial-stars">
+            ★★★★★
+          </div>
         </div>
-        <p class="testimonial-quote">
-          &ldquo;The texture is absolute silk and absorbs instantly without leaving any greasiness. My skin looks vibrant and dewy even without makeup. Highly recommended!&rdquo;
-        </p>
+        <h4 class="testimonial-highlight">Fast 2-Day Delivery</h4>
+        <p class="testimonial-quote">"Ordered on Tuesday, received Wednesday noon. Packaging was beautiful like a luxury gift!"</p>
         <div class="testimonial-author-row">
-          <span class="testimonial-author-name">Olivia K.</span>
-          <span class="testimonial-badge-pill">Verified Buyer &bull; Hydra Gel</span>
+          <span class="author-name">Zainab R., Islamabad</span>
+          <span class="verified-pill">Verified Mum</span>
         </div>
       </div>
 
+      <!-- Card 4 -->
+      <div class="testimonial-card">
+        <div class="testimonial-top">
+          <div class="testimonial-avatar avatar-purple">
+            <span>🧸</span>
+          </div>
+          <div class="testimonial-stars">
+            ★★★★★
+          </div>
+        </div>
+        <h4 class="testimonial-highlight">Best Gifting Choice</h4>
+        <p class="testimonial-quote">"Gifted this 3-piece set for my nephew's 1st birthday. Parents absolutely loved the softness!"</p>
+        <div class="testimonial-author-row">
+          <span class="author-name">Mariam S., Rawalpindi</span>
+          <span class="verified-pill">Verified Aunt</span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Bottom Link -->
+    <div class="testimonials-bottom-link-wrap">
+      <a href="{{ reviews_link_url }}" class="link-view-all-reviews">
+        <span>{{ reviews_link_text }}</span>
+        {% render 'icon-arrow' %}
+      </a>
     </div>
 
   </div>
@@ -94,30 +106,42 @@
 
 {% schema %}
 {
-  "name": "Testimonials",
+  "name": "Why Parents Love Us",
   "settings": [
     {
       "type": "text",
       "id": "eyebrow",
-      "label": "Eyebrow",
-      "default": "REAL REVIEWS • REAL RESULTS"
+      "label": "Eyebrow Text",
+      "default": "✨ REAL REVIEWS"
     },
     {
       "type": "text",
       "id": "heading",
       "label": "Heading",
-      "default": "Loved From Our Customers"
+      "default": "Why Parents Love KIDDO ME"
     },
     {
       "type": "text",
-      "id": "rating_banner_text",
-      "label": "Rating Banner Text",
-      "default": "Rated 4.9 / 5.0 by 10,000+ satisfied customers worldwide"
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Over 15,000 happy families and counting across the country"
+    },
+    {
+      "type": "text",
+      "id": "reviews_link_text",
+      "label": "Bottom Link Text",
+      "default": "See All 1,450+ Real Customer Reviews"
+    },
+    {
+      "type": "url",
+      "id": "reviews_link_url",
+      "label": "Bottom Link URL",
+      "default": "/pages/reviews"
     }
   ],
   "presets": [
     {
-      "name": "Testimonials - Glow Chic"
+      "name": "Why Parents Love Us"
     }
   ]
 }
